@@ -1,8 +1,14 @@
-﻿using System;
-
-namespace WesleyCore.Domin.Abstractions
+﻿namespace WesleyCore.Domin.Abstractions
 {
-    public class Entity
+    public abstract class Entity : IEntity
     {
+        public abstract object[] GetKeys();
+    }
+
+    public abstract class Entity<TKey> : Entity, IEntity<TKey>
+    {
+        public virtual TKey Id { get; protected set; };
+
+        public abstract object[] GetKeys();
     }
 }

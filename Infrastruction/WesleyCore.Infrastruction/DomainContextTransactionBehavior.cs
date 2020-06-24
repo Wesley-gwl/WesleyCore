@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WesleyCore.Infrastruction
+﻿namespace WesleyCore.Infrastruction
 {
-    class DomainContextTransactionBehavior
+    /// <summary>
+    /// 事务处理
+    /// </summary>
+    public class DomainContextTransactionBehavior<TRequest, TResponse> : TransactionBehavior<DomainContext>
     {
+        public DomainContextTransactionBehavior(DomainContext context)
+        {
+        }
     }
 }

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WesleyCore.Infrastruction.EntityConfigurations
+﻿namespace WesleyCore.Infrastruction.EntityConfigurations
 {
-    class OrderEntityTypeConfiguration
+    internal class OrderEntityTypeConfiguration
     {
     }
 }

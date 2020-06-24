@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using WesleyCore.Infrastruction.Core;
 
 namespace WesleyCore.Infrastruction.Repositories
 {
-    class IOrderRepository
+    /// <summary>
+    ///
+    /// </summary>
+    public interface IOrderRepository : IRepository<Order, long>
     {
     }
 }
