@@ -2,7 +2,7 @@
 
 namespace WesleyCore.Domin.Abstractions
 {
-    public interface IDomainEventHandler<IDomainEvent> : INotificationHandler<IDomainEvent> :where
+    public interface IDomainEventHandler<IDomainEvent> : INotificationHandler<IDomainEvent> :Where
     {
     }
 }

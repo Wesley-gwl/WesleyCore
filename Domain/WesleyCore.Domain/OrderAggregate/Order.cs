@@ -5,13 +5,30 @@ namespace WesleyCore.Domain.OrderAggregate
 {
     public class Order : Entity<long>, IAggregateRoot
     {
-        public string UserId { get; set; }
-        public string UserName { get; set; }
+        /// <summary>
+        /// 用户主键
+        /// </summary>
+        public string UserId { get; private set; }
+
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        public string UserName { get; private set; }
+
+        /// <summary>
+        /// 地址
+        /// </summary>
+        public Address Address { get; private set; }
 
         public Order(string userId, string userName)
         {
             this.UserId = userId;
             this.UserName = userName;
+        }
+
+        public override object[] GetKeys()
+        {
+            throw new NotImplementedException();
         }
     }
 }
