@@ -5,12 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Behaviors\" />
     <Folder Include="Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetCore.CAP" Version="3.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\WesleyCore.Domin.Abstractions\WesleyCore.Domin.Abstractions.csproj" />
   </ItemGroup>
-
 </Project>
