@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WesleyCore.Infrastruction;
 
 namespace WesleyCore
 {
@@ -17,6 +18,13 @@ namespace WesleyCore
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //数据库自动创建
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var dc = scope.ServiceProvider.GetService<DomainContext>();
+                dc.Database.EnsureCreated();
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

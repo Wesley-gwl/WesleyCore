@@ -50,7 +50,7 @@ namespace WesleyCore.Infrastruction.Core
         }
     }
 
-    public abstract class Repository<TEntity, TKey, TDbContext> : Repository<TEntity, TDbContext>, IRepository<TEntity, TKey> where TEntity : Entity, IAggregateRoot where TDbContext : EFContext
+    public abstract class Repository<TEntity, TKey, TDbContext> : Repository<TEntity, TDbContext>, IRepository<TEntity, TKey> where TEntity : Entity<TKey>, IAggregateRoot where TDbContext : EFContext
     {
         public Repository(TDbContext context) : base(context)
         {

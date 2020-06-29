@@ -1,11 +1,14 @@
-﻿using MediatR;
+﻿using DotNetCore.CAP;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using WesleyCore.Infrastruction.Core;
+using WesleyCore.Infrastruction.Core.Extensions;
 
-namespace WesleyCore.Infrastruction.Core
+namespace GeekTime.Infrastructure.Core
 {
     public class EFContext : DbContext, IUnitOfWork, ITransaction
     {
@@ -23,6 +26,7 @@ namespace WesleyCore.Infrastruction.Core
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
         {
             var result = await base.SaveChangesAsync(cancellationToken);
+            await _mediator.DispatchDomainEventsAsync(this);
             return true;
         }
 
@@ -34,34 +38,29 @@ namespace WesleyCore.Infrastruction.Core
 
         public IDbContextTransaction GetDbContextTransaction() => _currentTransaction;
 
-        /// <summary>
-        /// 判断事务是否开启
-        /// </summary>
         public bool HasActiveTransaction => _currentTransaction != null;
 
-        /// <summary>
-        /// 开启事务
-        /// </summary>
-        /// <returns></returns>
         public Task<IDbContextTransaction> BeginTransactionAsync()
         {
             if (_currentTransaction != null) return null;
-            _currentTransaction = Database.BeginTransaction(_capBusm, autoCommit: false);
+            _currentTransaction = Database.BeginTransaction(_capBus, autoCommit: false);
             return Task.FromResult(_currentTransaction);
         }
 
         public async Task CommitTransactionAsync(IDbContextTransaction transaction)
         {
             if (transaction == null) throw new ArgumentNullException(nameof(transaction));
-            if (transaction != _currentTransaction) throw new InvalidOperationException($"Transaction{transaction.TransactionId}");
+            if (transaction != _currentTransaction) throw new InvalidOperationException($"Transaction {transaction.TransactionId} is not current");
+
             try
             {
                 await SaveChangesAsync();
                 transaction.Commit();
             }
-            catch (Exception)
+            catch
             {
                 RollbackTransaction();
+                throw;
             }
             finally
             {
@@ -73,9 +72,6 @@ namespace WesleyCore.Infrastruction.Core
             }
         }
 
-        /// <summary>
-        /// 回滚
-        /// </summary>
         public void RollbackTransaction()
         {
             try
