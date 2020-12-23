@@ -1,0 +1,61 @@
+﻿.ul1 {
+    list-style: none;
+    margin: 0
+}
+
+li {
+    padding: 5px;
+}
+
+body {
+    font-family: 微软雅黑;
+    background: rgb(240, 245, 246);
+    padding: 36px 36px 25px 30px;
+}
+
+.bodycontent {
+    background: #fff;
+    color: #333;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+    .bodycontent .row {
+        margin: 0;
+        padding: 0 25px;
+        margin-bottom: 10px;
+    }
+
+.bk {
+    border: 1px solid #c9c9c9;
+}
+
+.nav-content {
+    display: block;
+    padding: 25px 0;
+}
+
+.divkj {
+    height: 397px;
+    border: 1px solid #c9c9c9;
+}
+
+.scroll-box {
+    width: 400px;
+    height: 200px;
+    border: 1px solid #c9c9c9;
+    overflow: hidden;
+}
+
+    .scroll-box ul {
+        list-style: none;
+        width: 100%;
+        height: 100%;
+    }
+
+        .scroll-box ul li {
+            width: 100%;
+            height: 40px;
+            box-sizing: border-box;
+            line-height: 40px;
+            text-align: center;
+        }

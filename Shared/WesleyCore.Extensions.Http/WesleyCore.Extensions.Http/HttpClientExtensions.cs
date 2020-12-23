@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace WesleyCore.Extensions.Http
 {
+    /// <summary>
+    /// 客户端请求
+    /// </summary>
     public static class HttpClientExtensions
     {
         public static async Task<HttpResponseMessage> PostJsonAsync<T>(this HttpClient httpClient, Uri requestUri, T data, CancellationToken cancellationToken)

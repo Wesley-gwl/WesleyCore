@@ -9,8 +9,14 @@ using WesleyCore.Domin.Abstractions;
 
 namespace WesleyCore.Infrastruction.Core.Extensions
 {
-    internal static class MediatorExtension
+    public static class MediatorExtension
     {
+        /// <summary>
+        /// 注册领域事件
+        /// </summary>
+        /// <param name="mediator"></param>
+        /// <param name="ctx"></param>
+        /// <returns></returns>
         public static async Task DispatchDomainEventsAsync(this IMediator mediator, DbContext ctx)
         {
             var domainEntities = ctx.ChangeTracker
@@ -21,11 +27,12 @@ namespace WesleyCore.Infrastruction.Core.Extensions
                 .SelectMany(x => x.Entity.DomainEvents)
                 .ToList();
 
-            domainEntities.ToList()
-                .ForEach(entity => entity.Entity.ClearDomainEvents());
+            domainEntities.ToList().ForEach(entity => entity.Entity.ClearDomainEvents());
 
             foreach (var domainEvent in domainEvents)
-                await mediator.Publish(domainEvent);
+            {
+                await mediator.Publish<INotification>(domainEvent);
+            }
         }
     }
 }

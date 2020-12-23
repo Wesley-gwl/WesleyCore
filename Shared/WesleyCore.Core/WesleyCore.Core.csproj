@@ -1,7 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\WesleyCore.Domain\WesleyCore.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastruction\WesleyCore.Infrastruction\WesleyCore.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\WesleyCore.Domin.Abstractions\WesleyCore.Domin.Abstractions.csproj" />
+    <ProjectReference Include="..\WesleyCore.Infrastruction.Core\WesleyCore.Infrastruction.Core.csproj" />
+  </ItemGroup>
 </Project>

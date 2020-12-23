@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../index/css/index.css" rel="stylesheet" />
+    <link href="../index/css/calendar.css" rel="stylesheet" />
+</head>
+<body id="body">
+    <div class="bodycontent">
+        <div class="nav-content">
+            <div class="row">
+                <div class="col-xs-12 col-sm-5 ">
+                    <div id="calendar" class=" bk"></div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <iframe allowtransparency="true" frameborder="0" width="877" height="100" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=2&z=3&t=1&v=0&d=5&bd=1&k=c0c0c0&f=&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=58457&w=877&h=100&align=center"></iframe>
+                </div>
+                <div class="col-xs-12 col-sm-6 box1" style="padding-top: 14px;">
+                    <div id="echarts1" class="divkj" style="width: 877px;height:500px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="./js/jquery-3.3.1.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/echarts.min.js"></script>
+<script src="./js/calendar.js"></script>
+<script type="text/javascript">
+    var echarts1;
+    var main = {
+        init: function () {
+            main.showSales();
+            main.showColendar();
+            setTimeout(main.showSales, 60 * 1000);//一分钟获取一次
+            setTimeout(main.showColendar, 60 * 1000);//一分钟获取一次
+        },
+        //加载销量折线图
+        showSales: function () {
+            echarts1 = echarts.init(document.getElementById('echarts1'));
+            $.ajax({
+                url: '/api/AccountCanPayment/GetAccountCanPaymentYearList',
+                type: 'get',
+                datatype: 'json',
+                success: function (re) {
+                    if (re.success) {
+                        main.showSalesEchart(re.data.xAxis, re.data.saleList, re.data.purchaseList);
+                    }
+                },
+            })
+        },
+        //echarts数据加载
+        showSalesEchart: function (xAxisData, saleData, purchaseData) {
+            option = {
+                title: {
+                    text: '销量统计图'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['销售金额', '采购金额']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: xAxisData
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name: '销售金额',
+                        type: 'line',
+                        stack: '销售总量',
+                        data: saleData
+                    },
+                    {
+                        name: '采购金额',
+                        type: 'line',
+                        stack: '采购总量',
+                        data: purchaseData
+                    },
+
+                ]
+            };
+            echarts1.setOption(option);
+        },
+        //加载日历事件
+        showColendar: function () {
+            $.ajax({
+                url: '/api/AccountCanPayment/GetToDoDocumentsList',
+                type: 'get',
+                datatype: 'json',
+                success: function (re) {
+                    if (re.success) {
+                        $("#calendar").calendar({
+                            data: re.data,
+                            mode: "month",
+                        })
+                    }
+                },
+            })
+        },
+    }
+    $(function () {
+        main.init();
+    })
+</script>

@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="#" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" href="~/css/login.css" rel="stylesheet" />
+    <title>管呗</title>
+</head>
+<body onkeydown="keyLogin();">
+    <div id="bg">
+        <div id="hint">
+            <!-- 提示框 -->
+            <p>登录失败</p>
+        </div>
+        <div id="login_wrap">
+            <div id="login">
+                <!-- 登录注册切换动画 -->
+                <div id="status">
+                    @*<i style="top: 0">Log</i>*@
+                    <i id="loginlog">登入</i>
+                    <i id="registlog" style="display:none">注册</i>
+                </div>
+                <div id="in">
+                    <form id="from1" action="post">
+                        <p class="form"><input type="text" id="user" name="PhoneNumber" placeholder="手机号"></p>
+                        <p class="form"><input type="password" id="passwd" name="Password" placeholder="密码"></p>
+                        <p class="form confirm"><input type="password" id="confirmPassword" name="confirmPassword" placeholder="确认密码"></p>
+                        <p class="form confirm"><input type="text" id="UserName" name="UserName" placeholder="用户名"></p>
+                        <p class="form confirm"><input type="text" id="Company" name="Company" placeholder="公司"></p>
+                        <input type="button" value="登入" class="btn" onclick="main.login()" style="margin-right: 20px;">
+                        <input type="button" value="注册" class="btn" onclick='main.signin()' id="btn">
+                    </form>
+                </div>
+            </div>
+
+            <div id="login_img">
+                <!-- 图片绘制框 -->
+                <span class="circle">
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="star">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="fly_star">
+                    <span></span>
+                    <span></span>
+                </span>
+                <p id="title">CLOUD</p>
+            </div>
+        </div>
+    </div>
+    <div style="width:100%;margin:0 auto; padding:20px 0; position:fixed ; bottom:0px;text-align:center;">
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010802011081" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+            <p style="height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">2020-2021 3p6n.com 版权所有 ICP证：浙ICP备2020030492号-1 <img src="~/Content/Image/备案图标.png"  />浙公网安备 33010802011081号</p>
+        </a>
+    </div>
+</body>
+</html>
+<script src="~/Content/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="~/Content/global/scripts/jquery.extend.js"></script>
+<script src="~/Content/layer/layer.js"></script>
+<script type="text/javascript">
+    var onoff = true//根据此布尔值判断当前为注册状态还是登录状态
+    var phoneReg = /^(13[0-9]|14[5-9]|15[012356789]|166|17[0-8]|18[0-9]|19[8-9])[0-9]{8}$/;
+    var main = {
+        init: function () {
+            this.loadCSS();
+        },
+        loadCSS: function () {
+            var name_c = document.getElementById("title")
+            name = name_c.innerHTML.split("")
+            name_c.innerHTML = ""
+            for (i = 0; i < name.length; i++)
+                if (name[i] != ",")
+                    name_c.innerHTML += "<i>" + name[i] + "</i>"
+        },
+        //注册按钮
+        signin: function () {
+            if (onoff) {
+                //弹出注册控件
+                var confirm = document.getElementsByClassName("confirm")
+                let status = document.getElementById("status").getElementsByTagName("i")
+                confirm[0].style.height = 51 + "px"
+                confirm[1].style.height = 51 + "px"
+                confirm[2].style.height = 51 + "px"
+                $("#loginlog").hide();
+                $("#registlog").show();
+                onoff = !onoff
+            }
+            else {
+                //注册验证
+                var user = jQuery.serializeObject('#from1');
+                if (!phoneReg.test(user.PhoneNumber))
+                    layer.msg("电话只能数字", { icon: 6 });
+                else if (user.Password.length < 6)
+                    layer.msg("密码长度必须大于6位", { icon: 6 });
+                else if (user.Password != user.confirmPassword)
+                    layer.msg("两次密码不相等", { icon: 6 });
+                else if (!user.UserName)
+                    layer.msg("用户名不能为空", { icon: 6 });
+                else if (user.Password == user.confirmPassword) {
+                    $.ajax({
+                        type: 'post',
+                        data: JSON.stringify(user),
+                        url: '/api/member/register',
+                        contentType: 'application/json;charset=UTF-8',
+                        dataType: 'json',
+                        success: function (result) {
+                            if (result.success) {
+                                layer.msg("账号注册成功", { icon: 6 });
+                                setTimeout("window.location.reload()", 2000);
+                            }
+                            else {
+                                layer.msg(result.message, { icon: 2 });
+                            }
+                        }
+                    })
+
+                }
+            }
+        },
+        //登录按钮
+        login: function () {
+            if (onoff) {
+                var user = jQuery.serializeObject('#from1');
+                if (!phoneReg.test(user.PhoneNumber))
+                    layer.msg("手机号码不正确", { icon: 6 });
+                else if (user.Password.length < 6)
+                    layer.msg("密码长度必须大于6", { icon: 6 });
+                else {
+                    $.ajax({
+                        type: 'post',
+                        data: JSON.stringify(user),
+                        url: '/api/member/MemberLogin',
+                        contentType: 'application/json;charset=UTF-8',
+                        dataType: 'json',
+                        success: function (result) {
+                            if (result.success) {
+                                window.location.href = result.data;
+                            }
+                            else {
+                                layer.msg(result.message, { icon: 2 });
+                            }
+                        }
+                    })
+                }
+            }
+            else {
+                let status = document.getElementById("status").getElementsByTagName("i")
+                var confirm = document.getElementsByClassName("confirm")
+                confirm[0].style.height = 0
+                confirm[1].style.height = 0
+                confirm[2].style.height = 0
+                $("#loginlog").show();
+                $("#registlog").hide();
+                onoff = !onoff
+            }
+        }
+    }
+    //初始化
+    $(function () {
+        main.init();
+    });
+    //回车登入
+    function keyLogin() {
+        if (event.keyCode == 13) {
+            main.login();
+        }
+    }
+</script>

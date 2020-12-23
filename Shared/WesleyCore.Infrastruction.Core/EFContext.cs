@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace GeekTime.Infrastructure.Core
     public class EFContext : DbContext, IUnitOfWork, ITransaction
     {
         protected IMediator _mediator;
-        private ICapPublisher _capBus;
+        private readonly ICapPublisher _capBus;
 
         public EFContext(DbContextOptions options, IMediator mediator, ICapPublisher capBus) : base(options)
         {
@@ -23,11 +24,55 @@ namespace GeekTime.Infrastructure.Core
 
         #region IUnitOfWork
 
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
         {
-            var result = await base.SaveChangesAsync(cancellationToken);
+            //var entries = this.ChangeTracker.Entries();
+            //var tenantIdPropertyName = "TenantId";
+            ////添加租户id
+            //foreach (var item in entries)
+            //{
+            //    if (item.State == EntityState.Added)
+            //    {
+            //        var type = item.Property(tenantIdPropertyName);
+            //        if (type != null)
+            //        {
+            //            type.CurrentValue = GetTentantId();
+            //        }
+            //        //log 新增
+            //    }
+            //    else if (item.State == EntityState.Modified)
+            //    {
+            //        //更新日志
+            //        var temp = item.Property("TenantId");
+            //        //旧数据为
+            //        //temp.OriginalValue;
+            //        //修改后的数据为
+            //        //temp.CurrentValue
+            //        //更新前数据
+            //    }
+            //    else if (item.State == EntityState.Deleted)
+            //    {
+            //        //删除日志
+            //    }
+            //}
+            await base.SaveChangesAsync(cancellationToken);
             await _mediator.DispatchDomainEventsAsync(this);
             return true;
+        }
+
+        /// <summary>
+        /// 允许领域事件
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task RunDomainEvent(CancellationToken cancellationToken = default)
+        {
+            await _mediator.DispatchDomainEventsAsync(this);
         }
 
         #endregion IUnitOfWork
@@ -47,6 +92,11 @@ namespace GeekTime.Infrastructure.Core
             return Task.FromResult(_currentTransaction);
         }
 
+        /// <summary>
+        /// 提交
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <returns></returns>
         public async Task CommitTransactionAsync(IDbContextTransaction transaction)
         {
             if (transaction == null) throw new ArgumentNullException(nameof(transaction));
@@ -72,6 +122,9 @@ namespace GeekTime.Infrastructure.Core
             }
         }
 
+        /// <summary>
+        /// 回滚
+        /// </summary>
         public void RollbackTransaction()
         {
             try

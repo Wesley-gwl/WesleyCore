@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using GeekTime.Infrastructure.Core;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -10,8 +11,8 @@ namespace WesleyCore.Infrastruction.Core.Behaviors
 {
     public class TransactionBehavior<TDbContext, TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TDbContext : EFContext
     {
-        private ILogger _logger;
-        private TDbContext _dbContext;
+        private readonly ILogger _logger;
+        private readonly TDbContext _dbContext;
 
         public TransactionBehavior(TDbContext dbContext, ILogger logger)
         {
@@ -26,11 +27,12 @@ namespace WesleyCore.Infrastruction.Core.Behaviors
 
             try
             {
+                //事务是否开启
                 if (_dbContext.HasActiveTransaction)
                 {
                     return await next();
                 }
-
+                //重启策略
                 var strategy = _dbContext.Database.CreateExecutionStrategy();
 
                 await strategy.ExecuteAsync(async () =>

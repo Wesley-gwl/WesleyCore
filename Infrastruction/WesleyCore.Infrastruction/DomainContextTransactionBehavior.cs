@@ -1,8 +1,7 @@
-﻿using DotNetCore.CAP;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using WesleyCore.Infrastruction.Core.Behaviors;
 
-namespace WesleyCore.Infrastruction
+namespace WesleyCore.EntityFrameworkCore
 {
     /// <summary>
     /// 事务处理

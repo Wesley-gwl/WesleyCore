@@ -1,0 +1,709 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>管呗小秘书</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    @*<link rel="icon" href="~/favicon.ico" type="img/x-ico" />*@
+    <link href="/Content/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="/Content/layouts/layout/css/layout.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/layouts/layout/css/style.min.css" rel="stylesheet" />
+    <link href="/Content/layouts/layout/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/layer/theme/default/layer.css" rel="stylesheet" />
+    <link href="~/Content/messenger/css/messenger.css" rel="stylesheet" />
+    <link href="~/Content/messenger/css/messenger-theme-future.css" rel="stylesheet" />
+</head>
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-sidebar-fixed page-footer-fixed" style="overflow:hidden;">
+    <div class="page-header navbar navbar-fixed-top ">
+        <div class="page-header-inner ">
+            <div class="page-logo">
+                <a style="cursor:default">
+                    <img src="/Content/image/logo.jpg" alt="logo" class="logo-default" />
+                </a>
+                <div class="menu-toggler sidebar-toggler "> </div>
+            </div>
+            <!-- BEGIN RESPONSIVE MENU TOGGLER 左侧菜单栏切换开关-->
+            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN TOP NAVIGATION MENU 顶部导航栏-->
+            <div class="top-menu">
+                <div class="theme-panel hidden-xs hidden-sm">
+                    <div class="toggler hidden"> </div>
+                    <div class="toggler-close"> </div>
+                    <div class="theme-options">
+                        <div class="theme-option theme-colors clearfix">
+                            <span> THEME COLOR </span>
+                            <ul>
+                                <li class="color-default current tooltips" data-style="default" data-container="body" data-original-title="Default"> </li>
+                                <li class="color-darkblue tooltips" data-style="darkblue" data-container="body" data-original-title="Dark Blue"> </li>
+                                <li class="color-blue tooltips" data-style="blue" data-container="body" data-original-title="Blue"> </li>
+                                <li class="color-grey tooltips" data-style="grey" data-container="body" data-original-title="Grey"> </li>
+                                <li class="color-light tooltips" data-style="light" data-container="body" data-original-title="Light"> </li>
+                                <li class="color-light2 tooltips" data-style="light2" data-container="body" data-html="true" data-original-title="Light 2"> </li>
+                            </ul>
+                        </div>
+                        <div class="theme-option">
+                            <span> Theme Style </span>
+                            <select class="layout-style-option form-control input-sm">
+                                <option value="square" selected="selected">Square corners</option>
+                                <option value="rounded">Rounded corners</option>
+                            </select>
+                        </div>
+                        <div class="theme-option">
+                            <span> Layout </span>
+                            <select class="layout-option form-control input-sm">
+                                <option value="fluid" selected="selected">Fluid</option>
+                                <option value="boxed">Boxed</option>
+                            </select>
+                        </div>
+                        <div class="theme-option">
+                            <span> Header </span>
+                            <select class="page-header-option form-control input-sm">
+                                <option value="fixed" selected="selected">Fixed</option>
+                                <option value="default">Default</option>
+                            </select>
+                        </div>
+                        <div class="theme-option">
+                            <span> Top Menu Dropdown</span>
+                            <select class="page-header-top-dropdown-style-option form-control input-sm">
+                                <option value="light" selected="selected">Light</option>
+                                <option value="dark">Dark</option>
+                            </select>
+                        </div>
+                        <div class="theme-option">
+                            <span> Sidebar Mode</span>
+                            <select class="sidebar-option form-control input-sm">
+                                <option value="fixed">Fixed</option>
+                                <option value="default" selected="selected">Default</option>
+                            </select>
+                        </div>
+                        <div class="theme-option">
+                            <span> Sidebar Menu </span>
+                            <select class="sidebar-menu-option form-control input-sm">
+                                <option value="accordion" selected="selected">Accordion</option>
+                                <option value="hover">Hover</option>
+                            </select>
+                        </div>
+                        <div class="theme-option">
+                            <span> Sidebar Style </span>
+                            <select class="sidebar-style-option form-control input-sm">
+                                <option value="default" selected="selected">Default</option>
+                                <option value="light">Light</option>
+                            </select>
+                        </div>
+                        <div class="theme-option">
+                            <span> Sidebar Position </span>
+                            <select class="sidebar-pos-option form-control input-sm">
+                                <option value="left" selected="selected">Left</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </div>
+                        <div class="theme-option">
+                            <span> Footer </span>
+                            <select class="page-footer-option form-control input-sm">
+                                <option value="fixed">Fixed</option>
+                                <option value="default" selected="selected">Default</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav navbar-nav pull-right">
+                    <li class="header-icon">
+                        <i class="fa fa-arrows-alt" onclick="fullScreen()" title="全屏"></i>
+                    </li>
+                    <!-- BEGIN NOTIFICATION DROPDOWN 头像下拉菜单-->
+                    <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                    @*<li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="icon-bell"></i>
+                                <span class="badge badge-default audit-count"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="external" id="audit_box_header">
+                                    <h3>
+                                        <span class="bold audit-count">0</span> 条待办
+                                    </h3>
+                                    <a href="javascript:;" onclick="clearAudit()">已读所有</a>
+                                </li>
+                                <li id="audit_list">
+                                </li>
+                            </ul>
+                        </li>*@
+                    <!-- END NOTIFICATION DROPDOWN -->
+                    <!-- BEGIN INBOX DROPDOWN -->
+                    <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <i class="icon-envelope-open"></i>
+                            <span class="badge badge-default msg-count"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="external" id="msg_box_header">
+                                <h3>
+                                    <span class="bold msg-count">0</span> 条消息
+                                </h3>
+                                <a href="javascript:;" onclick="clearMsg()">已读所有</a>
+                            </li>
+                            <li id="msg_list">
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END INBOX DROPDOWN -->
+                    <vc:top-bar-language-switch></vc:top-bar-language-switch>
+                    <li class="dropdown dropdown-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" @*data-hover="dropdown" *@ data-close-others="true">
+                            <img alt="" style="max-height:30px; max-width:50px;" src="@ViewBag.OperatorImage" />
+                            <span id="user-realname" class="username username-hide-on-mobile"> @ViewBag.RealName </span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a href="javascript:;" onclick="pwdDialog()">
+                                    <i class="icon-lock"></i> 重置密码
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Home/LogOut">
+                                    <i class="fa fa-sign-out"></i> 安全退出
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="tip text-center" style="color:#ff3d00; padding:15px;">@ViewBag.Tip</div>
+        </div>
+    </div>
+    <div class="modal fade" id="mDialog">
+        <div class="modal-dialog" style="width:320px; margin-top: 10%;">
+            <div class="modal-content">
+                <div style="height:40px;" class="bg-primary">
+                    <h4 class="modal-title" style="padding:8px 0 0 15px">重置密码</h4>
+                </div>
+
+                <div class="modal-body" style="padding:30px 30px 0px;">
+                    @*<div class="input-group">
+                            <input type="text" id="smsCode" class="form-control" autocomplete="on" placeholder="短信验证码" />
+                            <span class="input-group-addon btn btn-success btn-sms">获取验证码</span>
+                        </div>
+                        <br />*@
+                    <div class="input-group">
+                        <input type="password" id="newPwd" class="form-control" autocomplete="on" placeholder="输入新的密码" />
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        @*<span class="input-group-addon text-success">确认密码</span>*@
+                        <input type="password" id="oneMore" class="form-control" autocomplete="on" placeholder="再次确认密码" />
+                    </div>
+
+                    <p id="checkinput" class="text-danger text-center form-control " style="border:0;"></p>
+                </div>
+
+                <div @*class="modal-footer" *@ style="text-align:right; padding:5px; background-color:#eee">
+                    <button type="button" class="btn btn-success" onclick="savePassWord()"><i class="fa fa-check"></i> 保存</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> 关闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!-- END HEADER -->
+    <!-- BEGIN HEADER & CONTENT DIVIDER -->
+    <div class="clearfix"> </div>
+    <!-- END HEADER & CONTENT DIVIDER -->
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN SIDEBAR 左边菜单栏-->
+        <div class="page-sidebar-wrapper">
+            @await Html.PartialAsync("~/Views/Shared/_MainLeftMenuPage.cshtml")
+        </div>
+        <!-- END SIDEBAR -->
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <div class="row">
+                    <div class="content-tabs">
+                        <button class="roll-nav roll-left J_tabLeft">
+                            <i class="fa fa-backward"></i>
+                        </button>
+                        <nav class="page-tabs J_menuTabs">
+                            <div class="page-tabs-content">
+                                <a href="javascript:;" class="active J_menuTab" data-id="main">首页</a>
+                            </div>
+                        </nav>
+                        <button class="roll-nav roll-right J_tabRight">
+                            <i class="fa fa-forward"></i>
+                        </button>
+                        <div class="btn-group roll-nav roll-right">
+                            <button class="dropdown J_tabClose" data-toggle="dropdown" data-hover="dropdown">
+                                关闭<span class="caret"></span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li class="J_tabCloseAll">
+                                    <a>全部</a>
+                                </li>
+                                <li class="J_tabCloseOther">
+                                    <a>其他</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="J_mainContent">
+                        <iframe class="J_iframe main" name="iframe_main" src="~/index/index.html" frameborder="0" data-id="main" seamless="" style="width:100%; height:100%;">
+                        </iframe>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <!-- END DASHBOARD STATS 1-->
+            </div>
+        </div>
+        <!-- END CONTENT-->
+    </div>
+    <!-- END CONTAINER -->
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer">
+        <div class="page-footer-inner">
+            @ViewBag.PrevLogin
+        </div>
+        <div class="page-footer-inner pull-right">
+            感谢大家的使用
+            <a href="javascript:;" onclick="window.open('')">技术支持qq:564232943</a>
+        </div>
+        <div class="page-footer-inner pull-right" style="margin-right:20px">
+            当前版本:V1.0.1
+        </div>
+        <div class="scroll-to-top">
+            <i class="icon-arrow-up"></i>
+        </div>
+    </div>
+    <script src="/Content/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Content/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
+    <script src="~/Content/global/plugins/bootstrap-modal/js/bootstrap-modal.js"></script>
+    <script src="/Content/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+    <script src="/Content/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="/Content/global/scripts/app.min.js" type="text/javascript"></script>
+    <script src="/Content/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="/Content/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+    <script src="/Content/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+    <script src="~/Content/global/scripts/DynamicTabs.min.js?v=1017" type="text/javascript"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/messenger/js/messenger.js"></script>
+    <script src="/Content/global/scripts/Public.js"></script>
+    <script src="~/lib/signalr/signalr.js"></script>
+    <script src="~/Content/global/scripts/jquery.extend.js"></script>
+    <script>
+        //设定 Messenger 样式
+        $._messengerDefaults = {
+            extraClasses: 'messenger-fixed messenger-theme-future messenger-on-bottom messenger-on-right'
+        }
+        // 初始化控件
+        $(function () {
+            // 加载菜单
+            loadMenus();
+            // 查询事件
+            $('#aSearch').click(search);
+            $('.btn-sms').click(sendPwdSMS);
+            // 绑定回车查询
+            $(".sidebar-search-wrapper").keydown(e => {
+                if (e.keyCode == "13")
+                    $('#aSearch').click();
+            });
+
+            setTimeout(ws, 1000);
+        })
+        //推送
+        function ws() {
+            const connection = new signalR.HubConnectionBuilder().withUrl("/systemHub").build();
+            connection.on("getPush", (msg) => { msgHandler(msg); });//订阅getPush推送
+            connection.on("getItem", (data) => { itemHandler(data); });//订阅getItem推送
+            connection.onclose(() => { setTimeout(ws, 30000) });
+            connection.start().catch(err => { console.error(err.toString()); setTimeout(ws, 30000) });
+            getUnread();
+        }
+        function loadMenus(param) {
+            $.get('/api/Feature/GetMainMenu', { filter: param }, function (data) {
+                var html = '';
+                $.each(data.data, function (i, v) {
+                    html += liBuilding(v);
+                });
+                // 输出到html
+                $('ul.page-sidebar-menu.page-header-fixed').append(html);
+                $('.J_menuItem').click(c);
+            });
+        }
+        function ulBuilding(menu, html) {
+            html += '<ul class="sub-menu">';
+            $.each(menu.children, function (i, v) { html += liBuilding(v); });
+            html += '</ul>';
+            return html;
+        }
+        function liBuilding(node) {
+            var li = '<li class="nav-item">';
+            if (node.attributes.url)
+                li += '<a href="' + node.attributes.url + '" class="nav-link J_menuItem" name="' + node.text + '" data-index="' + node.id + '">';
+            else
+                li += '<a href="javascript:void(0);" class="nav-link nav-toggle">';
+            var pic = node.attributes.picUrl;
+            li += '<img class="menu-img" src="' + pic + '" /><span class="title">' + node.text + '</span>';
+            if (node.children && node.children.length > 0) {
+                li += '<span class="arrow"></span></a>';
+                li = ulBuilding(node, li);
+            }
+            else
+                li += '</a>';
+            li += '</li>';
+            return li;
+        }
+        // 显示右下角弹框信息
+        function messenger(msg, type, second) {
+            if (!msg) return;
+            var msger = $.globalMessenger();
+            try {
+                var json = JSON.parse(msg);
+                if (typeof (json) === "string") {
+                    msger.post({
+                        message: json, type: type || "info", hideAfter: second || 3
+                    });
+                }
+                else if (typeof (json) === "object") {
+                    msger.post({
+                        message: json.msg, type: json.type || "info", hideAfter: json.second || 3
+                    });
+                }
+            }
+            catch (ex) {
+                msger.post({
+                    message: msg, type: type || "info", hideAfter: second || 3
+                });
+            }
+        }
+        // 左侧菜单的搜索功能
+        function search() {
+            var param = $('#txtSearch').val();
+            $('ul.page-sidebar-menu.page-header-fixed li.nav-item').remove()
+            loadMenus(param);
+        }
+        function pwdDialog() {
+            $('#mDialog').modal({ backdrop: false });
+        }
+        //修改密码
+        var countdown = 60;
+        function settime(obj) { //发送验证码倒计时
+            if (countdown == 0) {
+                obj.attr('disabled', false);
+                obj.text('获取验证码');
+                obj.click(sendPwdSMS);
+                countdown = 60;
+                return;
+            } else {
+                obj.attr('disabled', true);
+                obj.text(countdown);
+                countdown--;
+            }
+            setTimeout(function () {
+                settime(obj)
+            }, 1000)
+        }
+        function sendPwdSMS() {
+            var o = $(event.target);
+            o.attr('disabled', true);
+            o.unbind();
+            settime(o);
+            $.get('/api/account/SendPwdSMS').done(saveKey)
+        }
+        function saveKey(re) {
+            if (re.success)
+                window.smskey = re.data;
+            else {
+                countdown = 0;
+                $('#checkinput').html(re.message)
+            }
+        }
+        function savePassWord() {
+            $('#checkinput').html('');
+            if ($('#newPwd').val().trim() != $('#oneMore').val().trim()) {
+                $('#checkinput').html('确认密码输入有误!');
+                $('#oneMore').addClass('inpErr');
+                return;
+            }
+            $.postbody('/api/User/ResetPSWD', { newPwd: $('#newPwd').val().trim() },
+                function (re) {
+                    if (re.success) {
+                        $('#mDialog .form-control').val('');
+                        $('#mDialog').modal('hide');
+                        messenger(re.data);
+                    }
+                    else {
+                        $('#checkinput').html(re.message);
+                    }
+                });
+        }
+        //消息
+        function msgHandler(data) {
+            data.forEach(function (e, i) {
+                incomingMsg(e)
+                var msg = $.globalMessenger().post({
+                    message: e.senderName + "</br>" + e.title,
+                    type: "info",
+                    hideAfter: 10,
+                    events: {
+                        "click": function () {
+                            showMessage(e.id, e.msgType);
+                            msg.hide();
+                        }
+                    }
+                });
+            })
+        }
+        function itemHandler(e) {
+            incomingMsg(e)
+            var msg = $.globalMessenger().post({
+                message: e.senderName + "</br>" + e.title,
+                type: "info",
+                hideAfter: 10,
+                events: {
+                    "click": function () {
+                        showMessage(e.id, e.msgType);
+                        msg.hide();
+                    }
+                }
+            });
+        }
+        function clearAudit() {
+            $.ajax({
+                url: '/Api/Message/AllAuditRead',
+                type: 'GET',
+                success: function () {
+                    clearAuditBox();
+                },
+                error: function (xhr) {
+                    errorHandler(xhr)
+                },
+            });
+        }
+        function clearMsg() {
+            $.ajax({
+                url: '/Api/Message/AllMsgRead',
+                type: 'GET',
+                success: function () {
+                    clearMsgBox();
+                },
+                error: function (xhr) {
+                    errorHandler(xhr)
+                },
+            });
+        }
+        //获取消息未读条数
+        function getUnread() {
+            $.ajax({
+                url: '/Api/Message/GetUnRead',
+                type: 'GET',
+                success: function (re) {
+                    showUnReadMsg(re);
+                },
+                error: function (xhr) {
+                    errorHandler(xhr)
+                }
+            });
+        }
+        function incomingMsg(e) {
+            if ($('#msg_unread_list').length == 0)
+                $('#msg_list').html(buildMsgBox());
+            var li = buildMsg(e);
+            $('#msg_unread_list').prepend(li);
+            var count = parseInt($('.msg-count').eq(1).html());
+            $('.msg-count').html(++count);
+        }
+        function linkPage(o) {
+            var ob = $(o);
+
+            showMessage(ob.attr('id'), ob.attr('mtype'))
+        }
+        function showMessage(id, type) {
+            var title = type == 0 ? "系统消息" : "消息";
+            var obj = {};
+            obj.id = id;
+            obj.type = "show";
+            layerOpen(title, '../Message/MessageAddOrEdit', function () {
+                var item = $('#' + id).parent();
+                item.remove();
+                var count = $('#msg_unread_list').children('li').length;
+                $('.msg-count').html(count);
+                if (count == 0)
+                    $('.badge.msg-count').html('');
+            }, 600, 380, obj)
+        }
+
+        function buildMsg(e) {
+            var li = '<li> ';
+            li += '<a href="javascript:;" onclick="linkPage(this)" id="' + e.id + '" mtype=' + e.type + '> ';
+            li += '<span class="subject"> ';
+            li += '<span class="from">' + e.senderName + '</span> ';
+            li += '<span class="time">' + new Date(e.createTime).format('yyyy-MM-dd') + '</span> ';
+            li += '</span> ';
+            li += '<span>' + e.title + '</span>';
+            li += '</a></li> ';
+            return li;
+        }
+        function buildMsgBox() {
+            return `<ul class="dropdown-menu-list scroller" id="msg_unread_list" style="height: 280px;overflow-y:scroll" data-handle-color="#637283"></ul>`
+        }
+        function showUnReadMsg(d) {
+            if (d.length > 0) {
+                if ($('#msg_unread_list').length == 0)
+                    $('#msg_list').html(buildMsgBox());
+                $('.msg-count').html(d.length);
+                var list = "";
+                for (var i = 0; i < d.length; i++) {
+                    var e = d[i];
+                    var li = buildMsg(e);
+                    list += li;
+                }
+                $('#msg_unread_list').html(list);
+            }
+            else {
+                clearMsgBox();
+            }
+        }
+        function clearMsgBox() {
+            $('.msg-count').html('');
+            $('#msg_box_header .msg-count').html(0);
+            $('#msg_list').html('');
+        }
+        //打开弹出页
+        function layerOpen(title, url, fun, w, h, para) {//para关闭叉叉触发的事件
+            var width = document.body.offsetWidth - 100;//js document.body.offsetWidth网页可见区域的宽
+            var height = document.body.offsetHeight - 50;//js document.body.offsetHeight网页可见区域的高
+            if (typeof (w) != 'undefined') {
+                width = w;
+            }
+            if (typeof (h) != 'undefined') {
+                height = h;
+            }
+            var index = layer.open({
+                resize: typeof (para) == "undefined" ? true : para["resize"],
+                zIndex: 10001,
+                shade: [0.5, '#000'],
+                shadeClose: false,
+                type: 2,
+                area: [width + 'px', height + 'px'],
+                maxmin: false,
+                title: title,
+                content: url,
+                end: fun,
+                cancel: function () {
+                    if (para == "1") {
+                        var msg = $('#layui-layer-iframe' + index)[0].contentWindow.InstrumentUnitInfo.IfInstrumentUnit();
+                        if (msg.length > 0) {
+                            layer.msg(msg);
+                            return false;
+                        }
+                    }
+                },
+                success: function (layero) {
+
+                }
+            });
+        }
+        //打开弹出页,带传入参数,执行baseInit
+        function layerOpen(title, url, fun, w, h, obj, para) {//para关闭叉叉触发的事件
+            var width = document.body.offsetWidth - 100;//js document.body.offsetWidth网页可见区域的宽
+            var height = document.body.offsetHeight - 50;//js document.body.offsetHeight网页可见区域的高
+            if (typeof (w) != 'undefined') {
+                width = w;
+            }
+            if (typeof (h) != 'undefined') {
+                height = h;
+            }
+            var call = (action) => {
+            };
+            window['page_' + title] = null;
+            var index = layer.open({
+                shade: [0.5, '#000'],
+                shadeClose: false,
+                type: 2,
+                area: [width + 'px', height + 'px'],
+                maxmin: false,
+                title: title,
+                content: url,
+                end: fun,
+                success: function (layero, index) {
+                    var body = layer.getChildFrame('body', index);
+                    var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+                    if (obj)
+                        iframeWin.baseInit(obj);
+                    window['page_' + title] = iframeWin;
+                    iframeWin.lytClose = (action) => {
+                        layer.close(index);
+                        call(action);
+                    };
+                },
+                cancel: function () {
+                    if (para == "1") {
+                        var msg = $('#layui-layer-iframe' + index)[0].contentWindow.InstrumentUnitInfo.IfInstrumentUnit();
+                        if (msg.length > 0) {
+                            layer.msg(msg);
+                            return false;
+                        }
+                    }
+                }
+            });
+        }
+        //打开弹出页,带传入参数,执行baseInit, 参数依次是: lay参数, 传入参数,结束返回函数,X关闭事件
+        function layerOpenBase(layObj, obj, fun, para) {//para关闭叉叉触发的事件
+            var width = document.body.offsetWidth - 100;//js document.body.offsetWidth网页可见区域的宽
+            var height = document.body.offsetHeight - 50;//js document.body.offsetHeight网页可见区域的高
+            layObj.width = layObj.width ? layObj.width : 600;
+            layObj.height = layObj.height ? layObj.height : 500;
+            var call = (action) => {
+            };
+            var title = layObj.title;
+            window['page_' + title] = null;
+            var index = layer.open({
+                shade: [0.5, '#000'],
+                shadeClose: false,
+                type: 2,
+                area: [layObj.width + 'px', layObj.height + 'px'],
+                maxmin: false,
+                title: layObj.title,
+                content: layObj.url,
+                time: layObj.time != undefined ? layObj.time : 0,
+                resize: layObj.resize != undefined ? layObj.resize : true,
+                end: fun,
+                success: function (layero, index) {
+                    var body = layer.getChildFrame('body', index);
+                    var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+                    if (obj)
+                        iframeWin.baseInit(obj);
+                    window['page_' + title] = iframeWin;
+                    iframeWin.lytClose = (action) => {
+                        layer.close(index);
+                        call(action);
+                    };
+                },
+                cancel: function () {
+                    if (para == "1") {
+                        var msg = $('#layui-layer-iframe' + index)[0].contentWindow.InstrumentUnitInfo.IfInstrumentUnit();
+                        if (msg.length > 0) {
+                            layer.msg(msg);
+                            return false;
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
