@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace WesleyCore.Infrastruction.Core
 {
     /// <summary>
-    /// 工作单元
+    /// 工作单元接口
     /// </summary>
     public interface IUnitOfWork : IDisposable
     {
@@ -24,12 +24,5 @@ namespace WesleyCore.Infrastruction.Core
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 允许领域事件
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        Task RunDomainEvent(CancellationToken cancellationToken = default);
     }
 }

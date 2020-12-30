@@ -1,5 +1,5 @@
 ﻿using DotNetCore.CAP;
-using GeekTime.Infrastructure.Core;
+using WesleyCore.Infrastructure.Core;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -26,7 +26,7 @@ namespace WesleyCore.EntityFrameworkCore
             ////租户
             //var tenantIdPropertyName = "TenantId";
             //软删除
-            var deletePropertyName = "IsDelete";
+            var deletePropertyName = "IsDeleted";
             foreach (var item in modelBuilder.Model.GetEntityTypes())
             {
                 var type = item.ClrType;
@@ -36,13 +36,15 @@ namespace WesleyCore.EntityFrameworkCore
                     var precis = p.GetCustomAttribute<DecimalPrecisionAttribute>();
                     modelBuilder.Entity(type).Property(p.Name).HasColumnType($"decimal({precis.Precision},{precis.Scale})");
                 }
+                //实现IsDeleted==false 过滤
                 if (type.GetProperty(deletePropertyName) != null)
                 {
-                    //查询过滤删除键
-                    var a = Expression.Parameter(typeof(bool), deletePropertyName);
-                    var b = Expression.Constant(false, typeof(bool));
-                    modelBuilder.Entity(type).HasQueryFilter(Expression.Lambda(Expression.Assign(a, b)));
-                    //modelBuilder.Entity<Order>().HasQueryFilter(p => EF.Property<bool>(p, DeletePropertyName) == false);
+                    //modelBuilder.Entity(type).Property<bool>(deletePropertyName);
+                    var parameter = Expression.Parameter(type, "e");
+                    var body = Expression.Equal(
+                        Expression.Call(typeof(EF), nameof(EF.Property), new[] { typeof(bool) }, parameter, Expression.Constant(deletePropertyName)),
+                        Expression.Constant(false));
+                    modelBuilder.Entity(type).HasQueryFilter(Expression.Lambda(body, parameter));
                 }
                 //if (type.GetProperty(tenantIdPropertyName) != null)
                 //{

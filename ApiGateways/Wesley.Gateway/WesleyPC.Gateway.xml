@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WesleyPC.Gateway</name>
+    </assembly>
+    <members>
+        <member name="T:Wesley.Web.Authorizer.ApiHeaderToken">
+            <summary>
+            swigger token
+            </summary>
+        </member>
+        <member name="M:Wesley.Web.Authorizer.ApiHeaderToken.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            在swagger接口文档参数中加入token
+            </summary>
+            <param name="operation"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:Wesley.Web.Controllers.AuthModel">
+            <summary>
+            验证类
+            </summary>
+        </member>
+        <member name="P:Wesley.Web.Controllers.AuthModel.UserId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Wesley.Web.Controllers.AuthModel.UserName">
+            <summary>
+            用户名称
+            </summary>
+        </member>
+        <member name="P:Wesley.Web.Controllers.AuthModel.IsAdmin">
+            <summary>
+            是否是管理员
+            </summary>
+        </member>
+        <member name="P:Wesley.Web.Controllers.AuthModel.PhoneNumber">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:Wesley.Web.Controllers.AuthModel.TenantID">
+            <summary>
+            租户ID
+            </summary>
+        </member>
+        <member name="P:Wesley.Web.Controllers.AuthModel.Exp">
+            <summary>
+            过期时间
+            </summary>
+        </member>
+        <member name="T:Wesley.Gateway.Controllers.BaseController">
+            <summary>
+            控制器积累
+            </summary>
+        </member>
+        <member name="T:Wesley.Gateway.Controllers.ApiBaseController">
+            <summary>
+            api积累控制器
+            </summary>
+        </member>
+        <member name="T:Wesley.Gateway.Controllers.HomeController">
+            <summary>
+            主页
+            </summary>
+        </member>
+        <member name="M:Wesley.Gateway.Controllers.HomeController.Index">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="T:GeekTime.Mobile.Gateway.Controllers.AccountController">
+            <summary>
+            用户登录
+            </summary>
+        </member>
+        <member name="M:GeekTime.Mobile.Gateway.Controllers.AccountController.CookieLogin(System.String,System.String)">
+            <summary>
+            cookie登入
+            </summary>
+            <param name="userName"></param>
+            <param name="passWord"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GeekTime.Mobile.Gateway.Controllers.AccountController.JwtLogin(Microsoft.IdentityModel.Tokens.SymmetricSecurityKey,System.String)">
+            <summary>
+            JWT登入
+            </summary>
+            <param name="securityKey"></param>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GeekTime.Mobile.Gateway.Controllers.AccountController.SetRedis(System.String,System.String)">
+            <summary>
+            设置缓存
+            </summary>
+            <param name="key"></param>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GeekTime.Mobile.Gateway.Controllers.AccountController.GetRedis(System.String)">
+            <summary>
+            设置缓存
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WesleyPC.Gateway.Program">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WesleyPC.Gateway.Program.Main(System.String[])">
+             <summary>
+            
+             </summary>
+             <param name="args"></param>
+        </member>
+        <member name="M:WesleyPC.Gateway.Program.CreateHostBuilder(System.String[])">
+             <summary>
+            
+             </summary>
+             <param name="args"></param>
+             <returns></returns>
+        </member>
+        <member name="T:WesleyPC.Gateway.Config">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="M:WesleyPC.Gateway.Config.GetIdentityResourceResources">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:WesleyPC.Gateway.Config.GetApiResources">
+            <summary>
+             scopes define the API resources in your system
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WesleyPC.Gateway.Config.GetClients">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="T:WesleyPC.Gateway.RedisClient">
+            <summary>
+            缓存
+            </summary>
+        </member>
+        <member name="P:WesleyPC.Gateway.RedisClient.redisClient">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="M:WesleyPC.Gateway.RedisClient.InitConnect(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            读取配置
+            </summary>
+            <param name="Configuration"></param>
+        </member>
+        <member name="M:WesleyPC.Gateway.RedisClient.SetStringKey(System.String,System.String,System.Nullable{System.TimeSpan})">
+            <summary>
+            保存单个key value
+            </summary>
+            <param name="key">保存的值</param>
+            <param name="value">保存的值</param>
+            <param name="expiry">过期时间</param>
+        </member>
+        <member name="M:WesleyPC.Gateway.RedisClient.GetStringKey(System.String)">
+            <summary>
+            获取单个key的值
+            </summary>
+        </member>
+        <member name="M:WesleyPC.Gateway.RedisClient.GetStringKey``1(System.String)">
+            <summary>
+            获取一个key的对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WesleyPC.Gateway.RedisClient.SetStringKey``1(System.String,``0,System.Nullable{System.TimeSpan})">
+            <summary>
+            保存一个对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="obj"></param>
+            <param name="expiry"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WesleyPC.Gateway.Startup">
+            <summary>
+            启动项
+            </summary>
+        </member>
+        <member name="M:WesleyPC.Gateway.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            启动构造
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:WesleyPC.Gateway.Startup.Configuration">
+            <summary>
+            配置文件
+            </summary>
+        </member>
+        <member name="M:WesleyPC.Gateway.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            服务注册
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:WesleyPC.Gateway.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            中间件注册
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+        <member name="T:WeslesyCore.Web.Startup.Swagger.ApiVersionExtAttribute">
+            <summary>
+            自定义Api版本特性，目前只用Swagger版本区分，若后期要把API访问实现多版本，则要引入Microsoft.AspNetCore.Mvc.Versioning
+            </summary>
+        </member>
+        <member name="P:WeslesyCore.Web.Startup.Swagger.ApiVersionExtAttribute.Version">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WeslesyCore.Web.Startup.Swagger.ApiVersionExtAttribute.#ctor(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="version"></param>
+        </member>
+    </members>
+</doc>

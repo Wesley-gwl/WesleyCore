@@ -4,6 +4,121 @@
         <name>WesleyCore.Web</name>
     </assembly>
     <members>
+        <member name="M:WesleyCore.Application.Commands.CreateOrderCommandHandler.Handle(WesleyCore.Application.Commands.CreateOrderCommand,System.Threading.CancellationToken)">
+            <summary>
+            接受
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WesleyCore.Application.Commands.CreateOrderCommand">
+            <summary>
+            创建订单
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Application.Commands.CreateOrderCommand.UserId">
+            <summary>
+            用户编号
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Application.Commands.CreateOrderCommand.UserName">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Application.Commands.CreateOrderCommand.City">
+            <summary>
+            成是
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Application.Commands.CreateOrderCommand.ZipCode">
+            <summary>
+            邮政编码
+            </summary>
+        </member>
+        <member name="T:WesleyCore.Application.Queries.System.User.Dto.LoginDto">
+            <summary>
+            登录
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Application.Queries.System.User.Dto.LoginDto.PhoneNumber">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Application.Queries.System.User.Dto.LoginDto.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Application.Queries.System.User.Dto.LoginDto.TenantId">
+            <summary>
+            租户id
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Application.Queries.System.User.Dto.LoginDto.IpAddress">
+            <summary>
+            ip地址
+            </summary>
+        </member>
+        <member name="T:WesleyCore.Application.Queries.LoginHandler">
+            <summary>
+            登入
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Application.Queries.LoginHandler.Handle(WesleyCore.Application.Queries.System.User.Dto.LoginDto,System.Threading.CancellationToken)">
+            <summary>
+            登入
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WesleyCore.Ordering.API.Application.DomainEventHandlers.OrderCreatedDomainEventHandler">
+            <summary>
+            订单创建领域事件
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Ordering.API.Application.DomainEventHandlers.OrderCreatedDomainEventHandler.Handle(WesleyCore.Domain.Events.OrderCreateDomainEvent,System.Threading.CancellationToken)">
+            <summary>
+            领域事件接受事件
+            </summary>
+            <param name="notification"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WesleyCore.Ordering.API.Application.IntegrationEvents.IOrderSubscriberService.OrderCreated(WesleyCore.Ordering.API.Application.IntegrationEvents.OrderCreatedIntegrationEvent)">
+            <summary>
+            创建订单
+            </summary>
+            <param name="event"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WesleyCore.Ordering.API.Application.IntegrationEvents.OrderSubscriberService">
+            <summary>
+            订阅服务-接受RM的集成事件请求
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Ordering.API.Application.IntegrationEvents.OrderSubscriberService.OrderCreated(WesleyCore.Ordering.API.Application.IntegrationEvents.OrderCreatedIntegrationEvent)">
+            <summary>
+            创建订阅OrderCreated事件
+            </summary>
+            <param name="event"></param>
+        </member>
+        <member name="T:WesleyCore.Ordering.API.Application.Queries.OrderQueryHandler">
+            <summary>
+            查询订单
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Ordering.API.Application.Queries.OrderQueryHandler.Handle(WesleyCore.Ordering.API.Application.Queries.OrderQuery,System.Threading.CancellationToken)">
+            <summary>
+            查询
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
         <member name="T:WesleyCore.Web.Authorizer.ApiHeaderToken">
             <summary>
             swigger token
@@ -15,38 +130,6 @@
             </summary>
             <param name="operation"></param>
             <param name="context"></param>
-        </member>
-        <member name="T:WesleyCore.Web.Authorizer.JWTUtil">
-            <summary>
-            token加密
-            </summary>
-        </member>
-        <member name="F:WesleyCore.Web.Authorizer.JWTUtil.key">
-            <summary>
-            密钥
-            </summary>
-        </member>
-        <member name="M:WesleyCore.Web.Authorizer.JWTUtil.GenerateToken(WesleyCore.Web.Controllers.AuthModel)">
-            <summary>
-            生成token
-            </summary>
-            <param name="payload"></param>
-            <returns></returns>
-        </member>
-        <member name="M:WesleyCore.Web.Authorizer.JWTUtil.GenerateWXToken(WesleyCore.Web.Controllers.AuthModel,System.String)">
-            <summary>
-            生成WXtoken
-            </summary>
-            <param name="payload"></param>
-            <param name="sessionKey">缓存key</param>
-            <returns></returns>
-        </member>
-        <member name="M:WesleyCore.Web.Authorizer.JWTUtil.DecodeToken(System.String)">
-            <summary>
-            解密
-            </summary>
-            <param name="token"></param>
-            <returns></returns>
         </member>
         <member name="T:WesleyCore.Web.Controllers.AuthModel">
             <summary>
@@ -83,6 +166,33 @@
             过期时间
             </summary>
         </member>
+        <member name="T:WesleyCore.Web.Controllers.ApiControllers.LoginController">
+            <summary>
+            登录
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Web.Controllers.ApiControllers.LoginController.#ctor(MediatR.IMediator,Microsoft.Extensions.Configuration.IConfiguration,Ocelot.JwtAuthorize.ITokenBuilder)">
+            <summary>
+            构造
+            </summary>
+            <param name="mediator"></param>
+            <param name="configuration"></param>
+            <param name="tokenBuilder"></param>
+        </member>
+        <member name="M:WesleyCore.Web.Controllers.ApiControllers.LoginController.Login(WesleyCore.Application.Queries.System.User.Dto.LoginDto)">
+            <summary>
+            登录
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WesleyCore.Web.Controllers.ApiControllers.LoginController.GetUserIp(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取IP地址
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
         <member name="T:WesleyCore.Web.Controllers.ApiControllers.OrderController">
             <summary>
             订单
@@ -101,7 +211,7 @@
             <param name="cmd"></param>
             <returns></returns>
         </member>
-        <member name="M:WesleyCore.Web.Controllers.ApiControllers.OrderController.QueryOrder(GeekTime.Ordering.API.Application.Queries.OrderQuery)">
+        <member name="M:WesleyCore.Web.Controllers.ApiControllers.OrderController.QueryOrder(WesleyCore.Ordering.API.Application.Queries.OrderQuery)">
             <summary>
             查询订单
             </summary>
@@ -235,7 +345,7 @@
             配置项
             </summary>
         </member>
-        <member name="M:WesleyCore.Startup.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+        <member name="M:WesleyCore.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             构造
             </summary>
@@ -252,23 +362,6 @@
             </summary>
             <param name="app"></param>
             <param name="env"></param>
-        </member>
-        <member name="T:Web.Controllers.ViewControllers.HomeController">
-            <summary>
-            主页控制器
-            </summary>
-        </member>
-        <member name="M:Web.Controllers.ViewControllers.HomeController.Login">
-            <summary>
-            登入
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Web.Controllers.ViewControllers.HomeController.Index">
-            <summary>
-            首页
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:GeekTime.Ordering.API.Extensions.ServiceCollectionExtensions">
             <summary>
@@ -311,6 +404,23 @@
             </summary>
             <param name="services"></param>
             <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Web.Controllers.ViewControllers.HomeController">
+            <summary>
+            主页控制器
+            </summary>
+        </member>
+        <member name="M:Web.Controllers.ViewControllers.HomeController.Login">
+            <summary>
+            登入
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Web.Controllers.ViewControllers.HomeController.Index">
+            <summary>
+            首页
+            </summary>
             <returns></returns>
         </member>
         <member name="T:WesleyPool.Web.Hubs.PushService">

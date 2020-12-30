@@ -2,14 +2,13 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using WesleyCore.Infrastruction.Core;
 using WesleyCore.Infrastruction.Core.Extensions;
 
-namespace GeekTime.Infrastructure.Core
+namespace WesleyCore.Infrastructure.Core
 {
     public class EFContext : DbContext, IUnitOfWork, ITransaction
     {

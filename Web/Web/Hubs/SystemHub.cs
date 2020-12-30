@@ -27,9 +27,9 @@ namespace WesleyPool.Web.Hubs
             var cid = Context.ConnectionId;
             if (Context.GetHttpContext().Request.Cookies.TryGetValue("ck_token", out string token))
             {
-                var auth = JWTUtil.DecodeToken(token);
-                var uid = auth.UserId;
-                Pool.TryAdd(cid, uid);
+                //var auth = JWTUtil.DecodeToken(token);
+                //var uid = auth.UserId;
+                //Pool.TryAdd(cid, uid);
                 return base.OnConnectedAsync();
             }
             throw new Exception("身份错误");

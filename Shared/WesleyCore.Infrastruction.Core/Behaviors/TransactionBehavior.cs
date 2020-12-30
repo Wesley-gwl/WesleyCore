@@ -1,4 +1,4 @@
-﻿using GeekTime.Infrastructure.Core;
+﻿using WesleyCore.Infrastructure.Core;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

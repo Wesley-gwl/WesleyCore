@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WesleyUntity
+﻿namespace WesleyUntity
 {
     /// <summary>
     /// 生成导入模板的模型类

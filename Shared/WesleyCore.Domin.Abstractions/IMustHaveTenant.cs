@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WesleyCore.Domin.Abstractions
 {
@@ -9,6 +7,6 @@ namespace WesleyCore.Domin.Abstractions
     /// </summary>
     public interface IMustHaveTenant
     {
-        Guid TenantId { get; set; }
+        int TenantId { get; set; }
     }
 }

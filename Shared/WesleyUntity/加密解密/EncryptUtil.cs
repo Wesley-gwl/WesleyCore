@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -75,9 +73,9 @@ namespace WesleyUntity
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -138,9 +136,9 @@ namespace WesleyUntity
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -180,9 +178,9 @@ namespace WesleyUntity
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -222,9 +220,9 @@ namespace WesleyUntity
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -251,9 +249,9 @@ namespace WesleyUntity
                 m_strEncrypt = DESEncrypt(m_strEncrypt, encryptKey2);
                 m_strEncrypt = DESEncrypt(m_strEncrypt, encryptKey1);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             return m_strEncrypt;
         }
@@ -275,9 +273,9 @@ namespace WesleyUntity
                 m_strDecrypt = DESDecrypt(m_strDecrypt, DecryptKey2);
                 m_strDecrypt = DESDecrypt(m_strDecrypt, DecryptKey3);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             return m_strDecrypt;
         }

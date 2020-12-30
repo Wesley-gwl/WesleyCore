@@ -1,10 +1,8 @@
-﻿using GeekTime.Infrastructure.Core;
-using Microsoft.EntityFrameworkCore;
+﻿using WesleyCore.Infrastructure.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WesleyCore.Domin.Abstractions;

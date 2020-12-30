@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WesleyCore.Login</name>
+    </assembly>
+    <members>
+        <member name="T:WesleyCore.Application.Queries.System.User.Dto.LoginDto">
+            <summary>
+            登录
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Application.Queries.System.User.Dto.LoginDto.PhoneNumber">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Application.Queries.System.User.Dto.LoginDto.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Application.Queries.System.User.Dto.LoginDto.TenantId">
+            <summary>
+            租户id
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Application.Queries.System.User.Dto.LoginDto.IpAddress">
+            <summary>
+            ip地址
+            </summary>
+        </member>
+        <member name="T:WesleyCore.Application.Queries.LoginHandler">
+            <summary>
+            登入
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Application.Queries.LoginHandler.Handle(WesleyCore.Application.Queries.System.User.Dto.LoginDto,System.Threading.CancellationToken)">
+            <summary>
+            登入
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WesleyCore.Login.Controllers.LoginController">
+            <summary>
+            登录
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Login.Controllers.LoginController.#ctor(MediatR.IMediator,Microsoft.Extensions.Configuration.IConfiguration,Ocelot.JwtAuthorize.ITokenBuilder)">
+            <summary>
+            构造
+            </summary>
+            <param name="mediator"></param>
+            <param name="configuration"></param>
+            <param name="tokenBuilder"></param>
+        </member>
+        <member name="M:WesleyCore.Login.Controllers.LoginController.Login(WesleyCore.Application.Queries.System.User.Dto.LoginDto)">
+            <summary>
+            登录
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WesleyCore.Login.Controllers.LoginController.GetUserIp(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取IP地址
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WesleyCore.Login.Program">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WesleyCore.Login.Program.Main(System.String[])">
+             <summary>
+            
+             </summary>
+             <param name="args"></param>
+        </member>
+        <member name="M:WesleyCore.Login.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            /
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WesleyCore.Login.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+             <summary>
+            
+             </summary>
+             <param name="services"></param>
+        </member>
+        <member name="M:WesleyCore.Login.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+             <summary>
+            
+             </summary>
+             <param name="app"></param>
+             <param name="env"></param>
+        </member>
+        <member name="T:WesleyCore.Web.BizResult">
+            <summary>
+            返回数据实体
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Web.BizResult.#ctor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WesleyCore.Web.BizResult.#ctor(System.String)">
+            <summary>
+            结果为成功,设置成功的消息
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:WesleyCore.Web.BizResult.#ctor(System.Boolean,System.String)">
+            <summary>
+            设置结果和提示消息
+            </summary>
+            <param name="isSuccess"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="P:WesleyCore.Web.BizResult.Success">
+            <summary>
+            接口调用是否成功
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Web.BizResult.Message">
+            <summary>
+            返回的错误信息
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Web.BizResult.ErrorData">
+            <summary>
+            不成功时的数据(如果需要)
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Web.BizResult.Data">
+            <summary>
+            成功时的数据
+            </summary>
+        </member>
+        <member name="T:WesleyCore.Web.BizResult`1">
+            <summary>
+            输出格式
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:WesleyCore.Web.BizResult`1.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Web.BizResult`1.#ctor(`0)">
+            <summary>
+            构造
+            </summary>
+            <param name="_data"></param>
+        </member>
+        <member name="M:WesleyCore.Web.BizResult`1.#ctor(System.Boolean,`0,System.String)">
+            <summary>
+            构造
+            </summary>
+            <param name="isSuccess"></param>
+            <param name="_data"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="P:WesleyCore.Web.BizResult`1.Data">
+            <summary>
+            返回的数据（泛型）
+            </summary>
+        </member>
+        <member name="T:GeekTime.Ordering.API.Extensions.ServiceCollectionExtensions">
+            <summary>
+            中间件注册
+            </summary>
+        </member>
+        <member name="M:GeekTime.Ordering.API.Extensions.ServiceCollectionExtensions.AddMediatRServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            mediatR中间件注册
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GeekTime.Ordering.API.Extensions.ServiceCollectionExtensions.AddDomainContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder})">
+            <summary>
+            新增数据库
+            </summary>
+            <param name="services"></param>
+            <param name="optionsAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GeekTime.Ordering.API.Extensions.ServiceCollectionExtensions.AddSqlServerDomainContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            新增数据库链接
+            </summary>
+            <param name="services"></param>
+            <param name="connectionString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GeekTime.Ordering.API.Extensions.ServiceCollectionExtensions.AddRepositories(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            创建仓储
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GeekTime.Ordering.API.Extensions.ServiceCollectionExtensions.AddEventBus(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            新增订阅配置
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

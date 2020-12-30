@@ -1,15 +1,15 @@
-﻿using GeekTime.Ordering.API.Application.DomainEventHandlers;
-using GeekTime.Ordering.API.Application.IntegrationEvents;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using WesleyCore;
 using WesleyCore.Application.Commands;
-using WesleyCore.Domain.OrderAggregate;
+using WesleyCore.Application.Queries;
 using WesleyCore.EntityFrameworkCore;
 using WesleyCore.Infrastruction.Repositories;
+using WesleyCore.Ordering.API.Application.DomainEventHandlers;
+using WesleyCore.Ordering.API.Application.IntegrationEvents;
 
 namespace GeekTime.Ordering.API.Extensions
 {
@@ -26,9 +26,11 @@ namespace GeekTime.Ordering.API.Extensions
         public static IServiceCollection AddMediatRServices(this IServiceCollection services)
         {
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DomainContextTransactionBehavior<,>));
-            services.AddMediatR(typeof(CreateOrderCommandHandler).Assembly, typeof(Order).Assembly, typeof(OrderCreatedDomainEventHandler).Assembly);
-            //services.AddMediatR(typeof(Order).Assembly, typeof(Program).Assembly);
-            //services.AddMediatR(typeof(WesleyCore.Application).Assembly);
+            //services.AddMediatR(
+            //    typeof(CreateOrderCommandHandler).Assembly,
+            //    typeof(OrderCreatedDomainEventHandler).Assembly,
+            //    typeof(LoginHandler).Assembly);
+            services.AddMediatR(typeof(Program).Assembly);
             return services;
         }
 

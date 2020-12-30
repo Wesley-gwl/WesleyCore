@@ -45,7 +45,7 @@ namespace WesleyCore.Domain.OrderAggregate
         /// <summary>
         /// 租户
         /// </summary>
-        public Guid TenantId { get; set; }
+        public int TenantId { get; set; }
 
         /// <summary>
         /// 初始化
@@ -58,7 +58,7 @@ namespace WesleyCore.Domain.OrderAggregate
             this.UserId = userId;
             this.UserName = userName;
             this.Address = address;
-            this.AddDomainEvent(new OrderCreateDomainEvent(this));
+            //this.AddDomainEvent(new OrderCreateDomainEvent(this));
         }
 
         /// <summary>

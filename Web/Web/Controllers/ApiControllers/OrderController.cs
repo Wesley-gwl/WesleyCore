@@ -1,15 +1,16 @@
-﻿using GeekTime.Ordering.API.Application.Queries;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WesleyCore.Application.Commands;
+using WesleyCore.Ordering.API.Application.Queries;
 
 namespace WesleyCore.Web.Controllers.ApiControllers
 {
     /// <summary>
     /// 订单
     /// </summary>
+
     public class OrderController : WesleyCoreAPIBaseController
     {
         private IMediator _mediator;

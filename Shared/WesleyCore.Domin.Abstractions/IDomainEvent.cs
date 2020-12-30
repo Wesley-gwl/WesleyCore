@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using System.Runtime.CompilerServices;
 
 namespace WesleyCore.Domin.Abstractions
 {

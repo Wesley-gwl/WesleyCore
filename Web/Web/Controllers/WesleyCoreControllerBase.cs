@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +22,7 @@ namespace WesleyCore.Web.Controllers
     [ApiController]
     [Route("/api/[controller]/[action]")]
     [ApiVersionExt("Api")]
+    [Authorize("permission")]//token验证
     public class WesleyCoreAPIBaseController : WesleyCoreControllerBase
     {
     }

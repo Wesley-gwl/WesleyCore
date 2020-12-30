@@ -1,4 +1,3 @@
-using GeekTime.Ordering.API.Application.IntegrationEvents;
 using GeekTime.Ordering.API.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Ocelot.JwtAuthorize;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.IO;
@@ -35,13 +35,9 @@ namespace WesleyCore
         /// <summary>
         /// 构造
         /// </summary>
-        public Startup(IWebHostEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            Configuration = new ConfigurationBuilder()
-            .SetBasePath(env.ContentRootPath)
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            .AddEnvironmentVariables().Build();
-            JWTUtil.key = Configuration["Customization:JwtKey"];
+            Configuration = configuration;
         }
 
         /// <summary>
@@ -50,12 +46,6 @@ namespace WesleyCore
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddControllersWithViews(options =>
-            //{
-            //    //options.Filters.Add(typeof(AuthorFilterAttribute)); //身份过滤器
-            //    //options.Filters.Add(typeof(ExceptionResultFilter));//异常过滤
-            //}).AddNewtonsoftJson();
-
             //允许跨域
             services.AddCors();
             services.AddSignalR();
@@ -69,27 +59,27 @@ namespace WesleyCore
                     Description = "Api文档",
                 });
 
-                //options.OperationFilter<ApiHeaderToken>();
-                //var currentAssembly = Assembly.GetExecutingAssembly();
-                //var xmlDocs = currentAssembly.GetReferencedAssemblies()
-                //.Union(new AssemblyName[] { currentAssembly.GetName() })
-                //.Select(a => Path.Combine(Path.GetDirectoryName(currentAssembly.Location), $"{a.Name}.xml"))
-                //.Where(f => File.Exists(f)).ToArray();
-                //Array.ForEach(xmlDocs, (d) =>
-                //{
-                //    options.IncludeXmlComments(d);//必须加载所有依赖的xml，不然其它程序集的注释不会显示
-                //});
-                //options.DocInclusionPredicate((docName, apiDesc) =>
-                //{
-                //    if (!apiDesc.TryGetMethodInfo(out MethodInfo methodInfo)) return false;
+                options.OperationFilter<ApiHeaderToken>();
+                var currentAssembly = Assembly.GetExecutingAssembly();
+                var xmlDocs = currentAssembly.GetReferencedAssemblies()
+                .Union(new AssemblyName[] { currentAssembly.GetName() })
+                .Select(a => Path.Combine(Path.GetDirectoryName(currentAssembly.Location), $"{a.Name}.xml"))
+                .Where(f => File.Exists(f)).ToArray();
+                Array.ForEach(xmlDocs, (d) =>
+                {
+                    options.IncludeXmlComments(d);//必须加载所有依赖的xml，不然其它程序集的注释不会显示
+                });
+                options.DocInclusionPredicate((docName, apiDesc) =>
+                {
+                    if (!apiDesc.TryGetMethodInfo(out MethodInfo methodInfo)) return false;
 
-                //    var versions = methodInfo.DeclaringType
-                //                               .GetCustomAttributes(true)
-                //                               .OfType<ApiVersionExtAttribute>()
-                //                               .Select(attr => attr.Version);
+                    var versions = methodInfo.DeclaringType
+                                               .GetCustomAttributes(true)
+                                               .OfType<ApiVersionExtAttribute>()
+                                               .Select(attr => attr.Version);
 
-                //    return versions.Any(v => v == docName);
-                //});
+                    return versions.Any(v => v == docName);
+                });
             });
 #endif
             services.PostConfigure<MvcNewtonsoftJsonOptions>(options =>
@@ -104,6 +94,13 @@ namespace WesleyCore
 
             //新增数据链接
             services.AddSqlServerDomainContext(Configuration["ConnectionStrings:Default"]);
+            //添加验证api验证
+            services.AddApiJwtAuthorize((context) =>
+            {
+                //token等验证策略
+                // 这里根据context中的Request和User来自定义权限验证，返回true为放行，返回fase时为拦截，其中User.Claims中有登录时自己定义的Claim
+                return true;
+            }, Configuration);
             //创建推送
             services.AddMediatRServices();
             //创建仓储
@@ -115,7 +112,7 @@ namespace WesleyCore
             {
                 options.ForwardClientCertificate = false;
             });
-            services.AddMvc().AddRazorRuntimeCompilation();
+            services.AddMvc();
         }
 
         /// <summary>
@@ -144,6 +141,8 @@ namespace WesleyCore
             app.UseWebSockets();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Login}/{id?}");//路由规则
