@@ -30,13 +30,14 @@ namespace WesleyCore.Web.Authorizer
                     operation.Parameters = new List<OpenApiParameter>();
                 }
 
-                operation.Parameters.Insert(0, new OpenApiParameter()
-                {
-                    Name = "token",
-                    Description = "JWT",
-                    In = ParameterLocation.Header,
-                    Required = false
-                });
+                //operation.Parameters.Insert(0, new OpenApiParameter()
+                //{
+                //    Name = "token",
+                //    Description = "JWT",
+                //    In = ParameterLocation.Header,
+                //    Required = false
+                //});
+                //添加Authorization
             }
         }
     }

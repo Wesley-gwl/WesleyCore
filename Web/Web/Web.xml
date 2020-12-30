@@ -88,6 +88,11 @@
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
+        <member name="T:WesleyCore.Ordering.API.Application.IntegrationEvents.IOrderSubscriberService">
+             <summary>
+            
+             </summary>
+        </member>
         <member name="M:WesleyCore.Ordering.API.Application.IntegrationEvents.IOrderSubscriberService.OrderCreated(WesleyCore.Ordering.API.Application.IntegrationEvents.OrderCreatedIntegrationEvent)">
             <summary>
             创建订单
@@ -131,6 +136,17 @@
             <param name="operation"></param>
             <param name="context"></param>
         </member>
+        <member name="T:WesleyCore.Web.Authorizer.TokenPermission">
+            <summary>
+            验证token内api路由权限
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Web.Authorizer.TokenPermission.ValidatePermission(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            验证规则
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:WesleyCore.Web.Controllers.AuthModel">
             <summary>
             验证类
@@ -161,38 +177,6 @@
             租户ID
             </summary>
         </member>
-        <member name="P:WesleyCore.Web.Controllers.AuthModel.Exp">
-            <summary>
-            过期时间
-            </summary>
-        </member>
-        <member name="T:WesleyCore.Web.Controllers.ApiControllers.LoginController">
-            <summary>
-            登录
-            </summary>
-        </member>
-        <member name="M:WesleyCore.Web.Controllers.ApiControllers.LoginController.#ctor(MediatR.IMediator,Microsoft.Extensions.Configuration.IConfiguration,Ocelot.JwtAuthorize.ITokenBuilder)">
-            <summary>
-            构造
-            </summary>
-            <param name="mediator"></param>
-            <param name="configuration"></param>
-            <param name="tokenBuilder"></param>
-        </member>
-        <member name="M:WesleyCore.Web.Controllers.ApiControllers.LoginController.Login(WesleyCore.Application.Queries.System.User.Dto.LoginDto)">
-            <summary>
-            登录
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="M:WesleyCore.Web.Controllers.ApiControllers.LoginController.GetUserIp(Microsoft.AspNetCore.Http.HttpContext)">
-            <summary>
-            获取IP地址
-            </summary>
-            <param name="context"></param>
-            <returns></returns>
-        </member>
         <member name="T:WesleyCore.Web.Controllers.ApiControllers.OrderController">
             <summary>
             订单
@@ -221,6 +205,11 @@
         <member name="T:WesleyCore.Web.Controllers.WesleyCoreControllerBase">
             <summary>
             控制器基类
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Web.Controllers.WesleyCoreControllerBase.CurrentOperator">
+            <summary>
+            当前用户信息
             </summary>
         </member>
         <member name="T:WesleyCore.Web.Controllers.WesleyCoreAPIBaseController">

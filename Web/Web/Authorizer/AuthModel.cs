@@ -31,10 +31,5 @@ namespace WesleyCore.Web.Controllers
         /// 租户ID
         /// </summary>
         public int TenantID { get; set; }
-
-        /// <summary>
-        /// 过期时间
-        /// </summary>
-        public DateTime Exp { get; set; }
     }
 }

@@ -13,6 +13,7 @@ using Newtonsoft.Json.Serialization;
 using Ocelot.JwtAuthorize;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -48,7 +49,6 @@ namespace WesleyCore
         {
             //允许跨域
             services.AddCors();
-            services.AddSignalR();
 #if DEBUG
             services.AddSwaggerGen(options =>
             {
@@ -68,6 +68,26 @@ namespace WesleyCore
                 Array.ForEach(xmlDocs, (d) =>
                 {
                     options.IncludeXmlComments(d);//必须加载所有依赖的xml，不然其它程序集的注释不会显示
+                });
+                //权限按钮参数
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme.",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Scheme = "bearer",
+                    Type = SecuritySchemeType.Http,
+                    BearerFormat = "JWT"
+                });
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+                        },
+                        new List<string>()
+                    }
                 });
                 options.DocInclusionPredicate((docName, apiDesc) =>
                 {
@@ -99,7 +119,8 @@ namespace WesleyCore
             {
                 //token等验证策略
                 // 这里根据context中的Request和User来自定义权限验证，返回true为放行，返回fase时为拦截，其中User.Claims中有登录时自己定义的Claim
-                return true;
+                //
+                return TokenPermission.ValidatePermission(context);
             }, Configuration);
             //创建推送
             services.AddMediatRServices();
@@ -125,28 +146,22 @@ namespace WesleyCore
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Login");
-            }
 #if DEBUG
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint(string.Format("/swagger/{0}/swagger.json", "Api"), "Api");
-            });
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint(string.Format("/swagger/{0}/swagger.json", "Api"), "Api");
+                });
 #endif
+            }
             app.UseCors(c => c.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-            app.UseWebSockets();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Login}/{id?}");//路由规则
-                endpoints.MapHub<SystemHub>("/systemHub");//推送
+                endpoints.MapControllers();
             });
         }
     }

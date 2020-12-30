@@ -49,15 +49,16 @@ namespace WesleyCore.Login.Controllers
         {
             var hash = Configuration["Customization:PwdKey"];
             input.Password = EncryptUtil.AESEncrypt(input.Password, hash);
+            var expired = DateTime.Now.AddMinutes(10);
             // var re = await _mediator.Send(input, HttpContext.RequestAborted);
             var claims = new Claim[] {
                         new Claim(ClaimTypes.Name, "帅哥"),
-                        new Claim(ClaimTypes.Role, "Role"),//权限
-                        new Claim(ClaimTypes.Sid ,"18868806417"),
+                        new Claim(ClaimTypes.Sid ,Guid.NewGuid().ToString()),
                         new Claim ("Ip",GetUserIp(HttpContext)),
-                        new Claim("TenantId","0")//租户
+                        new Claim("TenantId","0"),//租户
+                        new Claim(ClaimTypes.MobilePhone,"18868806417")
                     };
-            var token = JsonConvert.SerializeObject(_tokenBuilder.BuildJwtToken(claims, DateTime.UtcNow, DateTime.Now.AddMinutes(2)));
+            var token = JsonConvert.SerializeObject(_tokenBuilder.BuildJwtToken(claims, DateTime.UtcNow, expired));
             return new BizResult<string>(token);
         }
 

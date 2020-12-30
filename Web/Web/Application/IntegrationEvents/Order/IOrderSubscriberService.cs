@@ -2,6 +2,9 @@
 
 namespace WesleyCore.Ordering.API.Application.IntegrationEvents
 {
+    /// <summary>
+    ///
+    /// </summary>
     public interface IOrderSubscriberService
     {
         /// <summary>
