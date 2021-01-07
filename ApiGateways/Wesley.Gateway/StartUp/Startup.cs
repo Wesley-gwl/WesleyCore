@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
 using Ocelot.JwtAuthorize;
 using Ocelot.Middleware;
+using Ocelot.Provider.Consul;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.IO;
@@ -80,7 +81,7 @@ namespace WesleyPC.Gateway
             });
 #endif
             services.AddOcelotJwtAuthorize(Configuration);
-            services.AddOcelot(Configuration);
+            services.AddOcelot(Configuration).AddConsul().AddConfigStoredInConsul();
             services.Configure<IISOptions>(options =>
             {
                 options.ForwardClientCertificate = false;
@@ -125,7 +126,7 @@ namespace WesleyPC.Gateway
                     name: "default",
                     pattern: "{controller=Home}/{action=Login}/{id?}");
             });
-            app.UseOcelot();
+            app.UseOcelot().Wait();
         }
     }
 }

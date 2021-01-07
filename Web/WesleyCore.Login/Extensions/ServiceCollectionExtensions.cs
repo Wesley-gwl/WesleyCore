@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using WesleyCore.Domin.Abstractions;
 using WesleyCore.EntityFrameworkCore;
+using WesleyCore.Infrastruction.Core;
 using WesleyCore.Infrastruction.Repositories;
 using WesleyCore.Login;
 
@@ -21,7 +23,7 @@ namespace GeekTime.Ordering.API.Extensions
         /// <returns></returns>
         public static IServiceCollection AddMediatRServices(this IServiceCollection services)
         {
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DomainContextTransactionBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(MemberContextTransactionBehavior<,>));
             services.AddMediatR(
                 typeof(Program).Assembly);
             return services;
@@ -35,7 +37,7 @@ namespace GeekTime.Ordering.API.Extensions
         /// <returns></returns>
         public static IServiceCollection AddDomainContext(this IServiceCollection services, Action<DbContextOptionsBuilder> optionsAction)
         {
-            return services.AddDbContext<DomainContext>(optionsAction);
+            return services.AddDbContext<MemberContext>(optionsAction);
         }
 
         /// <summary>
@@ -62,6 +64,7 @@ namespace GeekTime.Ordering.API.Extensions
             //services.AddScoped<IOrderRepository, OrderRepository>();
             return services;
         }
+
         /// <summary>
         /// 新增订阅配置
         /// </summary>
@@ -70,9 +73,9 @@ namespace GeekTime.Ordering.API.Extensions
         /// <returns></returns>
         public static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddScoped<IEventBus, EventBus>();
             services.AddCap(options =>
             {
-                //options.UseEntityFramework<DomainContext>();
                 options.UseSqlServer(configuration["ConnectionStrings:Default"]); // SQL Server
                 options.UseRabbitMQ(options =>
                 {

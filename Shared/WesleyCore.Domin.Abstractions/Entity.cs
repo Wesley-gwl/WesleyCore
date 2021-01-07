@@ -9,11 +9,6 @@ namespace WesleyCore.Domin.Abstractions
     {
         public abstract object[] GetKeys();
 
-        public override string ToString()
-        {
-            return $"[Entity: {GetType().Name}] Keys = {string.Join(",", GetKeys())}";
-        }
-
         #region
 
         private List<IDomainEvent> _domainEvents;
@@ -99,11 +94,6 @@ namespace WesleyCore.Domin.Abstractions
         public bool IsTransient()
         {
             return EqualityComparer<TKey>.Default.Equals(Id, default);
-        }
-
-        public override string ToString()
-        {
-            return $"[Entity: {GetType().Name}] Id = {Id}";
         }
 
         public static bool operator ==(Entity<TKey> left, Entity<TKey> right)

@@ -177,6 +177,23 @@
             租户ID
             </summary>
         </member>
+        <member name="T:WesleyCore.Web.Controllers.ApiControllers.HealthCheck">
+            <summary>
+            健康检查
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Web.Controllers.ApiControllers.HealthCheck.Check">
+            <summary>
+            创建订单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WesleyCore.Web.Controllers.ApiControllers.HealthCheck.Check2">
+            <summary>
+            创建订单
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:WesleyCore.Web.Controllers.ApiControllers.OrderController">
             <summary>
             订单

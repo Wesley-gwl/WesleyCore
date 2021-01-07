@@ -10,12 +10,6 @@ namespace WesleyCore.Domain.OrderAggregate
     public class Order : Entity<long>, IAggregateRoot, ISoftDelete, IMustHaveTenant
     {
         /// <summary>
-        /// 保护
-        /// </summary>
-        protected Order()
-        { }
-
-        /// <summary>
         /// 用户主键
         /// </summary>
         [StringLength(20)]
@@ -36,11 +30,6 @@ namespace WesleyCore.Domain.OrderAggregate
         /// 软删除
         /// </summary>
         public bool IsDeleted { get; set; }
-
-        /// <summary>
-        /// 删除时间
-        /// </summary>
-        public DateTime? DeleteTime { get; set; }
 
         /// <summary>
         /// 租户

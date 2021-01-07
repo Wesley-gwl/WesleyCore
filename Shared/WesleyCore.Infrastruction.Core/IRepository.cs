@@ -14,6 +14,9 @@ namespace WesleyCore.Infrastruction.Core
     /// <typeparam name="TEntity"></typeparam>
     public interface IRepository<TEntity> where TEntity : Entity, IAggregateRoot
     {
+        /// <summary>
+        /// 工作单元
+        /// </summary>
         IUnitOfWork UnitOfWork { get; }
 
         /// <summary>

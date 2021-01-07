@@ -15,13 +15,23 @@ using System.Threading.Tasks;
 
 namespace WesleyCore.Login
 {
+    /// <summary>
+    /// ∆Ù∂Ø
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// ππ‘Ï
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// ≈‰÷√
+        /// </summary>
         public IConfiguration Configuration { get; }
 
         /// <summary>

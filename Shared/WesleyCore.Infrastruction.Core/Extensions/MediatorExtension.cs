@@ -31,5 +31,16 @@ namespace WesleyCore.Infrastruction.Core.Extensions
                 await mediator.Publish<INotification>(domainEvent);
             }
         }
+
+        /// <summary>
+        /// 注册领域事件
+        /// </summary>
+        /// <param name="mediator"></param>
+        /// <param name="ctx"></param>
+        /// <returns></returns>
+        public static async Task DispatchDomainEventAsync(this IMediator mediator, IDomainEvent ctx)
+        {
+            await mediator.Publish<INotification>(ctx);
+        }
     }
 }

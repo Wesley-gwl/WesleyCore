@@ -31,7 +31,8 @@ namespace WesleyCore.Application.Commands
             var order = new Order(request.UserId, request.UserName, address);
             order.CreateOrder();
             //await _orderRepository.UnitOfWork.RunDomainEvent(cancellationToken);
-            //_orderRepository.AddAsync(order);
+            _orderRepository.AddAsync(order);
+            _orderRepository.UnitOfWork.SaveChangesAsync();
             return order.Id;
         }
     }

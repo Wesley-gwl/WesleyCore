@@ -21,6 +21,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     <PackageReference Include="Ocelot" Version="17.0.0" />
+    <PackageReference Include="Ocelot.Provider.Consul" Version="17.0.0" />
     <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.6.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.6.3" />
@@ -31,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\ConsulRegister\ConsulRegister.csproj" />
     <ProjectReference Include="..\..\Shared\Ocelot.JWTAuthorize\Ocelot.JWTAuthorize.csproj" />
   </ItemGroup>
 </Project>

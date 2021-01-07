@@ -64,16 +64,6 @@ namespace WesleyCore.Infrastructure.Core
             return true;
         }
 
-        /// <summary>
-        /// 允许领域事件
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        public async Task RunDomainEvent(CancellationToken cancellationToken = default)
-        {
-            await _mediator.DispatchDomainEventsAsync(this);
-        }
-
         #endregion IUnitOfWork
 
         #region ITransaction

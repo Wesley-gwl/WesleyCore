@@ -1,3 +1,4 @@
+using ConsulRegister;
 using GeekTime.Ordering.API.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -111,7 +112,6 @@ namespace WesleyCore
                 options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
             });
             services.AddSingleton(Configuration);
-
             //新增数据链接
             services.AddSqlServerDomainContext(Configuration["ConnectionStrings:Default"]);
             //添加验证api验证
@@ -122,6 +122,7 @@ namespace WesleyCore
                 //
                 return TokenPermission.ValidatePermission(context);
             }, Configuration);
+            services.AddConsul(Configuration);
             //创建推送
             services.AddMediatRServices();
             //创建仓储
@@ -129,10 +130,6 @@ namespace WesleyCore
             //Cap集群
             services.AddEventBus(Configuration);
 
-            services.Configure<IISOptions>(options =>
-            {
-                options.ForwardClientCertificate = false;
-            });
             services.AddMvc();
         }
 
@@ -156,6 +153,7 @@ namespace WesleyCore
             }
             app.UseCors(c => c.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseStaticFiles();
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
@@ -163,6 +161,7 @@ namespace WesleyCore
             {
                 endpoints.MapControllers();
             });
+            app.UseConsul(Configuration);
         }
     }
 }
