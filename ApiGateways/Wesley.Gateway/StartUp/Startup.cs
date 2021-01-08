@@ -8,6 +8,7 @@ using Ocelot.DependencyInjection;
 using Ocelot.JwtAuthorize;
 using Ocelot.Middleware;
 using Ocelot.Provider.Consul;
+using Ocelot.Provider.Polly;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.IO;
@@ -81,11 +82,7 @@ namespace WesleyPC.Gateway
             });
 #endif
             services.AddOcelotJwtAuthorize(Configuration);
-            services.AddOcelot(Configuration).AddConsul().AddConfigStoredInConsul();
-            services.Configure<IISOptions>(options =>
-            {
-                options.ForwardClientCertificate = false;
-            });
+            services.AddOcelot(Configuration).AddConsul().AddPolly();
             services.AddControllersWithViews();
             services.AddMvc();
         }
@@ -106,6 +103,7 @@ namespace WesleyPC.Gateway
                 app.UseExceptionHandler("/Home/Login");
                 app.UseHsts();
             }
+            //app.UseIdentityServer();
             app.UseWebSockets();
             app.UseCors(c => c.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 

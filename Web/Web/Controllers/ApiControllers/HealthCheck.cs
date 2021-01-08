@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,13 @@ namespace WesleyCore.Web.Controllers.ApiControllers
     [ApiVersionExt("Api")]
     public class HealthCheck : ControllerBase
     {
+        public HealthCheck(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
         /// <summary>
         /// 创建订单
         /// </summary>
@@ -35,9 +43,7 @@ namespace WesleyCore.Web.Controllers.ApiControllers
         [HttpGet]
         public IActionResult Check2()
         {
-            //心跳,consul会每隔几秒调一次
-            Console.WriteLine($"web Invoke2");
-            return Ok("123123");
+            return Ok($"ip-{Configuration["ip"]}:{Configuration["port"]}");
         }
     }
 }

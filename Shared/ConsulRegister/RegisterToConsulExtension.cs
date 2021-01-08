@@ -1,17 +1,10 @@
 ﻿using Consul;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.Server.Features;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
-using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
 
 namespace ConsulRegister
 {
@@ -129,8 +122,8 @@ namespace ConsulRegister
                     HTTP = $"http://{ip}:{port}/Api/HealthCheck/Check",
                 } },
                 Address = ip,
-                ID = $"{ip}:{port}",
-                Name = $"{ip}:{port}",
+                ID = $"service:{ip}:{port}",
+                Name = configuration["ServiceName"],//队伍名称
                 Port = port
             };
 

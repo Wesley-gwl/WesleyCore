@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ConsulRegister
+﻿namespace ConsulRegister
 {
     /// <summary>
     /// 服务治理第三方组件Consul相关配置参数
