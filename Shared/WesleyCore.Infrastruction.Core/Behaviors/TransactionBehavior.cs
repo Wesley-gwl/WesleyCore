@@ -9,6 +9,12 @@ using WesleyCore.Infrastruction.Core.Extensions;
 
 namespace WesleyCore.Infrastruction.Core.Behaviors
 {
+    /// <summary>
+    /// 数据链接
+    /// </summary>
+    /// <typeparam name="TDbContext"></typeparam>
+    /// <typeparam name="TRequest"></typeparam>
+    /// <typeparam name="TResponse"></typeparam>
     public class TransactionBehavior<TDbContext, TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TDbContext : EFContext
     {
         private readonly ILogger _logger;

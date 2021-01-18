@@ -25,7 +25,7 @@ namespace ConsulRegister
 
             //configuration Consul client
             //配置consul客户端
-            services.AddSingleton<IConsulClient>(sp => new Consul.ConsulClient(config =>
+            services.AddSingleton<IConsulClient>(sp => new ConsulClient(config =>
             {
                 var consulOptions = sp.GetRequiredService<IOptions<ServiceDiscoveryOptions>>().Value;
                 if (!string.IsNullOrWhiteSpace(consulOptions.Consul.HttpEndPoint))
@@ -123,7 +123,7 @@ namespace ConsulRegister
                 } },
                 Address = ip,
                 ID = $"service:{ip}:{port}",
-                Name = configuration["ServiceName"],//队伍名称
+                Name = configuration["ServiceDiscovery:ServiceName"],//队伍名称
                 Port = port
             };
 
@@ -136,13 +136,6 @@ namespace ConsulRegister
                 consul.Agent.ServiceDeregister(localhostregistration.ID).GetAwaiter().GetResult();
             });
 
-            //app.Map("/HealthCheck", s =>
-            //{
-            //    s.Run(async context =>
-            //    {
-            //        await context.Response.WriteAsync("ok");
-            //    });
-            //});
             return app;
         }
     }

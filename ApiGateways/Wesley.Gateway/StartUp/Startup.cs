@@ -48,7 +48,7 @@ namespace WesleyPC.Gateway
             services.AddCors();
             services.AddSignalR();
             services.AddSingleton(Configuration);
-            RedisClient.redisClient.InitConnect(Configuration);
+            RedisClient.redisClient.InitConnect(Configuration);//»º´æ
 #if DEBUG
             services.AddSwaggerGen(options =>
             {
@@ -82,7 +82,7 @@ namespace WesleyPC.Gateway
             });
 #endif
             services.AddOcelotJwtAuthorize(Configuration);
-            services.AddOcelot(Configuration).AddConsul().AddPolly();
+            services.AddOcelot(Configuration).AddConsul();
             services.AddControllersWithViews();
             services.AddMvc();
         }

@@ -72,42 +72,6 @@
              </summary>
              <returns></returns>
         </member>
-        <member name="T:GeekTime.Mobile.Gateway.Controllers.AccountController">
-            <summary>
-            用户登录
-            </summary>
-        </member>
-        <member name="M:GeekTime.Mobile.Gateway.Controllers.AccountController.CookieLogin(System.String,System.String)">
-            <summary>
-            cookie登入
-            </summary>
-            <param name="userName"></param>
-            <param name="passWord"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GeekTime.Mobile.Gateway.Controllers.AccountController.JwtLogin(Microsoft.IdentityModel.Tokens.SymmetricSecurityKey,System.String)">
-            <summary>
-            JWT登入
-            </summary>
-            <param name="securityKey"></param>
-            <param name="userName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GeekTime.Mobile.Gateway.Controllers.AccountController.SetRedis(System.String,System.String)">
-            <summary>
-            设置缓存
-            </summary>
-            <param name="key"></param>
-            <param name="text"></param>
-            <returns></returns>
-        </member>
-        <member name="M:GeekTime.Mobile.Gateway.Controllers.AccountController.GetRedis(System.String)">
-            <summary>
-            设置缓存
-            </summary>
-            <param name="text"></param>
-            <returns></returns>
-        </member>
         <member name="T:WesleyPC.Gateway.Program">
              <summary>
             

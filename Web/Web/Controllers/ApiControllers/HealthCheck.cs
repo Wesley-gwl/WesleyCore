@@ -17,11 +17,18 @@ namespace WesleyCore.Web.Controllers.ApiControllers
     [ApiVersionExt("Api")]
     public class HealthCheck : ControllerBase
     {
+        /// <summary>
+        /// 构造
+        /// </summary>
+        /// <param name="configuration"></param>
         public HealthCheck(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
         public IConfiguration Configuration { get; }
 
         /// <summary>

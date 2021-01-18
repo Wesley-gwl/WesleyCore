@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IdentityServer</name>
+    </assembly>
+    <members>
+        <member name="T:WesleyCore.Web.Controllers.ApiControllers.HealthCheck">
+            <summary>
+            健康检查
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Web.Controllers.ApiControllers.HealthCheck.Check">
+            <summary>
+            健康检查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WesleyCore.User.Proto.ILoginServiceReflection">
+            <summary>Holder for reflection information generated from ILoginService.proto</summary>
+        </member>
+        <member name="P:WesleyCore.User.Proto.ILoginServiceReflection.Descriptor">
+            <summary>File descriptor for ILoginService.proto</summary>
+        </member>
+        <member name="T:WesleyCore.User.Proto.LoginForm">
+             <summary>
+            请求体
+             </summary>
+        </member>
+        <member name="F:WesleyCore.User.Proto.LoginForm.PhoneNumberFieldNumber">
+            <summary>Field number for the "phoneNumber" field.</summary>
+        </member>
+        <member name="F:WesleyCore.User.Proto.LoginForm.PasswordFieldNumber">
+            <summary>Field number for the "password" field.</summary>
+        </member>
+        <member name="F:WesleyCore.User.Proto.LoginForm.IpAddressFieldNumber">
+            <summary>Field number for the "ipAddress" field.</summary>
+        </member>
+        <member name="T:WesleyCore.User.Proto.LoginResult">
+             <summary>
+            返回结果
+             </summary>
+        </member>
+        <member name="F:WesleyCore.User.Proto.LoginResult.TokenFieldNumber">
+            <summary>Field number for the "token" field.</summary>
+        </member>
+        <member name="T:WesleyCore.User.Proto.ILoginService">
+             <summary>
+            定义的服务
+             </summary>
+        </member>
+        <member name="P:WesleyCore.User.Proto.ILoginService.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:WesleyCore.User.Proto.ILoginService.ILoginServiceClient">
+            <summary>Client for ILoginService</summary>
+        </member>
+        <member name="M:WesleyCore.User.Proto.ILoginService.ILoginServiceClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for ILoginService</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:WesleyCore.User.Proto.ILoginService.ILoginServiceClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for ILoginService that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:WesleyCore.User.Proto.ILoginService.ILoginServiceClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:WesleyCore.User.Proto.ILoginService.ILoginServiceClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:WesleyCore.User.Proto.ILoginService.ILoginServiceClient.Login(WesleyCore.User.Proto.LoginForm,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            方法
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:WesleyCore.User.Proto.ILoginService.ILoginServiceClient.Login(WesleyCore.User.Proto.LoginForm,Grpc.Core.CallOptions)">
+            <summary>
+            方法
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:WesleyCore.User.Proto.ILoginService.ILoginServiceClient.LoginAsync(WesleyCore.User.Proto.LoginForm,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            方法
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:WesleyCore.User.Proto.ILoginService.ILoginServiceClient.LoginAsync(WesleyCore.User.Proto.LoginForm,Grpc.Core.CallOptions)">
+            <summary>
+            方法
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:WesleyCore.User.Proto.ILoginService.ILoginServiceClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="T:IdentityServer.Controllers.LoginController">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:IdentityServer.Controllers.LoginController.MemberLogin(IdentityServer.LoginDto)">
+            <summary>
+            会员密码登录
+            </summary>
+            <param name="dto">登录dto</param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer.Controllers.LoginController.GetUserIp(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取IP地址
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityServer.LoginDto">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:IdentityServer.LoginDto.PhoneNumber">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:IdentityServer.LoginDto.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="M:IdentityServer.InMemoryConfig.GetApiResources">
+            <summary>
+            api资源列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer.InMemoryConfig.GetApiScopes">
+            <summary>
+            4.0版本需要添加apiscope
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer.InMemoryConfig.GetClients">
+            <summary>
+            客户端列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer.InMemoryConfig.Users">
+            <summary>
+            指定可以使用 Authorization Server 授权的 Users（用户）
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

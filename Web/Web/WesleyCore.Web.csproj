@@ -35,10 +35,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain\WesleyCore.Domain\WesleyCore.Domain.csproj" />
     <ProjectReference Include="..\..\Shared\ConsulRegister\ConsulRegister.csproj" />
     <ProjectReference Include="..\..\Shared\Ocelot.JWTAuthorize\Ocelot.JWTAuthorize.csproj" />
-    <ProjectReference Include="..\..\Shared\WesleyCore.Core\WesleyCore.Core.csproj" />
     <ProjectReference Include="..\..\Shared\WesleyUntity\WesleyUntity.csproj" />
   </ItemGroup>
 </Project>

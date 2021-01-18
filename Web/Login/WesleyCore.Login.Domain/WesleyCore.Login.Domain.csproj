@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Toolbelt.EntityFrameworkCore.IndexAttribute" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\WesleyCore.Domin.Abstractions\WesleyCore.Domin.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\Shared\WesleyCore.Infrastruction.Core\WesleyCore.Infrastruction.Core.csproj" />
+  </ItemGroup>
+</Project>

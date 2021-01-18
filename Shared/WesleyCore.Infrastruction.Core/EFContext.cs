@@ -30,6 +30,8 @@ namespace WesleyCore.Infrastructure.Core
         /// <returns></returns>
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
         {
+            #region 日志
+
             //var entries = this.ChangeTracker.Entries();
             //var tenantIdPropertyName = "TenantId";
             ////添加租户id
@@ -59,6 +61,9 @@ namespace WesleyCore.Infrastructure.Core
             //        //删除日志
             //    }
             //}
+
+            #endregion 日志
+
             await base.SaveChangesAsync(cancellationToken);
             await _mediator.DispatchDomainEventsAsync(this);
             return true;

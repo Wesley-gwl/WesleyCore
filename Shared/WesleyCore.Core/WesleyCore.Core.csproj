@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Domain\WesleyCore.Domain\WesleyCore.Domain.csproj" />
-    <ProjectReference Include="..\..\Infrastruction\WesleyCore.Infrastruction\WesleyCore.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\WesleyCore.Domin.Abstractions\WesleyCore.Domin.Abstractions.csproj" />
     <ProjectReference Include="..\WesleyCore.Infrastruction.Core\WesleyCore.Infrastruction.Core.csproj" />
   </ItemGroup>

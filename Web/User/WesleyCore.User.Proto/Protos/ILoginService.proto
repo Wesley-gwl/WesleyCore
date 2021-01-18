@@ -1,0 +1,21 @@
+﻿syntax = "proto3";
+
+// 命名空间
+option csharp_namespace = "WesleyCore.User.Proto";//生成代码的命名空间
+package LoginService;//分类分组
+
+//定义的服务
+service ILoginService { 
+  // 方法
+  rpc Login(LoginForm) returns(LoginResult); 
+}
+ //请求体
+message LoginForm { 
+  string phoneNumber = 1;
+  string password = 2;
+  string ipAddress = 3;
+}
+//返回结果
+message LoginResult{
+	string token = 1;
+}
