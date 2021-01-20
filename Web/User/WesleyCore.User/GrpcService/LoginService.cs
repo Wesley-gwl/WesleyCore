@@ -1,17 +1,13 @@
 ﻿using Grpc.Core;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Ocelot.JwtAuthorize;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using WesleyCore.User.Application.Queries.Login;
 using WesleyCore.User.Proto;
-using WesleyCore.Web;
 using WesleyUntity;
 
 namespace WesleyCore.User.GrpcService
@@ -65,7 +61,7 @@ namespace WesleyCore.User.GrpcService
                 Password = EncryptUtil.AESEncrypt(input.Password, hash),
                 PhoneNumber = input.PhoneNumber
             });
-            var expired = DateTime.Now.AddMinutes(10);
+            var expired = DateTime.Now.AddMinutes(120);
 
             var claims = new Claim[] {
                         new Claim(ClaimTypes.Name, user.UserName),

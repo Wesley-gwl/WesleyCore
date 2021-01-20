@@ -1,11 +1,11 @@
-﻿using WesleyCore.Infrastructure.Core;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using WesleyCore.Infrastruction.Core.Extensions;
+using WesleyCore.Infrastructure.Core;
 
 namespace WesleyCore.Infrastruction.Core.Behaviors
 {

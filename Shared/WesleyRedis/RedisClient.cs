@@ -2,11 +2,9 @@
 using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
 
-namespace WesleyPC.Gateway
+namespace WesleyRedis
 {
     /// <summary>
     /// 缓存
@@ -24,7 +22,7 @@ namespace WesleyPC.Gateway
         /// <summary>
         /// 链接
         /// </summary>
-        public static RedisClient redisClient
+        public static RedisClient RedisCt
         {
             get
             {
@@ -52,6 +50,8 @@ namespace WesleyPC.Gateway
             {
                 var RedisConnection = Configuration.GetSection("RedisCache");
                 redisMultiplexer = ConnectionMultiplexer.Connect(RedisConnection["ConnectionStrings"]);
+                //redis集群
+                //redisMultiplexer = ConnectionMultiplexer.Connect("localhost:6000,localhost:6001,localhost:6002,localhost:6003,localhost:6004,localhost:6005");
                 db = redisMultiplexer.GetDatabase();
             }
             catch (Exception ex)
@@ -65,12 +65,21 @@ namespace WesleyPC.Gateway
         #region String
 
         /// <summary>
+        /// 移除单个key value
+        /// </summary>
+        /// <param name="key">保存的值</param>
+        public bool KeyDelete(string key)
+        {
+            return db.KeyDelete(key);
+        }
+
+        /// <summary>
         /// 保存单个key value
         /// </summary>
         /// <param name="key">保存的值</param>
         /// <param name="value">保存的值</param>
         /// <param name="expiry">过期时间</param>
-        public bool SetStringKey(string key, string value, TimeSpan? expiry = default(TimeSpan?))
+        public bool SetStringKey(string key, string value, TimeSpan? expiry = default)
         {
             return db.StringSet(key, value, expiry);
         }
@@ -111,7 +120,7 @@ namespace WesleyPC.Gateway
         /// <param name="obj"></param>
         /// <param name="expiry"></param>
         /// <returns></returns>
-        public bool SetStringKey<T>(string key, T obj, TimeSpan? expiry = default(TimeSpan?))
+        public bool SetStringKey<T>(string key, T obj, TimeSpan? expiry = default)
         {
             if (db == null)
             {
@@ -122,5 +131,63 @@ namespace WesleyPC.Gateway
         }
 
         #endregion String
+
+        #region 分布式锁
+
+        /// <summary>
+        /// 加锁
+        /// </summary>
+        /// <param name="key">锁名称</param>
+        /// <param name="value">产品id 订单id等关键唯一主键</param>
+        public void Lock(string key, string value)
+        {
+            try
+            {
+                while (true)
+                {
+                    //var flag = db.LockTake("redis_lock", Thread.CurrentThread.ManagedThreadId, TimeSpan.FromMinutes(30));
+                    var flag = db.LockTake(key, value, TimeSpan.FromMinutes(30));
+                    //如果枷锁成功
+                    if (flag)
+                    {
+                        break;
+                    }
+                    Thread.Sleep(200);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 解锁
+        /// </summary>
+        /// <param name="key">锁名称</param>
+        /// <param name="value">产品id 订单id等关键唯一主键</param>
+        public void UnLock(string key, string value)
+        {
+            try
+            {
+                //解锁
+                //使枷锁和解锁的线程是同一个
+                while (true)
+                {
+                    //var flag = db.LockRelease("redis_lock", Thread.CurrentThread.ManagedThreadId);
+                    var flag = db.LockRelease(key, value);
+                    if (flag)
+                    {
+                        break;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        #endregion 分布式锁
     }
 }

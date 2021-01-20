@@ -8,7 +8,6 @@ using Ocelot.DependencyInjection;
 using Ocelot.JwtAuthorize;
 using Ocelot.Middleware;
 using Ocelot.Provider.Consul;
-using Ocelot.Provider.Polly;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.IO;
@@ -48,7 +47,7 @@ namespace WesleyPC.Gateway
             services.AddCors();
             services.AddSignalR();
             services.AddSingleton(Configuration);
-            RedisClient.redisClient.InitConnect(Configuration);//»º´æ
+            //RedisClient.redisClient.InitConnect(Configuration);//»º´æ
 #if DEBUG
             services.AddSwaggerGen(options =>
             {

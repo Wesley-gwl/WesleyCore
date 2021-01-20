@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using WesleyCore.Domin.Abstractions;
 using WesleyCore.User.Domain.Enums.User;
 
@@ -48,9 +46,19 @@ namespace WesleyCore.User
         [StringLength(200)]
         public string Memo { get; set; }
 
+        /// <summary>
+        /// 原子性
+        /// </summary>
+        /// <returns></returns>
         protected override IEnumerable<object> GetAtomicValues()
         {
-            throw new NotImplementedException();
+            // Using a yield return statement to return each element one at a time
+            yield return IsAdmin;
+            yield return Status;
+            yield return IDCard;
+            yield return ImageUrl;
+            yield return Address;
+            yield return Memo;
         }
     }
 }

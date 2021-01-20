@@ -113,53 +113,6 @@
              </summary>
              <returns></returns>
         </member>
-        <member name="T:WesleyPC.Gateway.RedisClient">
-            <summary>
-            缓存
-            </summary>
-        </member>
-        <member name="P:WesleyPC.Gateway.RedisClient.redisClient">
-            <summary>
-            链接
-            </summary>
-        </member>
-        <member name="M:WesleyPC.Gateway.RedisClient.InitConnect(Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            读取配置
-            </summary>
-            <param name="Configuration"></param>
-        </member>
-        <member name="M:WesleyPC.Gateway.RedisClient.SetStringKey(System.String,System.String,System.Nullable{System.TimeSpan})">
-            <summary>
-            保存单个key value
-            </summary>
-            <param name="key">保存的值</param>
-            <param name="value">保存的值</param>
-            <param name="expiry">过期时间</param>
-        </member>
-        <member name="M:WesleyPC.Gateway.RedisClient.GetStringKey(System.String)">
-            <summary>
-            获取单个key的值
-            </summary>
-        </member>
-        <member name="M:WesleyPC.Gateway.RedisClient.GetStringKey``1(System.String)">
-            <summary>
-            获取一个key的对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="key"></param>
-            <returns></returns>
-        </member>
-        <member name="M:WesleyPC.Gateway.RedisClient.SetStringKey``1(System.String,``0,System.Nullable{System.TimeSpan})">
-            <summary>
-            保存一个对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="key"></param>
-            <param name="obj"></param>
-            <param name="expiry"></param>
-            <returns></returns>
-        </member>
         <member name="T:WesleyPC.Gateway.Startup">
             <summary>
             启动项

@@ -26,12 +26,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Commands\" />
-    <Folder Include="Application\DomainEventHandlers\" />
+    <Folder Include="Application\Commands\User\Dto\" />
     <Folder Include="Application\IntegrationEvents\" />
   </ItemGroup>
 
@@ -40,6 +40,8 @@
     <ProjectReference Include="..\..\..\Shared\Ocelot.JWTAuthorize\Ocelot.JWTAuthorize.csproj" />
     <ProjectReference Include="..\..\..\Shared\WesleyCore.Domin.Abstractions\WesleyCore.Domin.Abstractions.csproj" />
     <ProjectReference Include="..\..\..\Shared\WesleyCore.Infrastruction.Core\WesleyCore.Infrastruction.Core.csproj" />
+    <ProjectReference Include="..\..\..\Shared\WesleyRedis\WesleyRedis.csproj" />
+    <ProjectReference Include="..\..\..\Shared\WesleyUntity\WesleyUntity.csproj" />
     <ProjectReference Include="..\WesleyCore.User.Domain\WesleyCore.User.Domain.csproj" />
     <ProjectReference Include="..\WesleyCore.User.Infrastructure\WesleyCore.User.Infrastructure.csproj" />
   </ItemGroup>

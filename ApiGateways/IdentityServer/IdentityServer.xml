@@ -113,6 +113,17 @@
             
              </summary>
         </member>
+        <member name="M:IdentityServer.Controllers.LoginController.#ctor(WesleyCore.User.Proto.ILoginService.ILoginServiceClient)">
+             <summary>
+            
+             </summary>
+             <param name="loginServiceClient"></param>
+        </member>
+        <member name="F:IdentityServer.Controllers.LoginController.LoginServiceClient">
+             <summary>
+            
+             </summary>
+        </member>
         <member name="M:IdentityServer.Controllers.LoginController.MemberLogin(IdentityServer.LoginDto)">
             <summary>
             会员密码登录
@@ -142,6 +153,24 @@
             密码
             </summary>
         </member>
+        <member name="T:IdentityServer.Program">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:IdentityServer.Program.Main(System.String[])">
+             <summary>
+            
+             </summary>
+             <param name="args"></param>
+        </member>
+        <member name="M:IdentityServer.Program.CreateHostBuilder(System.String[])">
+             <summary>
+            
+             </summary>
+             <param name="args"></param>
+             <returns></returns>
+        </member>
         <member name="M:IdentityServer.InMemoryConfig.GetApiResources">
             <summary>
             api资源列表
@@ -165,6 +194,35 @@
             指定可以使用 Authorization Server 授权的 Users（用户）
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:IdentityServer.Startup">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:IdentityServer.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+             <summary>
+            
+             </summary>
+             <param name="configuration"></param>
+        </member>
+        <member name="P:IdentityServer.Startup.Configuration">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:IdentityServer.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+             <summary>
+            
+             </summary>
+             <param name="services"></param>
+        </member>
+        <member name="M:IdentityServer.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+             <summary>
+            
+             </summary>
+             <param name="app"></param>
+             <param name="env"></param>
         </member>
     </members>
 </doc>

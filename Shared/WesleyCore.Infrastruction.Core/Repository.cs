@@ -1,11 +1,11 @@
-﻿using WesleyCore.Infrastructure.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using WesleyCore.Domin.Abstractions;
+using WesleyCore.Infrastructure.Core;
 
 namespace WesleyCore.Infrastruction.Core
 {
@@ -190,7 +190,7 @@ namespace WesleyCore.Infrastruction.Core
         /// </summary>
         /// <param name="express"></param>
         /// <returns></returns>
-        public TEntity FirstOrDefoult(Expression<Func<TEntity, bool>> express)
+        public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> express)
         {
             Func<TEntity, bool> lamada = express.Compile();
             return DbContext.Set<TEntity>().FirstOrDefault(lamada);
@@ -201,10 +201,32 @@ namespace WesleyCore.Infrastruction.Core
         /// </summary>
         /// <param name="express"></param>
         /// <returns></returns>
-        public Task<TEntity> FirstOrDefoultAsync(Expression<Func<TEntity, bool>> express)
+        public Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> express)
         {
             Func<TEntity, bool> lamada = express.Compile();
             return Task.FromResult(DbContext.Set<TEntity>().FirstOrDefault(lamada));
+        }
+
+        /// <summary>
+        /// 判断是否存在
+        /// </summary>
+        /// <param name="express"></param>
+        /// <returns></returns>
+        public bool Any(Expression<Func<TEntity, bool>> express)
+        {
+            Func<TEntity, bool> lamada = express.Compile();
+            return DbContext.Set<TEntity>().Any(lamada);
+        }
+
+        /// <summary>
+        /// 判断是否存在
+        /// </summary>
+        /// <param name="express"></param>
+        /// <returns></returns>
+        public Task<bool> AnyAsync(Expression<Func<TEntity, bool>> express)
+        {
+            Func<TEntity, bool> lamada = express.Compile();
+            return Task.FromResult(DbContext.Set<TEntity>().Any(lamada));
         }
     }
 

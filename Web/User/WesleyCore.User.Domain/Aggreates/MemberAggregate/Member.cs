@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Threading.Tasks;
 using Toolbelt.ComponentModel.DataAnnotations.Schema.V5;
 using WesleyCore.Domin.Abstractions;
+using WesleyCore.User.Domain.Events.User;
 
-namespace WesleyCore.User
+namespace WesleyCore.User.Domain
 {
     /// <summary>
     /// 会员表
@@ -23,24 +23,35 @@ namespace WesleyCore.User
         }
 
         /// <summary>
-        /// 构造
+        /// 构造创建会员
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="phoneNumber"></param>
         /// <param name="company"></param>
-        /// <param name="status"></param>
-        /// <param name="createTime"></param>
         /// <param name="allowUserNumber"></param>
-        public Member(string userName, string phoneNumber, string company, MemberStatusEnum status, DateTime createTime, int allowUserNumber) : this()
+        public Member(string userName, string phoneNumber, string company, int allowUserNumber) : this()
         {
+            var dtNow = DateTime.Now;
             UserName = userName;
             PhoneNumber = phoneNumber;
             Company = company;
-            Status = status;
-            CreateTime = createTime;
+            Status = MemberStatusEnum.试用;
+            CreateTime = dtNow;
             AllowUserNumber = allowUserNumber;
-            MemberShip = new List<MemberShip>();
+            MemberShip = new List<MemberShip>()
+            {
+                new MemberShip()
+                {
+                    CreateTime =dtNow,
+                    StartTime = dtNow,
+                    EndTime =dtNow.AddMonths(3),
+                    Status= MemberShipStatusEnum.有效,
+                    Memo = "试用"
+                }
+            };
         }
+
+        #region 内容
 
         /// <summary>
         /// 用户名
@@ -87,5 +98,62 @@ namespace WesleyCore.User
         /// 过期时间
         /// </summary>
         public List<MemberShip> MemberShip { get; set; }
+
+        #endregion 内容
+
+        #region 方法
+
+        /// <summary>
+        /// 验证会员状态
+        /// </summary>
+        public void VerifyMemberShip()
+        {
+            if (Status == MemberStatusEnum.停用 || Status == MemberStatusEnum.默认)
+            {
+                throw new Exception("会员未激活，请联系管理员!");
+            }
+            if (MemberShip == null || MemberShip.Count == 0)
+            {
+                throw new Exception("会员未激活，请联系管理员!");
+            }
+            if (MemberShip.First().EndTime < DateTime.Now)
+            {
+                if (Status == MemberStatusEnum.试用 || Status == MemberStatusEnum.会员)
+                {
+                    UpdateStatus(MemberStatusEnum.默认);
+                }
+                throw new Exception("会员已过期，请联系管理员!");
+            }
+            if (MemberShip.First().StartTime > DateTime.Now)
+            {
+                throw new Exception($"会员未到开通时间,开通时间为{MemberShip.First().StartTime}，请联系管理员!");
+            }
+        }
+
+        /// <summary>
+        /// 新增用户领域
+        /// </summary>
+        public void CreateMemberUser(string password)
+        {
+            //新增user表 创建用户后 事件风暴 创建菜单FeatureMenu 发送消息等
+            this.AddDomainEvent(new CreateUserDomainEvent(Id, UserName, password, PhoneNumber));
+        }
+
+        #endregion 方法
+
+        #region 私有方法
+
+        /// <summary>
+        /// 更新会员状态
+        /// </summary>
+        /// <param name="默认"></param>
+        /// <returns></returns>
+        private void UpdateStatus(MemberStatusEnum status)
+        {
+            this.Status = status;
+            this.AddDomainEvent(new UpdateMemberStatusDomainEvent(this));
+        }
+
+        #endregion 私有方法
     }
 }

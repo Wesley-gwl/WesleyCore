@@ -362,7 +362,7 @@ namespace WesleyUntity
         /// <returns></returns>
         public static string FirstCharToLower(this string input)
         {
-            if (String.IsNullOrEmpty(input))
+            if (string.IsNullOrEmpty(input))
                 return input;
             string str = input.First().ToString().ToLower() + input.Substring(1);
             return str;
@@ -671,8 +671,8 @@ namespace WesleyUntity
 
         private static void AddIrregularRule(string singular, string plural)
         {
-            AddPluralRule(String.Concat("(", singular[0], ")", singular.Substring(1), "$"), String.Concat("$1", plural.Substring(1)));
-            AddSingularRule(String.Concat("(", plural[0], ")", plural.Substring(1), "$"), String.Concat("$1", singular.Substring(1)));
+            AddPluralRule(string.Concat("(", singular[0], ")", singular.Substring(1), "$"), String.Concat("$1", plural.Substring(1)));
+            AddSingularRule(string.Concat("(", plural[0], ")", plural.Substring(1), "$"), String.Concat("$1", singular.Substring(1)));
         }
 
         private static void AddUnknownCountRule(string word)

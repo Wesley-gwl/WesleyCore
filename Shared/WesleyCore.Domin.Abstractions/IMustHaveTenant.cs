@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace WesleyCore.Domin.Abstractions
+﻿namespace WesleyCore.Domin.Abstractions
 {
     /// <summary>
     /// 租户

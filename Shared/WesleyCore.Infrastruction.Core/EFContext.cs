@@ -12,7 +12,7 @@ namespace WesleyCore.Infrastructure.Core
 {
     public class EFContext : DbContext, IUnitOfWork, ITransaction
     {
-        protected IMediator _mediator;
+        private readonly IMediator _mediator;
         private readonly ICapPublisher _capBus;
 
         public EFContext(DbContextOptions options, IMediator mediator, ICapPublisher capBus) : base(options)
@@ -64,8 +64,9 @@ namespace WesleyCore.Infrastructure.Core
 
             #endregion 日志
 
-            await base.SaveChangesAsync(cancellationToken);
             await _mediator.DispatchDomainEventsAsync(this);
+
+            await base.SaveChangesAsync(cancellationToken);
             return true;
         }
 

@@ -1,20 +1,14 @@
 ﻿using DotNetCore.CAP;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 using Toolbelt.ComponentModel.DataAnnotations;
 using WesleyCore.Domin.Abstractions;
-using WesleyCore.Infrastructure;
 using WesleyCore.Infrastructure.Core;
-using WesleyCore.Login.Infrastructure;
-using WesleyCore.User;
+using WesleyCore.User.Domain;
+using WesleyCore.User.Infrastructure;
 
 namespace WesleyCore.Infrastructure
 {
@@ -23,7 +17,7 @@ namespace WesleyCore.Infrastructure
     /// </summary>
     public class UserContext : EFContext
     {
-        private int _tenantId;
+        private readonly int _tenantId;
 
         /// <summary>
         /// 构造

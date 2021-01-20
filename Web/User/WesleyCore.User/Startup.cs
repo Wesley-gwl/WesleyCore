@@ -1,18 +1,15 @@
 using ConsulRegister;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Ocelot.JwtAuthorize;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using WesleyCore.User.Domain;
 using WesleyCore.User.GrpcService;
+using WesleyRedis;
+using WesleyUntity;
 
 namespace WesleyCore.User
 {
@@ -43,15 +40,19 @@ namespace WesleyCore.User
         {
             services.AddControllers();
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WesleyCore.User", Version = "v1" });
-            });
+            services.AddSwagger();
 
             services.AddSingleton(Configuration);
+            RedisClient.RedisCt.InitConnect(Configuration);//缓存
             //新增数据链接
             services.AddSqlServerDomainContext(Configuration["ConnectionStrings:Default"]);
-            services.AddTokenJwtAuthorize(Configuration);
+            //添加验证api验证
+            services.AddApiJwtAuthorize((context) =>
+            {
+                //token等验证策略
+                // 这里根据context中的Request和User来自定义权限验证，返回true为放行，返回fase时为拦截，其中User.Claims中有登录时自己定义的Claim
+                return true;
+            }, Configuration);
             //创建推送
             services.AddMediatRServices();
             //创建仓储
@@ -73,7 +74,7 @@ namespace WesleyCore.User
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WesleyCore.User v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint(string.Format("/swagger/{0}/swagger.json", "Api"), "Api"));
             }
             app.UseHttpsRedirection();
             app.UseRouting();

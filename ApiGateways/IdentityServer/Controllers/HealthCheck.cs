@@ -1,10 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WesleyCore.Web.Controllers.ApiControllers
 {
@@ -22,7 +17,7 @@ namespace WesleyCore.Web.Controllers.ApiControllers
         [HttpGet]
         public IActionResult Check()
         {
-            //心跳,consul会每隔几秒调一次 
+            //心跳,consul会每隔几秒调一次
             Console.WriteLine($"web Invoke");
             return Ok();
         }

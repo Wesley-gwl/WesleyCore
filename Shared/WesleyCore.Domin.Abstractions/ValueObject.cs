@@ -8,6 +8,23 @@ namespace WesleyCore.Domin.Abstractions
     /// </summary>
     public abstract class ValueObject
     {
+        /// <summary>
+        /// 比较
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        protected static bool NotEqualOperator(ValueObject left, ValueObject right)
+        {
+            return !(EqualOperator(left, right));
+        }
+
+        /// <summary>
+        /// 比较
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
         protected static bool EqualOperator(ValueObject left, ValueObject right)
         {
             if (left is null ^ right is null)
@@ -17,13 +34,17 @@ namespace WesleyCore.Domin.Abstractions
             return left is null || left.Equals(right);
         }
 
-        protected static bool NotEqualOperator(ValueObject left, ValueObject right)
-        {
-            return !(EqualOperator(left, right));
-        }
-
+        /// <summary>
+        /// 简单地说，当希望获取一个IEnumerable<T>类型的集合，而不想把数据一次性加载到内存，就可以考虑使用yield return实现"按需供给"
+        /// </summary>
+        /// <returns></returns>
         protected abstract IEnumerable<object> GetAtomicValues();
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null || obj.GetType() != GetType())
@@ -47,6 +68,10 @@ namespace WesleyCore.Domin.Abstractions
             return !thisValues.MoveNext() && !otherValues.MoveNext();
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return GetAtomicValues()

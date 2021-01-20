@@ -1,8 +1,5 @@
-﻿using Grpc.Net.Client;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WesleyCore.User.Proto;
@@ -16,11 +13,18 @@ namespace IdentityServer.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="loginServiceClient"></param>
         public LoginController(ILoginService.ILoginServiceClient loginServiceClient)
         {
             LoginServiceClient = loginServiceClient;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
         public ILoginService.ILoginServiceClient LoginServiceClient;
 
         /// <summary>

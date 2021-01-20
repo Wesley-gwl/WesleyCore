@@ -118,14 +118,28 @@ namespace WesleyCore.Infrastruction.Core
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        TEntity FirstOrDefoult(Expression<Func<TEntity, bool>> express);
+        bool Any(Expression<Func<TEntity, bool>> express);
 
         /// <summary>
         /// 获取默认第一个实体 异部
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<TEntity> FirstOrDefoultAsync(Expression<Func<TEntity, bool>> express);
+        Task<bool> AnyAsync(Expression<Func<TEntity, bool>> express);
+
+        /// <summary>
+        /// 获取默认第一个实体
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        TEntity FirstOrDefault(Expression<Func<TEntity, bool>> express);
+
+        /// <summary>
+        /// 获取默认第一个实体 异部
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> express);
     }
 
     /// <summary>
