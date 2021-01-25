@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>bba92921-2d6d-46f0-b6fe-109bfddb01f4</UserSecretsId>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\Wesley\Code\WesleyCore\Web\Aggregation\UserAggregation\UserAggregation.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Consul" Version="1.6.1.1" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.34.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.34.0" />
+    <PackageReference Include="IdentityServer4" Version="4.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\ConsulRegister\ConsulRegister.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Ocelot.JWTAuthorize\Ocelot.JWTAuthorize.csproj" />
+    <ProjectReference Include="..\..\User\WesleyCore.User.Proto\WesleyCore.User.Proto.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="..\..\User\WesleyCore.User.Proto\Protos\IUserService.proto" GrpcServices="Client"></Protobuf>
+  </ItemGroup>
+</Project>

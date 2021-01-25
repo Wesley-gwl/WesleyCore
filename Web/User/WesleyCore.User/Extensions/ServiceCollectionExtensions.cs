@@ -18,6 +18,7 @@ using WesleyCore.User;
 using WesleyCore.User.Domain;
 using WesleyCore.User.Infrastructure;
 using WesleyCore.User.Infrastructure.Repositories;
+using AutoMapper;
 
 namespace WesleyCore
 {
@@ -155,6 +156,18 @@ namespace WesleyCore
                 //options.UseDashboard();
             });
 
+            return services;
+        }
+
+        /// <summary>
+        /// 增加AutoMap 配置
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddAutoMap(this IServiceCollection services)
+        {
+            //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             return services;
         }
     }

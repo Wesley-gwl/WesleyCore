@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderAggregation", "Web\Agg
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WesleyCore.User.Proto", "Web\User\WesleyCore.User.Proto\WesleyCore.User.Proto.csproj", "{97F002F7-B7CF-4175-8872-E0612F94B5F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAggregation", "Web\Aggregation\UserAggregation\UserAggregation.csproj", "{1A034462-9B86-4337-B5E8-5ED453B832AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,10 @@ Global
 		{97F002F7-B7CF-4175-8872-E0612F94B5F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97F002F7-B7CF-4175-8872-E0612F94B5F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97F002F7-B7CF-4175-8872-E0612F94B5F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A034462-9B86-4337-B5E8-5ED453B832AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A034462-9B86-4337-B5E8-5ED453B832AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A034462-9B86-4337-B5E8-5ED453B832AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A034462-9B86-4337-B5E8-5ED453B832AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +129,7 @@ Global
 		{8CF27FAA-CE94-4573-9776-E06B9D344563} = {C312781F-1BAF-44C5-A4FA-4088F17FD413}
 		{7791AA00-4B53-4ADC-9CC1-0850915D2790} = {8CF27FAA-CE94-4573-9776-E06B9D344563}
 		{97F002F7-B7CF-4175-8872-E0612F94B5F5} = {42E61F62-9609-49F0-A924-35CB879865FA}
+		{1A034462-9B86-4337-B5E8-5ED453B832AE} = {8CF27FAA-CE94-4573-9776-E06B9D344563}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D12CF12D-9174-4517-8CB6-5B698C224A06}

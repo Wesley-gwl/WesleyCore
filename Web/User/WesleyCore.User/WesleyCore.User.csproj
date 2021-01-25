@@ -11,6 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Consul" Version="1.6.1.1" />
     <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="3.1.2" />
     <PackageReference Include="Google.Protobuf" Version="3.14.0" />
@@ -24,6 +26,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
@@ -46,12 +49,7 @@
     <ProjectReference Include="..\WesleyCore.User.Proto\WesleyCore.User.Proto.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Protobuf Include="..\WesleyCore.User.Proto\Protos\ILoginService.proto" GrpcServices="Service">
-    </Protobuf>
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="mysll.pfx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Protobuf Include="..\WesleyCore.User.Proto\Protos\ILoginService.proto" GrpcServices="Service"></Protobuf>
+    <Protobuf Include="..\WesleyCore.User.Proto\Protos\IUserService.proto" GrpcServices="Service"></Protobuf>
   </ItemGroup>
 </Project>

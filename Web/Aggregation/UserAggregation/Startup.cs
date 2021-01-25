@@ -1,30 +1,30 @@
-using ConsulRegister;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using WesleyCore;
 using Ocelot.JwtAuthorize;
-using WesleyCore.User.Domain;
-using WesleyCore.User.GrpcService;
-using WesleyRedis;
-using WesleyUntity;
+using Wesley.GrpcService;
+using ConsulRegister;
 
-namespace WesleyCore.User
+namespace UserAggregation
 {
     /// <summary>
-    /// 启动项
+    /// 启动
     /// </summary>
     public class Startup
     {
         /// <summary>
-        /// 配置
-        /// </summary>
-        public IConfiguration Configuration { get; }
-
-        /// <summary>
-        ///
+        /// 构造
         /// </summary>
         /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
@@ -33,23 +33,20 @@ namespace WesleyCore.User
         }
 
         /// <summary>
-        ///
+        /// 配置
+        /// </summary>
+        public IConfiguration Configuration { get; }
+
+        /// <summary>
+        /// 服务发现
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews(options =>
             {
-                //options.Filters.Add(typeof(PermissionHandler)); //身份过滤器
                 //options.Filters.Add(typeof(ExceptionResultFilter));//异常过滤
             });
-            services.AddSingleton(Configuration);
-            //swagger
-            services.AddSwagger();
-            //缓存
-            RedisClient.RedisCt.InitConnect(Configuration);
-            //新增数据链接
-            services.AddSqlServerDomainContext(Configuration["ConnectionStrings:Default"]);
             //添加验证api验证
             services.AddApiJwtAuthorize((context) =>
             {
@@ -57,22 +54,14 @@ namespace WesleyCore.User
                 // 这里根据context中的Request和User来自定义权限验证，返回true为放行，返回fase时为拦截，其中User.Claims中有登录时自己定义的Claim
                 return true;
             }, Configuration);
-            //创建推送
-            services.AddMediatRServices();
-            //创建仓储
-            services.AddRepositories();
-            //订阅新增
-            services.AddEventBus(Configuration);
-            //AutoMap
-            services.AddAutoMap();
-            //Grpc
-            services.AddGrpc();
+            services.AddScoped<IGrpcServiceHelper, GrpcServiceHelper>();
+            services.AddSwagger();
             //consul
             services.AddConsul(Configuration);
         }
 
         /// <summary>
-        ///
+        /// 服务注册
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
@@ -84,7 +73,9 @@ namespace WesleyCore.User
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint(string.Format("/swagger/{0}/swagger.json", "Api"), "Api"));
             }
+
             app.UseHttpsRedirection();
+
             app.UseRouting();
 
             app.UseAuthentication();
@@ -92,13 +83,6 @@ namespace WesleyCore.User
 
             app.UseEndpoints(endpoints =>
             {
-                #region GrpcService
-
-                endpoints.MapGrpcService<LoginService>();
-                endpoints.MapGrpcService<UserService>();
-
-                #endregion GrpcService
-
                 endpoints.MapControllers();
             });
             app.UseConsul(Configuration);

@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UserAggregation</name>
+    </assembly>
+    <members>
+        <member name="T:WesleyCore.Web.Controllers.ApiControllers.HealthCheck">
+            <summary>
+            健康检查
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Web.Controllers.ApiControllers.HealthCheck.Check">
+            <summary>
+            健康检查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WesleyCore.ServiceCollectionExtensions">
+            <summary>
+            中间件注册
+            </summary>
+        </member>
+        <member name="M:WesleyCore.ServiceCollectionExtensions.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加swagger
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WesleyCore.User.Proto.IUserServiceReflection">
+            <summary>Holder for reflection information generated from IUserService.proto</summary>
+        </member>
+        <member name="P:WesleyCore.User.Proto.IUserServiceReflection.Descriptor">
+            <summary>File descriptor for IUserService.proto</summary>
+        </member>
+        <member name="T:WesleyCore.User.Proto.GetUserPagedForm">
+             <summary>
+            请求体
+             </summary>
+        </member>
+        <member name="F:WesleyCore.User.Proto.GetUserPagedForm.SearchTextFieldNumber">
+            <summary>Field number for the "searchText" field.</summary>
+        </member>
+        <member name="P:WesleyCore.User.Proto.GetUserPagedForm.SearchText">
+             <summary>
+            查询条件
+             </summary>
+        </member>
+        <member name="F:WesleyCore.User.Proto.GetUserPagedForm.PagedFieldNumber">
+            <summary>Field number for the "paged" field.</summary>
+        </member>
+        <member name="P:WesleyCore.User.Proto.GetUserPagedForm.Paged">
+             <summary>
+            页码
+             </summary>
+        </member>
+        <member name="F:WesleyCore.User.Proto.GetUserPagedForm.RowsFieldNumber">
+            <summary>Field number for the "rows" field.</summary>
+        </member>
+        <member name="P:WesleyCore.User.Proto.GetUserPagedForm.Rows">
+             <summary>
+            页数
+             </summary>
+        </member>
+        <member name="F:WesleyCore.User.Proto.UserPagedOutput.TotalFieldNumber">
+            <summary>Field number for the "total" field.</summary>
+        </member>
+        <member name="F:WesleyCore.User.Proto.UserPagedOutput.UserItemFieldNumber">
+            <summary>Field number for the "userItem" field.</summary>
+        </member>
+        <member name="T:WesleyCore.User.Proto.UserItemDto">
+             <summary>
+            返回结果
+             </summary>
+        </member>
+        <member name="F:WesleyCore.User.Proto.UserItemDto.UserNameFieldNumber">
+            <summary>Field number for the "userName" field.</summary>
+        </member>
+        <member name="F:WesleyCore.User.Proto.UserItemDto.PhoneNumberFieldNumber">
+            <summary>Field number for the "phoneNumber" field.</summary>
+        </member>
+        <member name="T:WesleyCore.User.Proto.IUserService">
+             <summary>
+            定义的服务
+             </summary>
+        </member>
+        <member name="P:WesleyCore.User.Proto.IUserService.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:WesleyCore.User.Proto.IUserService.IUserServiceClient">
+            <summary>Client for IUserService</summary>
+        </member>
+        <member name="M:WesleyCore.User.Proto.IUserService.IUserServiceClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for IUserService</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:WesleyCore.User.Proto.IUserService.IUserServiceClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for IUserService that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:WesleyCore.User.Proto.IUserService.IUserServiceClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:WesleyCore.User.Proto.IUserService.IUserServiceClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:WesleyCore.User.Proto.IUserService.IUserServiceClient.GetUserList(WesleyCore.User.Proto.GetUserPagedForm,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            方法
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:WesleyCore.User.Proto.IUserService.IUserServiceClient.GetUserList(WesleyCore.User.Proto.GetUserPagedForm,Grpc.Core.CallOptions)">
+            <summary>
+            方法
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:WesleyCore.User.Proto.IUserService.IUserServiceClient.GetUserListAsync(WesleyCore.User.Proto.GetUserPagedForm,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            方法
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:WesleyCore.User.Proto.IUserService.IUserServiceClient.GetUserListAsync(WesleyCore.User.Proto.GetUserPagedForm,Grpc.Core.CallOptions)">
+            <summary>
+            方法
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:WesleyCore.User.Proto.IUserService.IUserServiceClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="T:UserAggregation.Controllers.UserController">
+            <summary>
+            用户聚合
+            </summary>
+        </member>
+        <member name="F:UserAggregation.Controllers.UserController.grpcServiceHelper">
+            <summary>
+            服务站点发现
+            </summary>
+        </member>
+        <member name="F:UserAggregation.Controllers.UserController._header">
+            <summary>
+            token发现
+            </summary>
+        </member>
+        <member name="M:UserAggregation.Controllers.UserController.#ctor(Wesley.GrpcService.IGrpcServiceHelper)">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:UserAggregation.Controllers.UserController.GetUserPaged(System.Int32,System.Int32)">
+            <summary>
+            获取用户
+            </summary>
+            <param name="paged"></param>
+            <param name="rows"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UserAggregation.Startup">
+            <summary>
+            启动
+            </summary>
+        </member>
+        <member name="M:UserAggregation.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            构造
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:UserAggregation.Startup.Configuration">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="M:UserAggregation.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            服务发现
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:UserAggregation.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            服务注册
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+        <member name="T:Wesley.GrpcService.GrpcServiceCoust">
+            <summary>
+            grpc服务名称
+            </summary>
+        </member>
+        <member name="F:Wesley.GrpcService.GrpcServiceCoust.UserService">
+            <summary>
+            服务
+            </summary>
+        </member>
+        <member name="T:Wesley.GrpcService.GrpcServiceHelper">
+            <summary>
+            grpc服务发现帮助类
+            </summary>
+        </member>
+        <member name="M:Wesley.GrpcService.GrpcServiceHelper.GetUserService">
+            <summary>
+            获取登录服务
+            </summary>
+        </member>
+        <member name="T:Wesley.GrpcService.IGrpcServiceHelper">
+            <summary>
+            grpc服务发现帮助类
+            </summary>
+        </member>
+        <member name="M:Wesley.GrpcService.IGrpcServiceHelper.GetUserService">
+            <summary>
+            获取用户服务
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

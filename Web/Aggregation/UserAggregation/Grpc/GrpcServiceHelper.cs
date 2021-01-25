@@ -5,10 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static WesleyCore.User.Proto.ILoginService;
-using Microsoft.EntityFrameworkCore;
+using WesleyCore.User.Proto;
+using static WesleyCore.User.Proto.IUserService;
 
-namespace IdentityServer.GrpcService
+namespace Wesley.GrpcService
 {
     /// <summary>
     /// grpc服务发现帮助类
@@ -18,12 +18,12 @@ namespace IdentityServer.GrpcService
         /// <summary>
         /// 获取登录服务
         /// </summary>
-        public async Task<ILoginServiceClient> GetLoginService()
+        public async Task<IUserServiceClient> GetUserService()
         {
             AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);//允许使用不加密的HTTP/2协议
             var address = await GrpcServiceConsulExtension.GetGrpcServiceHttps(GrpcServiceCoust.UserService);
             var channel = GrpcChannel.ForAddress(address);
-            return new ILoginServiceClient(channel);
+            return new IUserServiceClient(channel);
         }
     }
 }

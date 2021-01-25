@@ -26,7 +26,9 @@ namespace WesleyCore.Infrastructure
             {
                 int.TryParse(_accessor.HttpContext.Request.Headers["TenantId"], out _tenantId);
                 if (_tenantId == 0)
+                {
                     int.TryParse(_accessor.HttpContext.User.Claims.FirstOrDefault(m => m.Type == "TenantId")?.Value, out _tenantId);
+                }
             }
             return _tenantId;
         }

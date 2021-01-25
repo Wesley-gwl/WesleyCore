@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,15 +22,21 @@ namespace WesleyCore.User.Application.Queries.User
         /// </summary>
         private readonly IUserRepository _userRepository;
 
+        /// <summary>
+        /// 会员仓储
+        /// </summary>
         private readonly IMemberRepository _memberRepository;
+
+        private readonly IMapper _mapper;
 
         /// <summary>
         /// 构造
         /// </summary>
-        public LoginHandler(IUserRepository userRepository, IMemberRepository memberRepository)
+        public LoginHandler(IUserRepository userRepository, IMemberRepository memberRepository, IMapper mapper)
         {
             _userRepository = userRepository;
             _memberRepository = memberRepository;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -49,14 +56,7 @@ namespace WesleyCore.User.Application.Queries.User
 
             var member = await _memberRepository.GetMemberShipInclude(user.TenantId);
             member.VerifyMemberShip();
-            return new UserDto()
-            {
-                IsAdmin = user.UserInfo.IsAdmin,
-                PhoneNumber = user.PhoneNumber,
-                TenantId = user.TenantId,
-                UserId = user.Id,
-                UserName = user.UserName
-            };
+            return _mapper.Map<UserDto>(user);
         }
     }
 }

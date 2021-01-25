@@ -5,16 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Protos\ILoginService.proto" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.14.0" />
     <PackageReference Include="Grpc" Version="2.35.0" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <Protobuf Include="Protos\ILoginService.proto" GrpcServices="Server" />
-  </ItemGroup>
-
+  </ItemGroup>-->
 </Project>

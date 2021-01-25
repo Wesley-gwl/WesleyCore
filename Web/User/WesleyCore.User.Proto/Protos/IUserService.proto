@@ -1,0 +1,26 @@
+﻿syntax = "proto3";
+
+// 命名空间
+option csharp_namespace = "WesleyCore.User.Proto";//生成代码的命名空间
+package IUserService;//分类分组
+
+//定义的服务
+service IUserService { 
+  // 方法
+  rpc GetUserList(GetUserPagedForm) returns(UserPagedOutput); 
+}
+ //请求体
+message GetUserPagedForm { 
+  string searchText = 1;//查询条件
+  int32  paged = 2;//页码
+  int32  rows = 3;//页数
+}
+message UserPagedOutput {
+    int32 total = 1;
+    repeated UserItemDto userItem = 2;
+}
+//返回结果
+message UserItemDto{
+	string userName = 1;
+    string phoneNumber = 2;
+}
