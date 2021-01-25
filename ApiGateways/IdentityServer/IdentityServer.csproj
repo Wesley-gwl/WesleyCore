@@ -12,8 +12,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Google.Protobuf" Version="3.14.0" />
-    <PackageReference Include="Grpc" Version="2.34.1" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.34.0" />
     <PackageReference Include="Grpc.Net.ClientFactory" Version="2.34.0" />
     <PackageReference Include="Grpc.Tools" Version="2.34.1">
@@ -23,6 +23,7 @@
     <PackageReference Include="IdentityServer4" Version="4.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" NoWarn="NU1605" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.1" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
@@ -31,11 +32,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\ConsulRegister\ConsulRegister.csproj" />
     <ProjectReference Include="..\..\Shared\Ocelot.JWTAuthorize\Ocelot.JWTAuthorize.csproj" />
+    <ProjectReference Include="..\..\Web\User\WesleyCore.User.Proto\WesleyCore.User.Proto.csproj" />
   </ItemGroup>
-
   <ItemGroup>
-    <Protobuf Include="..\..\Web\User\WesleyCore.User\Protos\ILoginService.proto" GrpcServices="Client">
-      <Link>Protos\ILoginService.proto</Link>
+    <Protobuf Include="..\..\Web\User\WesleyCore.User.Proto\Protos\ILoginService.proto" GrpcServices="Client">
     </Protobuf>
   </ItemGroup>
 </Project>

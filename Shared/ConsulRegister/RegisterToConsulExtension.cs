@@ -56,6 +56,7 @@ namespace ConsulRegister
             //    .FirstOrDefault()).Port;
             var port = int.Parse(configuration["port"]);
             var ip = configuration["ip"];
+            var http = configuration["http"];
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"application port is :{port}");
 
@@ -116,13 +117,12 @@ namespace ConsulRegister
                 Checks = new[] { new AgentServiceCheck()
                 {
                     DeregisterCriticalServiceAfter = TimeSpan.FromMinutes(1),
-                    Interval = TimeSpan.FromSeconds(30),//间隔12s一次 检查
-                    Timeout = TimeSpan.FromSeconds(5),//检测等待时间
-                    //HTTP = $"{Uri.UriSchemeHttp}://localhost:{port}/Api/HealthCheck/Check",
-                    HTTP = $"http://{ip}:{port}/Api/HealthCheck/Check",
+                    Interval = TimeSpan.FromSeconds(20),//间隔60s一次 检查
+                    Timeout = TimeSpan.FromSeconds(2),//检测等待时间
+                    HTTP = $"{http??Uri.UriSchemeHttp}://{ip}:{port}/Api/HealthCheck/Check",
                 } },
                 Address = ip,
-                ID = $"service:{ip}:{port}",
+                ID = $"{ip}:{port}",
                 Name = configuration["ServiceDiscovery:ServiceName"],//队伍名称
                 Port = port
             };

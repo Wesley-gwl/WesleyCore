@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Threading;
 using Toolbelt.ComponentModel.DataAnnotations.Schema.V5;
 using WesleyCore.Domin.Abstractions;
 using WesleyCore.User.Domain.Events.User;
@@ -136,7 +137,7 @@ namespace WesleyCore.User.Domain
         public void CreateMemberUser(string password)
         {
             //新增user表 创建用户后 事件风暴 创建菜单FeatureMenu 发送消息等
-            this.AddDomainEvent(new CreateUserDomainEvent(Id, UserName, password, PhoneNumber));
+            this.AddDomainEvent(new CreateUserDomainEvent(Id, PhoneNumber, password, UserName));
         }
 
         #endregion 方法

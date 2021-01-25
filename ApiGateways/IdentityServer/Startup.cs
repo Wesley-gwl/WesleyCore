@@ -1,4 +1,6 @@
 using ConsulRegister;
+using Grpc.Core;
+using IdentityServer.GrpcService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Ocelot.JwtAuthorize;
 using System;
+using System.Net.Http;
+using System.Threading.Channels;
 using WesleyCore.User.Proto;
 
 namespace IdentityServer
@@ -45,13 +49,14 @@ namespace IdentityServer
             services.AddSingleton(Configuration);
             services.AddTokenJwtAuthorize(Configuration);
 
-            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);//允许使用不加密的HTTP/2协议
+            //AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);//允许使用不加密的HTTP/2协议
 
-            services.AddGrpcClient<ILoginService.ILoginServiceClient>(option =>
-              {
-                  option.Address = new Uri("https://localhost:5003");
-              });
-
+            //services.AddGrpcClient<ILoginService.ILoginServiceClient>(option =>
+            //{
+            //    option.Address = new Uri("https://localhost:5003");
+            //});
+            //注册grpc发现类服务
+            services.AddScoped<IGrpcServiceHelper, GrpcServiceHelper>();
             services.AddConsul(Configuration);
         }
 

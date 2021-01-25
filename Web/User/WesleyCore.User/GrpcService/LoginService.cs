@@ -60,7 +60,7 @@ namespace WesleyCore.User.GrpcService
                 IpAddress = input.IpAddress,
                 Password = EncryptUtil.AESEncrypt(input.Password, hash),
                 PhoneNumber = input.PhoneNumber
-            });
+            }, context.CancellationToken);
             var expired = DateTime.Now.AddMinutes(120);
 
             var claims = new Claim[] {

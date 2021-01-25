@@ -113,13 +113,12 @@
             
              </summary>
         </member>
-        <member name="M:IdentityServer.Controllers.LoginController.#ctor(WesleyCore.User.Proto.ILoginService.ILoginServiceClient)">
-             <summary>
-            
-             </summary>
-             <param name="loginServiceClient"></param>
+        <member name="M:IdentityServer.Controllers.LoginController.#ctor(IdentityServer.GrpcService.IGrpcServiceHelper)">
+            <summary>
+            构造
+            </summary>
         </member>
-        <member name="F:IdentityServer.Controllers.LoginController.LoginServiceClient">
+        <member name="F:IdentityServer.Controllers.LoginController.grpcServiceHelper">
              <summary>
             
              </summary>
@@ -136,6 +135,37 @@
             获取IP地址
             </summary>
             <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityServer.GrpcService.GrpcServiceCoust">
+            <summary>
+            grpc服务名称
+            </summary>
+        </member>
+        <member name="F:IdentityServer.GrpcService.GrpcServiceCoust.UserService">
+            <summary>
+            服务
+            </summary>
+        </member>
+        <member name="T:IdentityServer.GrpcService.GrpcServiceHelper">
+            <summary>
+            grpc服务发现帮助类
+            </summary>
+        </member>
+        <member name="M:IdentityServer.GrpcService.GrpcServiceHelper.GetLoginService">
+            <summary>
+            获取登录服务
+            </summary>
+        </member>
+        <member name="T:IdentityServer.GrpcService.IGrpcServiceHelper">
+            <summary>
+            grpc服务发现帮助类
+            </summary>
+        </member>
+        <member name="M:IdentityServer.GrpcService.IGrpcServiceHelper.GetLoginService">
+            <summary>
+            获取登录服务
+            </summary>
             <returns></returns>
         </member>
         <member name="T:IdentityServer.LoginDto">

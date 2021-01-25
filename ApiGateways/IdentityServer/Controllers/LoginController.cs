@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using IdentityServer.GrpcService;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 using WesleyCore.User.Proto;
+using Microsoft.EntityFrameworkCore;
 
 namespace IdentityServer.Controllers
 {
@@ -14,18 +16,17 @@ namespace IdentityServer.Controllers
     public class LoginController : ControllerBase
     {
         /// <summary>
-        ///
+        /// 构造
         /// </summary>
-        /// <param name="loginServiceClient"></param>
-        public LoginController(ILoginService.ILoginServiceClient loginServiceClient)
+        public LoginController(IGrpcServiceHelper grpcServiceHelper)
         {
-            LoginServiceClient = loginServiceClient;
+            this.grpcServiceHelper = grpcServiceHelper;
         }
 
         /// <summary>
         ///
         /// </summary>
-        public ILoginService.ILoginServiceClient LoginServiceClient;
+        private readonly IGrpcServiceHelper grpcServiceHelper;
 
         /// <summary>
         /// 会员密码登录
@@ -35,12 +36,13 @@ namespace IdentityServer.Controllers
         [HttpPost]
         public async Task<string> MemberLogin(LoginDto dto)
         {
-            var token = await LoginServiceClient.LoginAsync(new LoginForm()
+            var loginServiceClient = await grpcServiceHelper.GetLoginService();
+            var token = await loginServiceClient.LoginAsync(new LoginForm()
             {
                 PhoneNumber = dto.PhoneNumber,
                 Password = dto.Password,
                 IpAddress = GetUserIp(Request.HttpContext)
-            });
+            }, cancellationToken: HttpContext.RequestAborted);
             return token.Token;
         }
 

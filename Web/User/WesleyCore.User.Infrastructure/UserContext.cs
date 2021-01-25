@@ -70,15 +70,15 @@ namespace WesleyCore.Infrastructure
                         Expression.Constant(false));
                     modelBuilder.Entity(type).HasQueryFilter(Expression.Lambda(body, parameter));
                 }
-                //实现租户tenantId = _tenantId
-                if (typeof(IMustHaveTenant).IsAssignableFrom(type))
-                {
-                    var parameter = Expression.Parameter(type, "e");
-                    var body = Expression.Equal(
-                        Expression.Call(typeof(EF), nameof(EF.Property), new[] { typeof(int) }, parameter, Expression.Constant(tenantIdPropertyName)),
-                        Expression.Constant(_tenantId));
-                    modelBuilder.Entity(type).HasQueryFilter(Expression.Lambda(body, parameter));
-                }
+                ////实现租户tenantId = _tenantId
+                //if (typeof(IMustHaveTenant).IsAssignableFrom(type))
+                //{
+                //    var parameter = Expression.Parameter(type, "e");
+                //    var body = Expression.Equal(
+                //        Expression.Call(typeof(EF), nameof(EF.Property), new[] { typeof(int) }, parameter, Expression.Constant(tenantIdPropertyName)),
+                //        Expression.Constant(_tenantId));
+                //    modelBuilder.Entity(type).HasQueryFilter(Expression.Lambda(body, parameter));
+                //}
             }
 
             base.OnModelCreating(modelBuilder);
