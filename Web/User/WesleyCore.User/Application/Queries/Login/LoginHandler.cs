@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,16 +28,29 @@ namespace WesleyCore.User.Application.Queries.User
         /// </summary>
         private readonly IMemberRepository _memberRepository;
 
+        /// <summary>
+        /// automap
+        /// </summary>
         private readonly IMapper _mapper;
+
+        /// <summary>
+        /// 日志
+        /// </summary>
+        private readonly ILogger<LoginHandler> _logger;
 
         /// <summary>
         /// 构造
         /// </summary>
-        public LoginHandler(IUserRepository userRepository, IMemberRepository memberRepository, IMapper mapper)
+        /// <param name="userRepository"></param>
+        /// <param name="memberRepository"></param>
+        /// <param name="mapper"></param>
+        /// <param name="logger"></param>
+        public LoginHandler(IUserRepository userRepository, IMemberRepository memberRepository, IMapper mapper, ILogger<LoginHandler> logger)
         {
             _userRepository = userRepository;
             _memberRepository = memberRepository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         /// <summary>
@@ -47,10 +61,11 @@ namespace WesleyCore.User.Application.Queries.User
         /// <returns></returns>
         public async Task<UserDto> Handle(LoginDto request, CancellationToken cancellationToken)
         {
+            _logger.LogInformation($"{request.PhoneNumber}尝试登录");
             var user = await _userRepository.FirstOrDefaultAsync(p => p.PhoneNumber == request.PhoneNumber);
             if (user == null)
             {
-                throw new Exception("账号不存在");
+                throw new WlException("账号不存在");
             }
             user.VerifyLogin(request.Password);
 

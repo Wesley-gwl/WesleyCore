@@ -1,4 +1,8 @@
 using ConsulRegister;
+using log4net;
+using log4net.Config;
+using log4net.Repository;
+using log4net.Repository.Hierarchy;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Ocelot.JwtAuthorize;
+using System.IO;
+using Wesley.Filter;
 using WesleyCore.User.Domain;
 using WesleyCore.User.GrpcService;
 using WesleyRedis;
@@ -40,8 +46,7 @@ namespace WesleyCore.User
         {
             services.AddControllersWithViews(options =>
             {
-                //options.Filters.Add(typeof(PermissionHandler)); //身份过滤器
-                //options.Filters.Add(typeof(ExceptionResultFilter));//异常过滤
+                options.Filters.Add(typeof(ExceptionResultFilter));//异常过滤
             });
             services.AddSingleton(Configuration);
             //swagger

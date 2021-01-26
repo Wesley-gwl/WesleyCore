@@ -111,11 +111,11 @@ namespace WesleyCore.User.Domain
         {
             if (Status == MemberStatusEnum.停用 || Status == MemberStatusEnum.默认)
             {
-                throw new Exception("会员未激活，请联系管理员!");
+                throw new WlException("会员未激活，请联系管理员!");
             }
             if (MemberShip == null || MemberShip.Count == 0)
             {
-                throw new Exception("会员未激活，请联系管理员!");
+                throw new WlException("会员未激活，请联系管理员!");
             }
             if (MemberShip.First().EndTime < DateTime.Now)
             {
@@ -123,11 +123,11 @@ namespace WesleyCore.User.Domain
                 {
                     UpdateStatus(MemberStatusEnum.默认);
                 }
-                throw new Exception("会员已过期，请联系管理员!");
+                throw new WlException("会员已过期，请联系管理员!");
             }
             if (MemberShip.First().StartTime > DateTime.Now)
             {
-                throw new Exception($"会员未到开通时间,开通时间为{MemberShip.First().StartTime}，请联系管理员!");
+                throw new WlException($"会员未到开通时间,开通时间为{MemberShip.First().StartTime}，请联系管理员!");
             }
         }
 

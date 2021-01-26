@@ -1,6 +1,7 @@
 ﻿using Grpc.Core;
 using MediatR;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Ocelot.JwtAuthorize;
 using System;
@@ -25,12 +26,17 @@ namespace WesleyCore.User.GrpcService
         /// <summary>
         /// 令牌
         /// </summary>
-        public ITokenBuilder TokenBuilder { get; }
+        public readonly ITokenBuilder _tokenBuilder;
 
         /// <summary>
         /// 中介
         /// </summary>
-        private IMediator Mediator { get; set; }
+        private readonly IMediator _mediator;
+
+        /// <summary>
+        /// 日志
+        /// </summary>
+        private readonly ILogger<LoginService> _logger;
 
         /// <summary>
         /// 构造
@@ -38,11 +44,12 @@ namespace WesleyCore.User.GrpcService
         /// <param name="mediator"></param>
         /// <param name="configuration"></param>
         /// <param name="tokenBuilder"></param>
+        /// <param name="logger"></param>
         public LoginService(IMediator mediator, IConfiguration configuration, ITokenBuilder tokenBuilder)
         {
             Configuration = configuration;
-            TokenBuilder = tokenBuilder;
-            Mediator = mediator;
+            _tokenBuilder = tokenBuilder;
+            _mediator = mediator;
         }
 
         /// <summary>
@@ -55,7 +62,7 @@ namespace WesleyCore.User.GrpcService
         {
             var hash = Configuration["Customization:PwdKey"];
 
-            var user = await Mediator.Send(new LoginDto()
+            var user = await _mediator.Send(new LoginDto()
             {
                 IpAddress = input.IpAddress,
                 Password = EncryptUtil.AESEncrypt(input.Password, hash),
@@ -70,7 +77,7 @@ namespace WesleyCore.User.GrpcService
                         new Claim("TenantId",user.TenantId.ToString()),//租户
                         new Claim(ClaimTypes.MobilePhone,user.PhoneNumber)
                     };
-            return new LoginResult() { Token = JsonConvert.SerializeObject(TokenBuilder.BuildJwtToken(claims, DateTime.UtcNow, expired)) };
+            return new LoginResult() { Token = JsonConvert.SerializeObject(_tokenBuilder.BuildJwtToken(claims, DateTime.UtcNow, expired)) };
         }
     }
 }

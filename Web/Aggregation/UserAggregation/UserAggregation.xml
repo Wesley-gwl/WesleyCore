@@ -154,11 +154,6 @@
             服务站点发现
             </summary>
         </member>
-        <member name="F:UserAggregation.Controllers.UserController._header">
-            <summary>
-            token发现
-            </summary>
-        </member>
         <member name="M:UserAggregation.Controllers.UserController.#ctor(Wesley.GrpcService.IGrpcServiceHelper)">
             <summary>
             构造

@@ -11,6 +11,10 @@ namespace WesleyCore.Infrastructure
         private int _tenantId;
         private IHttpContextAccessor _accessor;
 
+        /// <summary>
+        /// 构造
+        /// </summary>
+        /// <param name="accessor"></param>
         public TenantProvider(IHttpContextAccessor accessor)
         {
             _accessor = accessor;

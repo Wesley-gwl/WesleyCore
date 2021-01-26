@@ -87,7 +87,7 @@ namespace WesleyCore.User.Domain
         {
             if (UserInfo.Status == UserStatusEnum.离职)
             {
-                throw new Exception($"用户已离职");
+                throw new WlException($"用户已离职");
             }
             if (Password != password)
             {
@@ -95,7 +95,7 @@ namespace WesleyCore.User.Domain
                 var errCount = RedisClient.RedisCt.GetStringKey(RedisConst.AccessFailed + PhoneNumber).ToInt(0).Value;
                 //记录错误登录次数
                 RedisClient.RedisCt.SetStringKey(RedisConst.AccessFailed + PhoneNumber, ++errCount);
-                throw new Exception($"密码错误{errCount}次");
+                throw new WlException($"密码错误{errCount}次");
             }
             //正确登录后清掉计数
             RedisClient.RedisCt.KeyDelete(RedisConst.AccessFailed + PhoneNumber);
