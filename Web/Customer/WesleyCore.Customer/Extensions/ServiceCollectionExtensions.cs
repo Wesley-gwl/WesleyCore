@@ -10,15 +10,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using WesleyCore.Customer;
 using WesleyCore.Domin.Abstractions;
 using WesleyCore.EntityFrameworkCore;
 using WesleyCore.Infrastruction.Core;
 using WesleyCore.Infrastructure;
-using WesleyCore.User;
-using WesleyCore.User.Domain;
-using WesleyCore.User.Domain.Repository;
-using WesleyCore.User.Infrastructure;
-using WesleyCore.User.Infrastructure.Repositories;
 
 namespace WesleyCore
 {
@@ -83,16 +79,8 @@ namespace WesleyCore
         /// <returns></returns>
         public static IServiceCollection AddMediatRServices(this IServiceCollection services)
         {
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UserContextTransactionBehavior<,>));
-
-            services.AddMediatR(typeof(Program).Assembly
-                //typeof(LoginHandler).Assembly
-                );
-            //services.AddMediatR( Assembly.GetExecutingAssembly());
-            //services.AddMediatR(
-            //    typeof(CreateOrderCommandHandler).Assembly,
-            //    typeof(OrderCreatedDomainEventHandler).Assembly,
-            //    typeof(LoginHandler).Assembly);
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CustomerContextTransactionBehavior<,>));
+            services.AddMediatR(typeof(Program).Assembly);
             return services;
         }
 
@@ -104,7 +92,7 @@ namespace WesleyCore
         /// <returns></returns>
         public static IServiceCollection AddDomainContext(this IServiceCollection services, Action<DbContextOptionsBuilder> optionsAction)
         {
-            return services.AddDbContext<UserContext>(optionsAction);
+            return services.AddDbContext<CustomerContext>(optionsAction);
         }
 
         /// <summary>
@@ -132,9 +120,8 @@ namespace WesleyCore
             services.AddHttpContextAccessor();
             services.AddScoped<ITenantProvider, TenantProvider>();
             services.AddScoped<ITokenBuilder, TokenBuilder>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IMemberRepository, MemberRepository>();
-            services.AddScoped<IFeatureRepository, FeatureRepository>();
+            //services.AddScoped<IUserRepository, UserRepository>();
+            //services.AddScoped<IMemberRepository, MemberRepository>();
             return services;
         }
 

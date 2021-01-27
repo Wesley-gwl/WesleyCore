@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Toolbelt.ComponentModel.DataAnnotations.Schema.V5;
@@ -16,12 +17,15 @@ namespace WesleyCore.User.Domain
     [Table("User", Schema = "System")]
     public class User : Entity<Guid>, IAggregateRoot, IMustHaveTenant, ISoftDelete
     {
+        /// <summary>
+        /// 构造
+        /// </summary>
         protected User()
         {
         }
 
         /// <summary>
-        ///
+        /// 新增赋值
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="phoneNumber"></param>
@@ -36,6 +40,8 @@ namespace WesleyCore.User.Domain
             TenantId = tenantId;
             UserInfo = new UserInfo();
         }
+
+        #region 字段
 
         /// <summary>
         /// 用户名
@@ -79,6 +85,10 @@ namespace WesleyCore.User.Domain
         /// </summary>
         public bool IsDeleted { get; set; }
 
+        #endregion 字段
+
+        #region 方法
+
         /// <summary>
         /// 验证登录
         /// </summary>
@@ -100,5 +110,7 @@ namespace WesleyCore.User.Domain
             //正确登录后清掉计数
             RedisClient.RedisCt.KeyDelete(RedisConst.AccessFailed + PhoneNumber);
         }
+
+        #endregion 方法
     }
 }

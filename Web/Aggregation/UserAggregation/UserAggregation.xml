@@ -167,6 +167,24 @@
             <param name="rows"></param>
             <returns></returns>
         </member>
+        <member name="T:UserAggregation.Program">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:UserAggregation.Program.Main(System.String[])">
+             <summary>
+            
+             </summary>
+             <param name="args"></param>
+        </member>
+        <member name="M:UserAggregation.Program.CreateHostBuilder(System.String[])">
+             <summary>
+            
+             </summary>
+             <param name="args"></param>
+             <returns></returns>
+        </member>
         <member name="T:UserAggregation.Startup">
             <summary>
             启动

@@ -21,7 +21,7 @@ namespace WesleyCore
             ErrorData = errorData;
         }
 
-        private string _bizMessage;
+        private readonly string _bizMessage;
 
         /// <summary>
         ///

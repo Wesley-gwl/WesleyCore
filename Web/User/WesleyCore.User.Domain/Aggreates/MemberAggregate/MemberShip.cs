@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WesleyCore.Domin.Abstractions;
@@ -9,13 +10,8 @@ namespace WesleyCore.User
     /// 会员时间表
     /// </summary>
     [Table("MemberShip", Schema = "System")]
-    public class MemberShip : Entity<int>, ISoftDelete
+    public class MemberShip : ValueObject, ISoftDelete
     {
-        ///// <summary>
-        ///// 会员主键
-        ///// </summary>
-        //public int MemberId { get; set; }
-
         /// <summary>
         /// 会员有效开始时间
         /// </summary>
@@ -51,9 +47,13 @@ namespace WesleyCore.User
         ///
         /// </summary>
         /// <returns></returns>
-        public override object[] GetKeys()
+        protected override IEnumerable<object> GetAtomicValues()
         {
-            throw new NotImplementedException();
+            yield return StartTime;
+            yield return EndTime;
+            yield return Status;
+            yield return CreateTime;
+            yield return Memo;
         }
     }
 }

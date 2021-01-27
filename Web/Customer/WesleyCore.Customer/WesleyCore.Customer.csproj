@@ -2,27 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>10e8571f-b3cd-4f29-9642-ae863fadd807</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>E:\Wesley\Code\WesleyCore\Web\User\WesleyCore.User\WesleyCore.User.xml</DocumentationFile>
+    <DocumentationFile>E:\Wesley\Code\WesleyCore\Web\Customer\WesleyCore.Customer\WesleyCore.Customer.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Consul" Version="1.6.1.1" />
     <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="3.1.2" />
-    <PackageReference Include="Google.Protobuf" Version="3.14.0" />
-    <PackageReference Include="Grpc.AspNetCore.Server" Version="2.34.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.35.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="log4net" Version="2.0.12" />
-    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" />
+    <PackageReference Include="DotNetCore.CAP.SqlServer" Version="3.1.2" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.34.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -35,8 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Commands\User\Dto\" />
-    <Folder Include="Application\IntegrationEvents\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,12 +40,7 @@
     <ProjectReference Include="..\..\..\Shared\WesleyCore.Infrastruction.Core\WesleyCore.Infrastruction.Core.csproj" />
     <ProjectReference Include="..\..\..\Shared\WesleyRedis\WesleyRedis.csproj" />
     <ProjectReference Include="..\..\..\Shared\WesleyUntity\WesleyUntity.csproj" />
-    <ProjectReference Include="..\WesleyCore.User.Domain\WesleyCore.User.Domain.csproj" />
-    <ProjectReference Include="..\WesleyCore.User.Infrastructure\WesleyCore.User.Infrastructure.csproj" />
-    <ProjectReference Include="..\WesleyCore.User.Proto\WesleyCore.User.Proto.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Protobuf Include="..\WesleyCore.User.Proto\Protos\ILoginService.proto" GrpcServices="Service"></Protobuf>
-    <Protobuf Include="..\WesleyCore.User.Proto\Protos\IUserService.proto" GrpcServices="Service"></Protobuf>
+    <ProjectReference Include="..\WesleyCore.Customer.Domain\WesleyCore.Customer.Domain.csproj" />
+    <ProjectReference Include="..\WesleyCore.Customer.Infrastructure\WesleyCore.Customer.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

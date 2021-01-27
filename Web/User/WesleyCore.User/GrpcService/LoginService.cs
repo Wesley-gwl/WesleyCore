@@ -34,17 +34,11 @@ namespace WesleyCore.User.GrpcService
         private readonly IMediator _mediator;
 
         /// <summary>
-        /// 日志
-        /// </summary>
-        private readonly ILogger<LoginService> _logger;
-
-        /// <summary>
         /// 构造
         /// </summary>
         /// <param name="mediator"></param>
         /// <param name="configuration"></param>
         /// <param name="tokenBuilder"></param>
-        /// <param name="logger"></param>
         public LoginService(IMediator mediator, IConfiguration configuration, ITokenBuilder tokenBuilder)
         {
             Configuration = configuration;
@@ -62,7 +56,7 @@ namespace WesleyCore.User.GrpcService
         {
             var hash = Configuration["Customization:PwdKey"];
 
-            var user = await _mediator.Send(new LoginDto()
+            var user = await _mediator.Send(new LoginInput()
             {
                 IpAddress = input.IpAddress,
                 Password = EncryptUtil.AESEncrypt(input.Password, hash),

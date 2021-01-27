@@ -52,7 +52,7 @@ namespace WesleyCore.User.Domain
             };
         }
 
-        #region 内容
+        #region 字段
 
         /// <summary>
         /// 用户名
@@ -100,7 +100,7 @@ namespace WesleyCore.User.Domain
         /// </summary>
         public List<MemberShip> MemberShip { get; set; }
 
-        #endregion 内容
+        #endregion 字段
 
         #region 方法
 

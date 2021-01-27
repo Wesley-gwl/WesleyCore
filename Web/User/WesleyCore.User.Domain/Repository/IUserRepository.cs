@@ -3,7 +3,7 @@ using WesleyCore.Infrastruction.Core;
 
 namespace WesleyCore.User.Domain
 {
-    public interface IUserRepository : IRepository<Domain.User, Guid>
+    public interface IUserRepository : IRepository<User, Guid>
     {
     }
 }

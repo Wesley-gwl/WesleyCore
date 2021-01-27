@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WesleyCore.User.Infrastructure
+namespace WesleyCore.Infrastructure
 {
     [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
     public class DecimalPrecisionAttribute : Attribute

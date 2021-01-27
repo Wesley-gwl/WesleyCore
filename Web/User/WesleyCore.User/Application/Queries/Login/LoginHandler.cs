@@ -16,7 +16,7 @@ namespace WesleyCore.User.Application.Queries.User
     /// <summary>
     /// 登录
     /// </summary>
-    public class LoginHandler : IRequestHandler<LoginDto, UserDto>
+    public class LoginHandler : IRequestHandler<LoginInput, UserDto>
     {
         /// <summary>
         /// 用户仓储
@@ -59,7 +59,7 @@ namespace WesleyCore.User.Application.Queries.User
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<UserDto> Handle(LoginDto request, CancellationToken cancellationToken)
+        public async Task<UserDto> Handle(LoginInput request, CancellationToken cancellationToken)
         {
             _logger.LogInformation($"{request.PhoneNumber}尝试登录");
             var user = await _userRepository.FirstOrDefaultAsync(p => p.PhoneNumber == request.PhoneNumber);

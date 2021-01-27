@@ -7,16 +7,13 @@ using System.Reflection;
 using Toolbelt.ComponentModel.DataAnnotations;
 using WesleyCore.Domin.Abstractions;
 using WesleyCore.Infrastructure.Core;
-using WesleyCore.User.Domain;
-using WesleyCore.User.Domain.Aggreates.UserAggregate;
-using WesleyCore.User.Infrastructure;
 
 namespace WesleyCore.Infrastructure
 {
     /// <summary>
     /// 会员微服务数据链接
     /// </summary>
-    public class UserContext : EFContext
+    public class CustomerContext : EFContext
     {
         private readonly int _tenantId;
 
@@ -26,7 +23,7 @@ namespace WesleyCore.Infrastructure
         /// <param name="options"></param>
         /// <param name="mediator"></param>
         /// <param name="capBus"></param>
-        public UserContext(DbContextOptions options, IMediator mediator, ICapPublisher capBus, ITenantProvider tenantProvider) : base(options, mediator, capBus)
+        public CustomerContext(DbContextOptions options, IMediator mediator, ICapPublisher capBus, ITenantProvider tenantProvider) : base(options, mediator, capBus)
         {
             _tenantId = tenantProvider.GetTenantId();
         }
@@ -37,7 +34,7 @@ namespace WesleyCore.Infrastructure
         /// <param name="options"></param>
         /// <param name="mediator"></param>
         /// <param name="capBus"></param>
-        public UserContext(DbContextOptions options, IMediator mediator, ICapPublisher capBus) : base(options, mediator, capBus)
+        public CustomerContext(DbContextOptions options, IMediator mediator, ICapPublisher capBus) : base(options, mediator, capBus)
         {
         }
 
@@ -86,11 +83,6 @@ namespace WesleyCore.Infrastructure
             modelBuilder.BuildIndexesFromAnnotations();
         }
 
-        public virtual DbSet<User.Domain.User> User { get; set; }
-        public virtual DbSet<Member> Member { get; set; }
-        public virtual DbSet<Feature> Feature { get; set; }
-        public virtual DbSet<UserRole> UserRole { get; set; }
-        public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<RoleFeature> RoleFeature { get; set; }
+        //public virtual DbSet<RoleFeature> RoleFeature { get; set; }
     }
 }

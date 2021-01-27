@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WesleyCore.User.Controllers
+namespace WesleyCore.Controllers
 {
     /// <summary>
     /// 验证类

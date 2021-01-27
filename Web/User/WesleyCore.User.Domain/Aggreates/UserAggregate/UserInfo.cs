@@ -15,36 +15,36 @@ namespace WesleyCore.User
         /// <summary>
         /// 是否是管理员
         /// </summary>
-        public bool IsAdmin { get; set; }
+        public bool IsAdmin { get; private set; }
 
         /// <summary>
         /// 状态
         /// </summary>
-        public UserStatusEnum Status { get; set; }
+        public UserStatusEnum Status { get; private set; }
 
         /// <summary>
         /// 身份证号
         /// </summary>
         [StringLength(20)]
-        public string IDCard { get; set; }
+        public string IDCard { get; private set; }
 
         /// <summary>
         /// 头像地址
         /// </summary>
         [StringLength(200)]
-        public string ImageUrl { get; set; }
+        public string ImageUrl { get; private set; }
 
         /// <summary>
         /// 地址
         /// </summary>
         [StringLength(200)]
-        public string Address { get; set; }
+        public string Address { get; private set; }
 
         /// <summary>
         /// 备注
         /// </summary>
         [StringLength(200)]
-        public string Memo { get; set; }
+        public string Memo { get; private set; }
 
         /// <summary>
         /// 原子性

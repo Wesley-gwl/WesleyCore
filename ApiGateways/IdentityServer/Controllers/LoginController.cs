@@ -51,7 +51,7 @@ namespace IdentityServer.Controllers
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        private string GetUserIp(HttpContext context)
+        private static string GetUserIp(HttpContext context)
         {
             var ip = context.Request.Headers["X-Forwarded-For"].FirstOrDefault();
             if (string.IsNullOrWhiteSpace(ip))
