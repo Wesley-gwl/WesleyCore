@@ -10,7 +10,7 @@ namespace WesleyCore.User
     /// 会员时间表
     /// </summary>
     [Table("MemberShip", Schema = "System")]
-    public class MemberShip : ValueObject, ISoftDelete
+    public class MemberShip : Entity<long>, ISoftDelete
     {
         /// <summary>
         /// 会员有效开始时间
@@ -42,18 +42,5 @@ namespace WesleyCore.User
         /// 删除键
         /// </summary>
         public bool IsDeleted { get; set; }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        protected override IEnumerable<object> GetAtomicValues()
-        {
-            yield return StartTime;
-            yield return EndTime;
-            yield return Status;
-            yield return CreateTime;
-            yield return Memo;
-        }
     }
 }

@@ -9,6 +9,7 @@ Install-Package StackExchange.Redis
 Install-Package DotNetCore.CAP.RabbitMQ
 Install-Package DotNetCore.CAP.SqlServer
 Install-Package Grpc.AspNetCore
+Install-Package Microsoft.Bcl.AsyncInterfaces
 
 Domain
 Install-Package Toolbelt.EntityFrameworkCore.IndexAttribute

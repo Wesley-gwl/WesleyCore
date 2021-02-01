@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using WesleyCore.Domin.Abstractions;
+using WesleyCore.Infrastructure;
 using WesleyCore.Infrastructure.Core;
 
 namespace WesleyCore.Infrastruction.Core
@@ -22,12 +24,18 @@ namespace WesleyCore.Infrastruction.Core
         protected virtual TDbContext DbContext { get; set; }
 
         /// <summary>
+        /// 获取租户id方法
+        /// </summary>
+        private readonly ITenantProvider _tenantProvider;
+
+        /// <summary>
         /// 构造
         /// </summary>
         /// <param name="context"></param>
-        public Repository(TDbContext context)
+        public Repository(TDbContext context, ITenantProvider tenantProvider)
         {
             this.DbContext = context;
+            _tenantProvider = tenantProvider;
         }
 
         /// <summary>
@@ -42,6 +50,15 @@ namespace WesleyCore.Infrastruction.Core
         /// <returns></returns>
         public virtual TEntity Add(TEntity entity)
         {
+            //验证是否又租户
+            if (typeof(IMustHaveTenant).IsAssignableFrom(entity.GetType()))
+            {
+                var tenantId = _tenantProvider.GetTenantId();
+                if (tenantId != 0)
+                {
+                    entity.GetType().GetProperty("TenantId").SetValue(entity, tenantId);
+                }
+            }
             return DbContext.Add(entity).Entity;
         }
 
@@ -53,6 +70,15 @@ namespace WesleyCore.Infrastruction.Core
         /// <returns></returns>
         public virtual Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default)
         {
+            //验证是否又租户
+            if (typeof(IMustHaveTenant).IsAssignableFrom(entity.GetType()))
+            {
+                var tenantId = _tenantProvider.GetTenantId();
+                if (tenantId != 0)
+                {
+                    entity.GetType().GetProperty("TenantId").SetValue(entity, tenantId);
+                }
+            }
             return Task.FromResult(Add(entity));
         }
 
@@ -242,7 +268,7 @@ namespace WesleyCore.Infrastruction.Core
         /// 构造
         /// </summary>
         /// <param name="context"></param>
-        public Repository(TDbContext context) : base(context)
+        public Repository(TDbContext context, ITenantProvider tenantProvider) : base(context, tenantProvider)
         {
         }
 

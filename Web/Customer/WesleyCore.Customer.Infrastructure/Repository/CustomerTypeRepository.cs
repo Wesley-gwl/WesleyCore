@@ -1,22 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using WesleyCore.Customer.Domain.Repository;
 using WesleyCore.Infrastruction.Core;
 using WesleyCore.Infrastructure;
-using WesleyCore.User.Domain;
 
-namespace WesleyCore.User.Infrastructure.Repositories
+namespace WesleyCore.Customer.Infrastructure.Repository
 {
-    /// <summary>
-    /// 用户仓储
-    /// </summary>
-    public class UserRepository : Repository<Domain.User, Guid, UserContext>, IUserRepository
+    public class CustomerTypeRepository : Repository<Domain.CustomerType, Guid, CustomerContext>, ICustomerTypeRepository
     {
         /// <summary>
         ///
         /// </summary>
-        private readonly UserContext _context;
+        private readonly CustomerContext _context;
 
         /// <summary>
-        ///
+        /// 租户查询
         /// </summary>
         private readonly ITenantProvider _tenantProvider;
 
@@ -25,7 +24,7 @@ namespace WesleyCore.User.Infrastructure.Repositories
         /// </summary>
         /// <param name="context"></param>
         /// <param name="tenantProvider"></param>
-        public UserRepository(UserContext context, ITenantProvider tenantProvider) : base(context, tenantProvider)
+        public CustomerTypeRepository(CustomerContext context, ITenantProvider tenantProvider) : base(context, tenantProvider)
         {
             _context = context;
             _tenantProvider = tenantProvider;

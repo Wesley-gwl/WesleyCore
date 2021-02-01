@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace WesleyCore.Web.Controllers.ApiControllers
@@ -19,7 +20,7 @@ namespace WesleyCore.Web.Controllers.ApiControllers
         {
             //心跳,consul会每隔几秒调一次
             Console.WriteLine($"心跳检测");
-            return Ok();
+            return Ok("成功");
         }
     }
 }

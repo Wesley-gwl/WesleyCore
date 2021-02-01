@@ -35,7 +35,6 @@ namespace WesleyCore.User.Domain
             var dtNow = DateTime.Now;
             UserName = userName;
             PhoneNumber = phoneNumber;
-            Company = company;
             Status = MemberStatusEnum.试用;
             CreateTime = dtNow;
             AllowUserNumber = allowUserNumber;
@@ -49,6 +48,10 @@ namespace WesleyCore.User.Domain
                     Status= MemberShipStatusEnum.有效,
                     Memo = "试用"
                 }
+            };
+            Company = new Company()
+            {
+                CompanyName = company,
             };
         }
 
@@ -70,12 +73,6 @@ namespace WesleyCore.User.Domain
         public string PhoneNumber { get; private set; }
 
         /// <summary>
-        /// 公司
-        /// </summary>
-        [StringLength(50)]
-        public string Company { get; private set; }
-
-        /// <summary>
         /// 会员状态
         /// </summary>
         public MemberStatusEnum Status { get; private set; }
@@ -89,6 +86,11 @@ namespace WesleyCore.User.Domain
         /// 运行员工数量（包括自己）
         /// </summary>
         public int AllowUserNumber { get; private set; }
+
+        /// <summary>
+        /// 公司
+        /// </summary>
+        public Company Company { get; set; }
 
         /// <summary>
         /// 删除键

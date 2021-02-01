@@ -10,7 +10,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\WesleyCore.Domin.Abstractions\WesleyCore.Domin.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\Shared\WesleyCore.Infrastruction.Core\WesleyCore.Infrastruction.Core.csproj" />
     <ProjectReference Include="..\..\..\Shared\WesleyUntity\WesleyUntity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Const\" />
+  </ItemGroup>
 </Project>

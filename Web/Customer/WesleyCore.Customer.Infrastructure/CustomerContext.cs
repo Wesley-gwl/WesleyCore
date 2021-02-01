@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using Toolbelt.ComponentModel.DataAnnotations;
+using WesleyCore.Customer.Domain;
 using WesleyCore.Domin.Abstractions;
 using WesleyCore.Infrastructure.Core;
 
@@ -83,6 +84,7 @@ namespace WesleyCore.Infrastructure
             modelBuilder.BuildIndexesFromAnnotations();
         }
 
-        //public virtual DbSet<RoleFeature> RoleFeature { get; set; }
+        public virtual DbSet<CustomerType> CustomerType { get; set; }
+        public virtual DbSet<Customer.Domain.Customer> Customer { get; set; }
     }
 }

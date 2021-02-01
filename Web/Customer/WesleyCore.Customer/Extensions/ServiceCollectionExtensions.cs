@@ -11,6 +11,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using WesleyCore.Customer;
+using WesleyCore.Customer.Domain.Repository;
+using WesleyCore.Customer.Infrastructure.Repository;
 using WesleyCore.Domin.Abstractions;
 using WesleyCore.EntityFrameworkCore;
 using WesleyCore.Infrastruction.Core;
@@ -120,7 +122,7 @@ namespace WesleyCore
             services.AddHttpContextAccessor();
             services.AddScoped<ITenantProvider, TenantProvider>();
             services.AddScoped<ITokenBuilder, TokenBuilder>();
-            //services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICustomerTypeRepository, CustomerTypeRepository>();
             //services.AddScoped<IMemberRepository, MemberRepository>();
             return services;
         }

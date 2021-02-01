@@ -9,11 +9,25 @@ namespace WesleyCore.User.Infrastructure
 {
     public class MemberRepository : Repository<Member, int, UserContext>, IMemberRepository
     {
+        /// <summary>
+        ///
+        /// </summary>
         private readonly UserContext _context;
 
-        public MemberRepository(UserContext context) : base(context)
+        /// <summary>
+        ///
+        /// </summary>
+        private readonly ITenantProvider _tenantProvider;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="tenantProvider"></param>
+        public MemberRepository(UserContext context, ITenantProvider tenantProvider) : base(context, tenantProvider)
         {
             _context = context;
+            _tenantProvider = tenantProvider;
         }
 
         /// <summary>

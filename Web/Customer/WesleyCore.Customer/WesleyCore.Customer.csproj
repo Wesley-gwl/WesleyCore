@@ -17,6 +17,7 @@
     <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="3.1.2" />
     <PackageReference Include="DotNetCore.CAP.SqlServer" Version="3.1.2" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.34.0" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2">
       <PrivateAssets>all</PrivateAssets>
@@ -30,10 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\ConsulRegister\ConsulRegister.csproj" />
     <ProjectReference Include="..\..\..\Shared\Ocelot.JWTAuthorize\Ocelot.JWTAuthorize.csproj" />
     <ProjectReference Include="..\..\..\Shared\WesleyCore.Domin.Abstractions\WesleyCore.Domin.Abstractions.csproj" />
@@ -42,5 +39,11 @@
     <ProjectReference Include="..\..\..\Shared\WesleyUntity\WesleyUntity.csproj" />
     <ProjectReference Include="..\WesleyCore.Customer.Domain\WesleyCore.Customer.Domain.csproj" />
     <ProjectReference Include="..\WesleyCore.Customer.Infrastructure\WesleyCore.Customer.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\DomainEventHendlers\" />
+    <Folder Include="Application\IntegrationEvents\" />
+    <Folder Include="Application\Queries\" />
   </ItemGroup>
 </Project>

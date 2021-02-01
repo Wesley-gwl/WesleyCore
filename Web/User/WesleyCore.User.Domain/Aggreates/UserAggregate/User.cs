@@ -38,7 +38,6 @@ namespace WesleyCore.User.Domain
             Password = password;
             CreateTime = DateTime.Now;
             TenantId = tenantId;
-            UserInfo = new UserInfo();
         }
 
         #region 字段
@@ -70,9 +69,38 @@ namespace WesleyCore.User.Domain
         public DateTime CreateTime { get; private set; }
 
         /// <summary>
-        /// 值类型属性
+        /// 是否是管理员
         /// </summary>
-        public UserInfo UserInfo { get; private set; }
+        public bool IsAdmin { get; private set; }
+
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public UserStatusEnum Status { get; private set; }
+
+        /// <summary>
+        /// 身份证号
+        /// </summary>
+        [StringLength(20)]
+        public string IDCard { get; private set; }
+
+        /// <summary>
+        /// 头像地址
+        /// </summary>
+        [StringLength(200)]
+        public string ImageUrl { get; private set; }
+
+        /// <summary>
+        /// 地址
+        /// </summary>
+        [StringLength(200)]
+        public string Address { get; private set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [StringLength(200)]
+        public string Memo { get; private set; }
 
         /// <summary>
         /// 租户
@@ -95,7 +123,7 @@ namespace WesleyCore.User.Domain
         /// <param name="password"></param>
         public void VerifyLogin(string password)
         {
-            if (UserInfo.Status == UserStatusEnum.离职)
+            if (Status == UserStatusEnum.离职)
             {
                 throw new WlException($"用户已离职");
             }

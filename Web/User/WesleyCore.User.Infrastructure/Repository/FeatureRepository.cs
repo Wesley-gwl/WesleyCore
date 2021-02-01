@@ -16,11 +16,22 @@ namespace WesleyCore.User.Infrastructure
     /// </summary>
     public class FeatureRepository : Repository<Feature, Guid, UserContext>, IFeatureRepository
     {
+        /// <summary>
+        ///
+        /// </summary>
         private readonly UserContext _context;
 
-        public FeatureRepository(UserContext context) : base(context)
+        private readonly ITenantProvider _tenantProvider;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="tenantProvider"></param>
+        public FeatureRepository(UserContext context, ITenantProvider tenantProvider) : base(context, tenantProvider)
         {
             _context = context;
+            _tenantProvider = tenantProvider;
         }
 
         /// <summary>
