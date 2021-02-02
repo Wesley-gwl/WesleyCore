@@ -34,6 +34,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\ConsulRegister\ConsulRegister.csproj" />
     <ProjectReference Include="..\..\Shared\Ocelot.JWTAuthorize\Ocelot.JWTAuthorize.csproj" />
+    <ProjectReference Include="..\..\Shared\WesleyCore.Domin.Abstractions\WesleyCore.Domin.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Shared\WesleyUntity\WesleyUntity.csproj" />
     <ProjectReference Include="..\..\Web\User\WesleyCore.User.Proto\WesleyCore.User.Proto.csproj" />
   </ItemGroup>
   <ItemGroup>

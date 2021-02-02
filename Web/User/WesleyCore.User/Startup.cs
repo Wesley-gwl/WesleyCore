@@ -12,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using Ocelot.JwtAuthorize;
 using System.IO;
 using Wesley.Filter;
+using WesleyCore.Grpc;
 using WesleyCore.User.Domain;
 using WesleyCore.User.GrpcService;
 using WesleyRedis;
@@ -71,7 +72,11 @@ namespace WesleyCore.User
             //AutoMap
             services.AddAutoMap();
             //Grpc
-            services.AddGrpc();
+            services.AddGrpc(options =>
+            {
+                options.EnableDetailedErrors = true;
+                options.Interceptors.Add<LoggerGrpcInterceptor>();
+            });
             //consul
             services.AddConsul(Configuration);
         }

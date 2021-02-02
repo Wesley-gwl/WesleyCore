@@ -11,6 +11,7 @@ using Ocelot.JwtAuthorize;
 using System;
 using System.Net.Http;
 using System.Threading.Channels;
+using Wesley.Filter;
 using WesleyCore.User.Proto;
 
 namespace IdentityServer
@@ -40,21 +41,17 @@ namespace IdentityServer
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(typeof(ExceptionResultFilter));//异常过滤
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "IdentityServer", Version = "v1" });
             });
+
             services.AddSingleton(Configuration);
             services.AddTokenJwtAuthorize(Configuration);
-
-            //AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);//允许使用不加密的HTTP/2协议
-
-            //services.AddGrpcClient<ILoginService.ILoginServiceClient>(option =>
-            //{
-            //    option.Address = new Uri("https://localhost:5003");
-            //});
             //注册grpc发现类服务
             services.AddScoped<IGrpcServiceHelper, GrpcServiceHelper>();
             services.AddConsul(Configuration);

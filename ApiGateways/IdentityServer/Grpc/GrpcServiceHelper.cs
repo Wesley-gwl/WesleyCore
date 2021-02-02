@@ -23,7 +23,8 @@ namespace IdentityServer.GrpcService
             AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);//允许使用不加密的HTTP/2协议
             var address = await GrpcServiceConsulExtension.GetGrpcServiceHttps(GrpcServiceCoust.UserService);
             var channel = GrpcChannel.ForAddress(address);
-            return new ILoginServiceClient(channel);
+            var client = new ILoginServiceClient(channel);
+            return client;
         }
     }
 }

@@ -132,7 +132,7 @@ namespace WesleyCore.User.Domain
                 //该账号1小时内的登录错误次数
                 var errCount = RedisClient.RedisCt.GetStringKey(RedisConst.AccessFailed + PhoneNumber).ToInt(0).Value;
                 //记录错误登录次数
-                RedisClient.RedisCt.SetStringKey(RedisConst.AccessFailed + PhoneNumber, ++errCount);
+                RedisClient.RedisCt.SetStringKey(RedisConst.AccessFailed + PhoneNumber, ++errCount, TimeSpan.FromMinutes(10));
                 throw new WlException($"密码错误{errCount}次");
             }
             //正确登录后清掉计数

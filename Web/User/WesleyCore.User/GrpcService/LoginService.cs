@@ -54,31 +54,24 @@ namespace WesleyCore.User.GrpcService
         /// <returns></returns>
         public override async Task<LoginResult> Login(LoginForm input, ServerCallContext context)
         {
-            try
-            {
-                var hash = Configuration["Customization:PwdKey"];
+            var hash = Configuration["Customization:PwdKey"];
 
-                var user = await _mediator.Send(new LoginInput()
-                {
-                    IpAddress = input.IpAddress,
-                    Password = EncryptUtil.AESEncrypt(input.Password, hash),
-                    PhoneNumber = input.PhoneNumber
-                }, context.CancellationToken);
-                var expired = DateTime.Now.AddMinutes(120);
-
-                var claims = new Claim[] {
-                        new Claim(ClaimTypes.Name, user.UserName),
-                        new Claim(ClaimTypes.Sid ,user.UserId.ToString()),
-                        new Claim ("Ip",input.IpAddress),
-                        new Claim("TenantId",user.TenantId.ToString()),//租户
-                        new Claim(ClaimTypes.MobilePhone,user.PhoneNumber)
-                    };
-                return new LoginResult() { Token = JsonConvert.SerializeObject(_tokenBuilder.BuildJwtToken(claims, DateTime.UtcNow, expired)) };
-            }
-            catch (Exception ex)
+            var user = await _mediator.Send(new LoginInput()
             {
-                throw new Exception(ex.Message);
-            }
+                IpAddress = input.IpAddress,
+                Password = EncryptUtil.AESEncrypt(input.Password, hash),
+                PhoneNumber = input.PhoneNumber
+            }, context.CancellationToken);
+            var expired = DateTime.Now.AddMinutes(120);
+
+            var claims = new Claim[] {
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.Sid ,user.UserId.ToString()),
+                    new Claim ("Ip",input.IpAddress),
+                    new Claim("TenantId",user.TenantId.ToString()),//租户
+                    new Claim(ClaimTypes.MobilePhone,user.PhoneNumber)
+                };
+            return new LoginResult() { Token = JsonConvert.SerializeObject(_tokenBuilder.BuildJwtToken(claims, DateTime.UtcNow, expired)) };
         }
     }
 }
