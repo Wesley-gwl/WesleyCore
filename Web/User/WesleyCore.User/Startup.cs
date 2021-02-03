@@ -12,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using Ocelot.JwtAuthorize;
 using System.IO;
 using Wesley.Filter;
+using WesleyCore.Extensions;
 using WesleyCore.Grpc;
 using WesleyCore.User.Domain;
 using WesleyCore.User.GrpcService;
@@ -96,7 +97,7 @@ namespace WesleyCore.User
             }
             app.UseHttpsRedirection();
             app.UseRouting();
-
+            app.UseErrorHandling();
             app.UseAuthentication();
             app.UseAuthorization();
 

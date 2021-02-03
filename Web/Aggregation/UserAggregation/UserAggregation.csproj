@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\ConsulRegister\ConsulRegister.csproj" />
     <ProjectReference Include="..\..\..\Shared\Ocelot.JWTAuthorize\Ocelot.JWTAuthorize.csproj" />
+    <ProjectReference Include="..\..\..\Shared\WesleyUntity\WesleyUntity.csproj" />
     <ProjectReference Include="..\..\User\WesleyCore.User.Proto\WesleyCore.User.Proto.csproj" />
   </ItemGroup>
   <ItemGroup>

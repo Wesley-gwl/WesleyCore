@@ -127,6 +127,45 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:WesleyCore.Customer.Program">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:WesleyCore.Customer.Program.Configuration">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Customer.Program.Main(System.String[])">
+             <summary>
+            
+             </summary>
+             <param name="args"></param>
+        </member>
+        <member name="M:WesleyCore.Customer.Program.CreateHostBuilder(System.String[])">
+             <summary>
+            
+             </summary>
+             <param name="args"></param>
+             <returns></returns>
+        </member>
+        <member name="T:WesleyCore.Customer.Startup">
+            <summary>
+            启动
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Customer.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+             <summary>
+            
+             </summary>
+             <param name="configuration"></param>
+        </member>
+        <member name="P:WesleyCore.Customer.Startup.Configuration">
+             <summary>
+            
+             </summary>
+        </member>
         <member name="M:WesleyCore.Customer.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
              <summary>
             
@@ -330,6 +369,43 @@
             </summary>
             <param name="services"></param>
             <returns></returns>
+        </member>
+        <member name="T:WesleyCore.Extensions.ErrorHandlingMiddleware">
+            <summary>
+            错误中间件
+            </summary>
+        </member>
+        <member name="F:WesleyCore.Extensions.ErrorHandlingMiddleware.next">
+            <summary>
+            委托
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Extensions.ErrorHandlingMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            构造
+            </summary>
+            <param name="next"></param>
+        </member>
+        <member name="M:WesleyCore.Extensions.ErrorHandlingMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+             <summary>
+            
+             </summary>
+             <param name="context"></param>
+             <returns></returns>
+        </member>
+        <member name="M:WesleyCore.Extensions.ErrorHandlingMiddleware.HandleExceptionAsync(Microsoft.AspNetCore.Http.HttpContext,System.Int32,System.String)">
+            <summary>
+            异常错误信息捕获，将错误信息用Json方式返回
+            </summary>
+            <param name="context"></param>
+            <param name="statusCode"></param>
+            <param name="msg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WesleyCore.Extensions.ErrorHandlingExtensions">
+            <summary>
+            扩展方法
+            </summary>
         </member>
         <member name="T:Wesley.Filter.ExceptionResultFilter">
              <summary>

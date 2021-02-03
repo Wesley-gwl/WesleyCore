@@ -15,6 +15,7 @@ using WesleyCore;
 using Ocelot.JwtAuthorize;
 using Wesley.GrpcService;
 using ConsulRegister;
+using Wesley.Filter;
 
 namespace UserAggregation
 {
@@ -45,7 +46,7 @@ namespace UserAggregation
         {
             services.AddControllersWithViews(options =>
             {
-                //options.Filters.Add(typeof(ExceptionResultFilter));//异常过滤
+                options.Filters.Add(typeof(ExceptionResultFilter));//异常过滤
             });
             //添加验证api验证
             services.AddApiJwtAuthorize((context) =>

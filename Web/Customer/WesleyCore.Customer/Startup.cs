@@ -7,16 +7,27 @@ using Microsoft.Extensions.Hosting;
 using Wesley.Filter;
 using WesleyRedis;
 using Ocelot.JwtAuthorize;
+using WesleyCore.Extensions;
 
 namespace WesleyCore.Customer
 {
+    /// <summary>
+    /// Æô¶¯
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
         public IConfiguration Configuration { get; }
 
         /// <summary>
@@ -70,6 +81,7 @@ namespace WesleyCore.Customer
             }
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseErrorHandling();
 
             app.UseAuthentication();
             app.UseAuthorization();
