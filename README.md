@@ -5,6 +5,7 @@ redis
 rabbitmq
 sqlserver最好2014以上版本
 vs2019最新版本
+分享插件地址https://share.weiyun.com/2lNrVEys
 
 consul 默认8500端口
 redis 默认6379端口
