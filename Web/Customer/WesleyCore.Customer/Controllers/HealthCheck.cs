@@ -19,7 +19,6 @@ namespace WesleyCore.Web.Controllers.ApiControllers
         public IActionResult Check()
         {
             //心跳,consul会每隔几秒调一次
-            Console.WriteLine($"心跳检测");
             return Ok("成功");
         }
     }

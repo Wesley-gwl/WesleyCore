@@ -123,6 +123,7 @@ namespace WesleyCore
             services.AddScoped<ITenantProvider, TenantProvider>();
             services.AddScoped<ITokenBuilder, TokenBuilder>();
             services.AddScoped<ICustomerTypeRepository, CustomerTypeRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
             //services.AddScoped<IMemberRepository, MemberRepository>();
             return services;
         }

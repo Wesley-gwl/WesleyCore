@@ -167,7 +167,6 @@ namespace WesleyCore
         /// <returns></returns>
         public static IServiceCollection AddAutoMap(this IServiceCollection services)
         {
-            //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             return services;
         }

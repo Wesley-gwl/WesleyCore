@@ -48,6 +48,45 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="T:WesleyCore.Customer.Application.Commands.CustomerType.DeleteCustomerTypeCommandHandler">
+            <summary>
+            删除客户分类
+            </summary>
+        </member>
+        <member name="F:WesleyCore.Customer.Application.Commands.CustomerType.DeleteCustomerTypeCommandHandler._customerTypeRepository">
+            <summary>
+            用户仓储
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Customer.Application.Commands.CustomerType.DeleteCustomerTypeCommandHandler.#ctor(WesleyCore.Customer.Domain.Repository.ICustomerTypeRepository)">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Customer.Application.Commands.CustomerType.DeleteCustomerTypeCommandHandler.Handle(WesleyCore.Customer.Application.Commands.CustomerType.Dto.DeleteCustomerTypeCommand,System.Threading.CancellationToken)">
+            <summary>
+            删除客户分类
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WesleyCore.Customer.Application.Commands.CustomerType.Dto.DeleteCustomerTypeCommand">
+            <summary>
+            删除客户分类
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Customer.Application.Commands.CustomerType.Dto.DeleteCustomerTypeCommand.#ctor(System.Guid)">
+            <summary>
+            构造
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="P:WesleyCore.Customer.Application.Commands.CustomerType.Dto.DeleteCustomerTypeCommand.Id">
+            <summary>
+            客户分类id
+            </summary>
+        </member>
         <member name="T:WesleyCore.Customer.Application.Commands.CustomerTypeCommandMapper">
             <summary>
             映射
@@ -82,6 +121,29 @@
             <summary>
             备注
             </summary>
+        </member>
+        <member name="T:WesleyCore.Customer.Application.DomainEventHendlers.Customer.VerifyCustomerTypeUsedDomainEventHendler">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:WesleyCore.Customer.Application.DomainEventHendlers.Customer.VerifyCustomerTypeUsedDomainEventHendler._customerRepository">
+            <summary>
+            客户仓储
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Customer.Application.DomainEventHendlers.Customer.VerifyCustomerTypeUsedDomainEventHendler.#ctor(WesleyCore.Customer.Domain.Repository.ICustomerRepository)">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Customer.Application.DomainEventHendlers.Customer.VerifyCustomerTypeUsedDomainEventHendler.Handle(WesleyCore.Customer.Domain.Events.CustomerType.VerifyCustomerTypeUsedDomainEvent,System.Threading.CancellationToken)">
+            <summary>
+            验证客户分类是否被使用
+            </summary>
+            <param name="notification"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
         </member>
         <member name="T:WesleyCore.Customer.Controllers.CustomerController">
             <summary>
@@ -131,11 +193,6 @@
              <summary>
             
              </summary>
-        </member>
-        <member name="P:WesleyCore.Customer.Program.Configuration">
-            <summary>
-            配置
-            </summary>
         </member>
         <member name="M:WesleyCore.Customer.Program.Main(System.String[])">
              <summary>
@@ -370,6 +427,18 @@
             <param name="services"></param>
             <returns></returns>
         </member>
+        <member name="T:WesleyCore.Extensions.ErrorHandlingExtensions">
+            <summary>
+            扩展方法
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Extensions.ErrorHandlingExtensions.UseErrorHandling(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            error hangding
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
         <member name="T:WesleyCore.Extensions.ErrorHandlingMiddleware">
             <summary>
             错误中间件
@@ -401,11 +470,6 @@
             <param name="statusCode"></param>
             <param name="msg"></param>
             <returns></returns>
-        </member>
-        <member name="T:WesleyCore.Extensions.ErrorHandlingExtensions">
-            <summary>
-            扩展方法
-            </summary>
         </member>
         <member name="T:Wesley.Filter.ExceptionResultFilter">
              <summary>

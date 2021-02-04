@@ -160,9 +160,8 @@ namespace WesleyCore.Infrastruction.Core
         /// 删除异部
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<bool> DeleteAsync(TKey id, CancellationToken cancellationToken = default);
+        Task<bool> DeleteAsync(TKey id);
 
         /// <summary>
         /// 获取
@@ -175,8 +174,7 @@ namespace WesleyCore.Infrastruction.Core
         /// 获取异部
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<TEntity> GetAsync(TKey id, CancellationToken cancellationToken = default);
+        Task<TEntity> GetAsync(TKey id);
     }
 }

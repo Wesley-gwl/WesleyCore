@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using WesleyCore.Controllers;
 using WesleyCore.Customer.Application;
+using WesleyCore.Customer.Application.Commands.CustomerType;
+using WesleyCore.Customer.Application.Commands.CustomerType.Dto;
 using WesleyCore.Web;
 
 namespace WesleyCore.Customer.Controllers
@@ -48,7 +50,7 @@ namespace WesleyCore.Customer.Controllers
         [HttpGet]
         public async Task<BizResult> DeleteCustomerType(Guid input)
         {
-            await _mediator.Send(input, HttpContext.RequestAborted);
+            await _mediator.Send(new DeleteCustomerTypeCommand(input), HttpContext.RequestAborted);
             return new BizResult("删除成功");
         }
     }

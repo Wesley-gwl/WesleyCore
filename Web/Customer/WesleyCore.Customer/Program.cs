@@ -16,21 +16,13 @@ namespace WesleyCore.Customer
     public class Program
     {
         /// <summary>
-        /// ≈‰÷√
-        /// </summary>
-        public static IConfiguration Configuration { get; } = new ConfigurationBuilder()
-           .SetBasePath(Directory.GetCurrentDirectory())
-           .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-           .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
-           .AddEnvironmentVariables()
-           .Build();
-
-        /// <summary>
         ///
         /// </summary>
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
+            //√¸¡Ó≤Œ ˝
+            new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddCommandLine(args).Build();
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -41,7 +33,6 @@ namespace WesleyCore.Customer
         /// <returns></returns>
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-              .ConfigureAppConfiguration(x => x.AddConfiguration(Configuration))
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

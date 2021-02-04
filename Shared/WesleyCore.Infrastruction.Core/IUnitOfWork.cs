@@ -17,7 +17,7 @@ namespace WesleyCore.Infrastruction.Core
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// 保存实体
+        /// 保存实体-并触发领域事件
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>

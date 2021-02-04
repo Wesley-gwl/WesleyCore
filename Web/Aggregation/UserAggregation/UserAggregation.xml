@@ -15,6 +15,79 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:WesleyCore.Web.BizResult">
+            <summary>
+            返回数据实体
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Web.BizResult.#ctor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:WesleyCore.Web.BizResult.#ctor(System.String)">
+            <summary>
+            结果为成功,设置成功的消息
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:WesleyCore.Web.BizResult.#ctor(System.Boolean,System.String)">
+            <summary>
+            设置结果和提示消息
+            </summary>
+            <param name="isSuccess"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="P:WesleyCore.Web.BizResult.Success">
+            <summary>
+            接口调用是否成功
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Web.BizResult.Message">
+            <summary>
+            返回的错误信息
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Web.BizResult.ErrorData">
+            <summary>
+            不成功时的数据(如果需要)
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Web.BizResult.Data">
+            <summary>
+            成功时的数据
+            </summary>
+        </member>
+        <member name="T:WesleyCore.Web.BizResult`1">
+            <summary>
+            输出格式
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:WesleyCore.Web.BizResult`1.#ctor">
+            <summary>
+            构造
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Web.BizResult`1.#ctor(`0)">
+            <summary>
+            构造
+            </summary>
+            <param name="_data"></param>
+        </member>
+        <member name="M:WesleyCore.Web.BizResult`1.#ctor(System.Boolean,`0,System.String)">
+            <summary>
+            构造
+            </summary>
+            <param name="isSuccess"></param>
+            <param name="_data"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="P:WesleyCore.Web.BizResult`1.Data">
+            <summary>
+            返回的数据（泛型）
+            </summary>
+        </member>
         <member name="T:WesleyCore.ServiceCollectionExtensions">
             <summary>
             中间件注册
@@ -26,6 +99,32 @@
             </summary>
             <param name="services"></param>
             <returns></returns>
+        </member>
+        <member name="T:WesleyCore.WlException">
+            <summary>
+            异常
+            </summary>
+        </member>
+        <member name="M:WesleyCore.WlException.#ctor(System.String,System.Int32,System.Object)">
+            <summary>
+            业务异常构造函数
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="P:WesleyCore.WlException.Message">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:WesleyCore.WlException.ErrorCode">
+            <summary>
+            错误编码
+            </summary>
+        </member>
+        <member name="P:WesleyCore.WlException.ErrorData">
+            <summary>
+            错误数据
+            </summary>
         </member>
         <member name="T:WesleyCore.User.Proto.IUserServiceReflection">
             <summary>Holder for reflection information generated from IUserService.proto</summary>
@@ -213,6 +312,23 @@
             </summary>
             <param name="app"></param>
             <param name="env"></param>
+        </member>
+        <member name="T:Wesley.Filter.ExceptionResultFilter">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Wesley.Filter.ExceptionResultFilter.#ctor(Microsoft.Extensions.Logging.ILogger{Wesley.Filter.ExceptionResultFilter})">
+             <summary>
+            
+             </summary>
+             <param name="Logger"></param>
+        </member>
+        <member name="M:Wesley.Filter.ExceptionResultFilter.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+             <summary>
+            
+             </summary>
+             <param name="context"></param>
         </member>
         <member name="T:Wesley.GrpcService.GrpcServiceCoust">
             <summary>

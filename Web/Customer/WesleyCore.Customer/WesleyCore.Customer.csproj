@@ -42,7 +42,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\DomainEventHendlers\" />
     <Folder Include="Application\IntegrationEvents\" />
     <Folder Include="Application\Queries\" />
   </ItemGroup>

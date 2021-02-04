@@ -294,9 +294,9 @@ namespace WesleyCore.Infrastruction.Core
         /// <param name="id"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public virtual async Task<bool> DeleteAsync(TKey id, CancellationToken cancellationToken = default)
+        public virtual async Task<bool> DeleteAsync(TKey id)
         {
-            var entity = await DbContext.FindAsync<TEntity>(id, cancellationToken);
+            var entity = await DbContext.FindAsync<TEntity>(id);
             if (entity == null)
             {
                 return false;
@@ -321,9 +321,9 @@ namespace WesleyCore.Infrastruction.Core
         /// <param name="id"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public virtual async Task<TEntity> GetAsync(TKey id, CancellationToken cancellationToken = default)
+        public virtual async Task<TEntity> GetAsync(TKey id)
         {
-            return await DbContext.FindAsync<TEntity>(id, cancellationToken);
+            return await DbContext.FindAsync<TEntity>(id);
         }
     }
 }

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Threading.Tasks;
 using Toolbelt.ComponentModel.DataAnnotations.Schema.V5;
 using WesleyCore.Customer.Domain.Events;
+using WesleyCore.Customer.Domain.Events.CustomerType;
 using WesleyCore.Domin.Abstractions;
 using WesleyCore.Enums;
 using WesleyUntity;
@@ -70,5 +72,17 @@ namespace WesleyCore.Customer.Domain
         /// 租户id
         /// </summary>
         public int TenantId { get; set; }
+
+        #region 方法
+
+        /// <summary>
+        /// 验证是否被使用
+        /// </summary>
+        public void VerifyUsed()
+        {
+            this.AddDomainEvent(new VerifyCustomerTypeUsedDomainEvent(Id));
+        }
+
+        #endregion 方法
     }
 }

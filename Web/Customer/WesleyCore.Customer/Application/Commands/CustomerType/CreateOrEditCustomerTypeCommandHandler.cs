@@ -63,7 +63,6 @@ namespace WesleyCore.Customer.Application.Commands
         {
             var model = new Domain.CustomerType(input.Type, input.Name, input.Memo);
             await _customerTypeRepository.AddAsync(model);
-            await _customerTypeRepository.UnitOfWork.SaveChangesAsync();
         }
 
         /// <summary>
@@ -74,7 +73,7 @@ namespace WesleyCore.Customer.Application.Commands
         private async Task Update(CreateOrEditCustomerTypeCommand input)
         {
             var model = await _customerTypeRepository.GetAsync(input.Id.Value);
-            model = _mapper.Map<Domain.CustomerType>(input);
+            _mapper.Map(input, model);
             await _customerTypeRepository.UpdateAsync(model);
         }
     }
