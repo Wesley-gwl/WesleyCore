@@ -9,7 +9,7 @@ Identity4 鉴权授权
 CQRS读写分离模式 
 CAP框架+Rabbitmq消息队列
 grpc远程调用 
-reids(可配置集群-主从复制)  
+redis(可配置集群-主从复制) 分布式锁
 仓储 
 聚合 
 工作单元
