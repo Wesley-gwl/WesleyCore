@@ -83,6 +83,28 @@ namespace WesleyCore.Infrastruction.Core
         }
 
         /// <summary>
+        /// 新增实体异部
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public virtual Task<TEntity> InsertAndGetIdAsync(TEntity entity, CancellationToken cancellationToken = default)
+        {
+            //验证是否又租户
+            if (typeof(IMustHaveTenant).IsAssignableFrom(entity.GetType()))
+            {
+                var tenantId = _tenantProvider.GetTenantId();
+                if (tenantId != 0)
+                {
+                    entity.GetType().GetProperty("TenantId").SetValue(entity, tenantId);
+                }
+            }
+            entity = Add(entity);
+            DbContext.SaveChanges();
+            return Task.FromResult(entity);
+        }
+
+        /// <summary>
         /// 更新实体
         /// </summary>
         /// <param name="entity"></param>

@@ -48,7 +48,7 @@ namespace WesleyCore.User.Domain
             Url = url;
             CreateTime = DateTime.Now;
             StartDate = DateTime.Now;
-            ExpireDate = DateTime.Now.AddYears(2);
+            ExpireDate = DateTime.Now.AddYears(10);
             UnionKey = unionKey;
             Memo = memo;
         }

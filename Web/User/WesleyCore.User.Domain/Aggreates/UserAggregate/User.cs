@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Toolbelt.ComponentModel.DataAnnotations.Schema.V5;
 using WesleyCore.Domin.Abstractions;
+using WesleyCore.Message.Domain.Enums.Message;
 using WesleyCore.User.Domain.Const;
 using WesleyCore.User.Domain.Enums.User;
+using WesleyCore.User.Domain.Events.User;
 using WesleyRedis;
 using WesleyUntity;
 
@@ -33,11 +35,18 @@ namespace WesleyCore.User.Domain
         /// <param name="tenantId"></param>
         public User(string userName, string phoneNumber, string password, int tenantId)
         {
+            Id = ComFunc.NewCombGuid();
             UserName = userName;
             PhoneNumber = phoneNumber;
             Password = password;
             CreateTime = DateTime.Now;
             TenantId = tenantId;
+
+            //发送消息
+            this.AddDomainEvent(new SendUserMessageDomainEvent("系统消息", "欢迎使用", MessageTypeEnum.常规消息, null, "系统", new Dictionary<Guid, string>
+            {
+                { Id, UserName }
+            }));
         }
 
         #region 字段

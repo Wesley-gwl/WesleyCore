@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WesleyCore.Controllers;
+using WesleyCore.Dtos;
 using WesleyCore.Web;
 
 namespace WesleyCore.Feature.Controllers

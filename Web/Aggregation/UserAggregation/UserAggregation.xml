@@ -110,6 +110,13 @@
             业务异常构造函数
             </summary>
             <param name="message"></param>
+            <param name="errorCode"></param>
+            <param name="errorData"></param>
+        </member>
+        <member name="F:WesleyCore.WlException._bizMessage">
+             <summary>
+            
+             </summary>
         </member>
         <member name="P:WesleyCore.WlException.Message">
              <summary>

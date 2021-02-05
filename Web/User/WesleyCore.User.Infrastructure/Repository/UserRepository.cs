@@ -11,17 +11,17 @@ namespace WesleyCore.User.Infrastructure.Repositories
     public class UserRepository : Repository<Domain.User, Guid, UserContext>, IUserRepository
     {
         /// <summary>
-        ///
+        /// 链接
         /// </summary>
         private readonly UserContext _context;
 
         /// <summary>
-        ///
+        /// 租户获取
         /// </summary>
         private readonly ITenantProvider _tenantProvider;
 
         /// <summary>
-        ///
+        /// 构造
         /// </summary>
         /// <param name="context"></param>
         /// <param name="tenantProvider"></param>

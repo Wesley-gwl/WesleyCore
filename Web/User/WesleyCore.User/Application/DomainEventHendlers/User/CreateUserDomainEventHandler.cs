@@ -27,20 +27,13 @@ namespace WesleyCore.User.Application.DomainEvents.User
         /// <summary>
         /// 创建用户
         /// </summary>
-        /// <param name="event"></param>
+        /// <param name="input"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task Handle(CreateUserDomainEvent @event, CancellationToken cancellationToken)
+        public async Task Handle(CreateUserDomainEvent input, CancellationToken cancellationToken)
         {
-            var user = new Domain.User(@event.UserName, @event.PhoneNumber, @event.Password, @event.TenantId);
+            var user = new Domain.User(input.UserName, input.PhoneNumber, input.Password, input.TenantId);
             await _userRepository.AddAsync(user);
-            if (@event.IsCreateMemu)
-            {
-                //初始化菜单
-                //todo
-            }
-            //发送消息
-            //todo
             await _userRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
         }
     }

@@ -274,30 +274,6 @@
              <param name="args"></param>
              <returns></returns>
         </member>
-        <member name="M:IdentityServer.InMemoryConfig.GetApiResources">
-            <summary>
-            api资源列表
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:IdentityServer.InMemoryConfig.GetApiScopes">
-            <summary>
-            4.0版本需要添加apiscope
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:IdentityServer.InMemoryConfig.GetClients">
-            <summary>
-            客户端列表
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:IdentityServer.InMemoryConfig.Users">
-            <summary>
-            指定可以使用 Authorization Server 授权的 Users（用户）
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:IdentityServer.Startup">
              <summary>
             

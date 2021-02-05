@@ -55,10 +55,10 @@ namespace WesleyCore.User.Application.Commands.Member
             }
             var allowUserNumber = _configuration["Allocation:allowUserNumber"];
             var member = new Domain.Member(request.UserName, request.PhoneNumber, request.Company, allowUserNumber.ToInt(0).Value);
-            member = await _memberRepository.AddAsync(member);
+            member = await _memberRepository.InsertAndGetIdAsync(member);
             //优先创建member表数据,member.id可以获取到
-            await _memberRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
             member.CreateMemberUser(request.Password);
+            member.CreateMemberFeatureMenu();
             await _memberRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
             return true;
         }

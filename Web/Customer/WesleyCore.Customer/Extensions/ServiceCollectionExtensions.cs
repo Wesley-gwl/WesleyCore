@@ -136,7 +136,6 @@ namespace WesleyCore
         /// <returns></returns>
         public static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IEventBus, EventBus>();
             services.AddCap(options =>
             {
                 options.UseSqlServer(configuration["ConnectionStrings:Default"]); // SQL Server

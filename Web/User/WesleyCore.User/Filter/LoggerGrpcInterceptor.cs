@@ -68,6 +68,15 @@ namespace WesleyCore.Grpc
 
         #region 客户端异常
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="TRequest"></typeparam>
+        /// <typeparam name="TResponse"></typeparam>
+        /// <param name="request"></param>
+        /// <param name="context"></param>
+        /// <param name="continuation"></param>
+        /// <returns></returns>
         public override AsyncUnaryCall<TResponse> AsyncUnaryCall<TRequest, TResponse>(
            TRequest request,
            ClientInterceptorContext<TRequest, TResponse> context,
@@ -80,6 +89,12 @@ namespace WesleyCore.Grpc
             return new AsyncUnaryCall<TResponse>(HandleResponse(call.ResponseAsync), call.ResponseHeadersAsync, call.GetStatus, call.GetTrailers, call.Dispose);
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="TResponse"></typeparam>
+        /// <param name="t"></param>
+        /// <returns></returns>
         private async Task<TResponse> HandleResponse<TResponse>(Task<TResponse> t)
         {
             try
@@ -95,6 +110,12 @@ namespace WesleyCore.Grpc
             }
         }
 
+        /// <summary>
+        ///
+        /// </summary>
+        /// <typeparam name="TRequest"></typeparam>
+        /// <typeparam name="TResponse"></typeparam>
+        /// <param name="method"></param>
         private void LogCall<TRequest, TResponse>(Method<TRequest, TResponse> method) where TRequest : class where TResponse : class
         {
             _logger.LogDebug($"Starting call. Type: {method.Type}. Request: {typeof(TRequest)}. Response: {typeof(TResponse)}");

@@ -35,6 +35,14 @@ namespace WesleyCore.Infrastruction.Core
         Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// 新增并获取id-调用保存
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<TEntity> InsertAndGetIdAsync(TEntity entity, CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// 更新
         /// </summary>
         /// <param name="entity"></param>

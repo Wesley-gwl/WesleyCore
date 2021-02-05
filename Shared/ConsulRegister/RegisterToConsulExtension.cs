@@ -118,7 +118,7 @@ namespace ConsulRegister
                 {
                     DeregisterCriticalServiceAfter = TimeSpan.FromMinutes(1),
                     Interval = TimeSpan.FromSeconds(new Random ().Next(10,30)),//间隔60s一次 检查
-                    Timeout = TimeSpan.FromSeconds(2),//检测等待时间
+                    //Timeout = TimeSpan.FromSeconds(2),//检测等待时间
                     HTTP = $"{http??Uri.UriSchemeHttp}://{ip}:{port}/Api/HealthCheck/Check",
                 } },
                 Address = ip,

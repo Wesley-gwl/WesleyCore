@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace WesleyCore
+namespace WesleyCore.Dtos
 {
     /// <summary>
     /// 移动树时传入参数

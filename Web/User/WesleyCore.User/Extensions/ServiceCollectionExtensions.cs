@@ -19,6 +19,7 @@ using WesleyCore.User.Domain;
 using WesleyCore.User.Domain.Repository;
 using WesleyCore.User.Infrastructure;
 using WesleyCore.User.Infrastructure.Repositories;
+using WesleyCore.User.Infrastructure.Repository;
 
 namespace WesleyCore
 {
@@ -130,11 +131,13 @@ namespace WesleyCore
         {
             //获取租户id
             services.AddHttpContextAccessor();
+            //仓储
             services.AddScoped<ITenantProvider, TenantProvider>();
             services.AddScoped<ITokenBuilder, TokenBuilder>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMemberRepository, MemberRepository>();
             services.AddScoped<IFeatureRepository, FeatureRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
             return services;
         }
 
@@ -146,7 +149,6 @@ namespace WesleyCore
         /// <returns></returns>
         public static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IEventBus, EventBus>();
             services.AddCap(options =>
             {
                 options.UseSqlServer(configuration["ConnectionStrings:Default"]); // SQL Server

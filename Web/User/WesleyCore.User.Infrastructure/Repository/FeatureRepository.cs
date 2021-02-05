@@ -17,14 +17,17 @@ namespace WesleyCore.User.Infrastructure
     public class FeatureRepository : Repository<Feature, Guid, UserContext>, IFeatureRepository
     {
         /// <summary>
-        ///
+        /// 链接
         /// </summary>
         private readonly UserContext _context;
 
+        /// <summary>
+        /// 租户链接
+        /// </summary>
         private readonly ITenantProvider _tenantProvider;
 
         /// <summary>
-        ///
+        /// 构造
         /// </summary>
         /// <param name="context"></param>
         /// <param name="tenantProvider"></param>

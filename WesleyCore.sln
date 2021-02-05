@@ -41,11 +41,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAggregation", "Web\Aggr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customer", "Customer", "{099A5FDE-C828-43F5-AB16-742631F884A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WesleyCore.Customer", "Web\Customer\WesleyCore.Customer\WesleyCore.Customer.csproj", "{8F9CE86F-BB1D-4D7D-99B1-06215EAB28C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WesleyCore.Customer", "Web\Customer\WesleyCore.Customer\WesleyCore.Customer.csproj", "{8F9CE86F-BB1D-4D7D-99B1-06215EAB28C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WesleyCore.Customer.Domain", "Web\Customer\WesleyCore.Customer.Domain\WesleyCore.Customer.Domain.csproj", "{97E23F64-CE2B-49FB-8F70-A2539DEEA4D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WesleyCore.Customer.Domain", "Web\Customer\WesleyCore.Customer.Domain\WesleyCore.Customer.Domain.csproj", "{97E23F64-CE2B-49FB-8F70-A2539DEEA4D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WesleyCore.Customer.Infrastructure", "Web\Customer\WesleyCore.Customer.Infrastructure\WesleyCore.Customer.Infrastructure.csproj", "{BDFDAC7D-19F7-4353-B7AF-7F49BB6BFDFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WesleyCore.Customer.Infrastructure", "Web\Customer\WesleyCore.Customer.Infrastructure\WesleyCore.Customer.Infrastructure.csproj", "{BDFDAC7D-19F7-4353-B7AF-7F49BB6BFDFC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Message", "Message", "{1F607132-07D2-4476-A8BB-A42649502475}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WesleyCore.Message", "Web\Message\WesleyCore.Message\WesleyCore.Message.csproj", "{BE8B2150-69CE-4230-AC5A-4F65957AD029}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WesleyCore.Message.Domain", "Web\Message\WesleyCore.Message.Domain\WesleyCore.Message.Domain.csproj", "{7B82E4B7-D6A1-47BA-B44C-99F17F18153B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WesleyCore.Message.Infrastructure", "Web\Message\WesleyCore.Message.Infrastructure\WesleyCore.Message.Infrastructure.csproj", "{DAC50157-9A1C-4614-876C-09C890307C00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +125,18 @@ Global
 		{BDFDAC7D-19F7-4353-B7AF-7F49BB6BFDFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDFDAC7D-19F7-4353-B7AF-7F49BB6BFDFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDFDAC7D-19F7-4353-B7AF-7F49BB6BFDFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE8B2150-69CE-4230-AC5A-4F65957AD029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE8B2150-69CE-4230-AC5A-4F65957AD029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE8B2150-69CE-4230-AC5A-4F65957AD029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE8B2150-69CE-4230-AC5A-4F65957AD029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B82E4B7-D6A1-47BA-B44C-99F17F18153B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B82E4B7-D6A1-47BA-B44C-99F17F18153B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B82E4B7-D6A1-47BA-B44C-99F17F18153B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B82E4B7-D6A1-47BA-B44C-99F17F18153B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAC50157-9A1C-4614-876C-09C890307C00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAC50157-9A1C-4614-876C-09C890307C00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAC50157-9A1C-4614-876C-09C890307C00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAC50157-9A1C-4614-876C-09C890307C00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,6 +161,10 @@ Global
 		{8F9CE86F-BB1D-4D7D-99B1-06215EAB28C1} = {099A5FDE-C828-43F5-AB16-742631F884A7}
 		{97E23F64-CE2B-49FB-8F70-A2539DEEA4D6} = {099A5FDE-C828-43F5-AB16-742631F884A7}
 		{BDFDAC7D-19F7-4353-B7AF-7F49BB6BFDFC} = {099A5FDE-C828-43F5-AB16-742631F884A7}
+		{1F607132-07D2-4476-A8BB-A42649502475} = {C312781F-1BAF-44C5-A4FA-4088F17FD413}
+		{BE8B2150-69CE-4230-AC5A-4F65957AD029} = {1F607132-07D2-4476-A8BB-A42649502475}
+		{7B82E4B7-D6A1-47BA-B44C-99F17F18153B} = {1F607132-07D2-4476-A8BB-A42649502475}
+		{DAC50157-9A1C-4614-876C-09C890307C00} = {1F607132-07D2-4476-A8BB-A42649502475}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D12CF12D-9174-4517-8CB6-5B698C224A06}

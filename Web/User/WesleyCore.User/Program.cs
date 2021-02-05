@@ -24,8 +24,8 @@ namespace WesleyCore.User
         public static void Main(string[] args)
         {
             new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddCommandLine(args).Build();
-            CreateHostBuilder(args).Build().Run();
             BuildDB();
+            CreateHostBuilder(args).Build().Run();
         }
 
         /// <summary>

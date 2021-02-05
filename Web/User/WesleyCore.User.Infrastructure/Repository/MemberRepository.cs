@@ -10,17 +10,17 @@ namespace WesleyCore.User.Infrastructure
     public class MemberRepository : Repository<Member, int, UserContext>, IMemberRepository
     {
         /// <summary>
-        ///
+        /// 链接
         /// </summary>
         private readonly UserContext _context;
 
         /// <summary>
-        ///
+        /// 租户获取
         /// </summary>
         private readonly ITenantProvider _tenantProvider;
 
         /// <summary>
-        ///
+        /// 构造
         /// </summary>
         /// <param name="context"></param>
         /// <param name="tenantProvider"></param>

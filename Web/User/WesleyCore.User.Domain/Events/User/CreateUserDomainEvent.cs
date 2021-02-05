@@ -15,13 +15,12 @@ namespace WesleyCore.User.Domain.Events.User
         /// <param name="password"></param>
         /// <param name="userName"></param>
         /// <param name="isCreateMemu"></param>
-        public CreateUserDomainEvent(int tenantId, string phoneNumber, string password, string userName, bool isCreateMemu = false)
+        public CreateUserDomainEvent(int tenantId, string phoneNumber, string password, string userName)
         {
             TenantId = tenantId;
             PhoneNumber = phoneNumber;
             Password = password;
             UserName = userName;
-            IsCreateMemu = isCreateMemu;
         }
 
         /// <summary>
@@ -43,10 +42,5 @@ namespace WesleyCore.User.Domain.Events.User
         /// 用户名
         /// </summary>
         public string UserName { get; }
-
-        /// <summary>
-        /// 是否生成菜单
-        /// </summary>
-        public bool IsCreateMemu { get; }
     }
 }

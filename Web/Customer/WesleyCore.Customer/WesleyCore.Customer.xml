@@ -200,6 +200,11 @@
              </summary>
              <param name="args"></param>
         </member>
+        <member name="M:WesleyCore.Customer.Program.BuildDB">
+            <summary>
+            创建数据库
+            </summary>
+        </member>
         <member name="M:WesleyCore.Customer.Program.CreateHostBuilder(System.String[])">
              <summary>
             

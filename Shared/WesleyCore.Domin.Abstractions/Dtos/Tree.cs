@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace WesleyCore
+namespace WesleyCore.Dtos
 {
     /// <summary>
     /// EasyUI Tree 树
