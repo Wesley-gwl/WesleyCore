@@ -1,4 +1,21 @@
 # WesleyCore
+介绍
+此微服务系统使用DDD开发模式,.net5.0+sqlserver.采用租户模式设计。
+其中运用到 
+ocelot 网关负载 
+consul 服务注册发现-健康检测
+Identity4 鉴权授权
+中介者MediatR代理
+CQRS读写分离模式 
+CAP框架+Rabbitmq消息队列
+grpc远程调用 
+reids(可配置集群-主从复制)  
+仓储 
+聚合 
+工作单元
+垂直分库
+
+
 此项目启动先置条件
 consul
 redis
@@ -20,6 +37,9 @@ consul 负责服务注册发现，负载均衡等功能
 WesleyPC.Gateway https://localhost:5000;
 为PC端网关服务，统一前端入口 后续可以添加微信小程序 app等不同网关服务
 
+UserAggregation http://localhost:6001
+用户聚合服务 使用grpc调用多个微服务进行数据整合
+
 IdentityServer http://localhost:3000
 认证授权中心，登入授权功能
 
@@ -29,5 +49,5 @@ WesleyCore.User https://localhost:5003
 WesleyCore.Customer https://localhost:5004
 客户微服务 包含客户分类聚合 客户聚合
 
-UserAggregation http://localhost:6001
-用户聚合服务 使用grpc调用多个微服务进行数据整合
+WesleyCore.Message https://localhost:5005
+消息微服务
