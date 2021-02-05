@@ -90,29 +90,6 @@
              <param name="args"></param>
              <returns></returns>
         </member>
-        <member name="T:WesleyPC.Gateway.Config">
-            <summary>
-            配置
-            </summary>
-        </member>
-        <member name="M:WesleyPC.Gateway.Config.GetIdentityResourceResources">
-             <summary>
-            
-             </summary>
-             <returns></returns>
-        </member>
-        <member name="M:WesleyPC.Gateway.Config.GetApiResources">
-            <summary>
-             scopes define the API resources in your system
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:WesleyPC.Gateway.Config.GetClients">
-             <summary>
-            
-             </summary>
-             <returns></returns>
-        </member>
         <member name="T:WesleyPC.Gateway.Startup">
             <summary>
             启动项

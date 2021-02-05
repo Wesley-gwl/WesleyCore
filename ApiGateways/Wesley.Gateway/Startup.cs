@@ -97,11 +97,6 @@ namespace WesleyPC.Gateway
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Login");
-                app.UseHsts();
-            }
             //app.UseIdentityServer();
             app.UseWebSockets();
             app.UseCors(c => c.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());

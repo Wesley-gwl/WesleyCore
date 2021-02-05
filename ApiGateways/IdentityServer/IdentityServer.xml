@@ -4,12 +4,12 @@
         <name>IdentityServer</name>
     </assembly>
     <members>
-        <member name="T:WesleyCore.Web.Controllers.ApiControllers.HealthCheck">
+        <member name="T:WesleyCore.Web.Controllers.ApiControllers.HealthCheckController">
             <summary>
             健康检查
             </summary>
         </member>
-        <member name="M:WesleyCore.Web.Controllers.ApiControllers.HealthCheck.Check">
+        <member name="M:WesleyCore.Web.Controllers.ApiControllers.HealthCheckController.Check">
             <summary>
             健康检查
             </summary>
@@ -296,12 +296,13 @@
              </summary>
              <param name="services"></param>
         </member>
-        <member name="M:IdentityServer.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+        <member name="M:IdentityServer.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Hosting.IHostApplicationLifetime)">
              <summary>
             
              </summary>
              <param name="app"></param>
              <param name="env"></param>
+             <param name="lifetime"></param>
         </member>
         <member name="T:Wesley.Filter.ExceptionResultFilter">
              <summary>

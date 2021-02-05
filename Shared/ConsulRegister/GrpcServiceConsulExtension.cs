@@ -19,14 +19,14 @@ namespace ConsulRegister
         /// <returns></returns>
         public static async Task<string> GetGrpcServiceHttps(string serviceName)
         {
-            var consulClient = new ConsulClient(c => c.Address = new Uri("http://localhost:8500"));
-            var services = await consulClient.Catalog.Service(serviceName);
+            var consulClient = new ConsulClient(c => { c.Address = new Uri("http://localhost:8500"); });
+            var services = await consulClient.Health.Service(serviceName, string.Empty, true);
             if (services.Response.Length == 0)
             {
                 throw new Exception($"未发现服务 {serviceName}");
             }
             var service = services.Response[new Random().Next(0, services.Response.Length - 1)];
-            var address = $"https://{service.ServiceAddress}:{service.ServicePort}";
+            var address = $"https://{service.Service.Address}:{service.Service.Port}";
             Console.WriteLine($"获取服务地址成功：{address}");
             return address;
         }
