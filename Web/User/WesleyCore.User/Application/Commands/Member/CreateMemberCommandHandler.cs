@@ -13,9 +13,6 @@ namespace WesleyCore.User.Application.Commands.Member
     /// </summary>
     public class CreateMemberCommandHandler : IRequestHandler<CreateMemberCommand, bool>
     {
-        /// <summary>
-        ///
-        /// </summary>
         private readonly IMemberRepository _memberRepository;
 
         private readonly IUserRepository _userRepository;
