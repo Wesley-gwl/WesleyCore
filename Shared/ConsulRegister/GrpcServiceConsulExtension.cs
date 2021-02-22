@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using WesleyRedis;
 
 namespace ConsulRegister
 {
@@ -12,6 +13,8 @@ namespace ConsulRegister
     /// </summary>
     public static class GrpcServiceConsulExtension
     {
+        public static string ConsulAddress = "http://localhost:8500";
+
         /// <summary>
         /// gRPC服务发现 没有token https
         /// </summary>
@@ -19,14 +22,30 @@ namespace ConsulRegister
         /// <returns></returns>
         public static async Task<string> GetGrpcServiceHttps(string serviceName)
         {
-            var consulClient = new ConsulClient(c => { c.Address = new Uri("http://localhost:8500"); });
-            var services = await consulClient.Health.Service(serviceName, string.Empty, true);
-            if (services.Response.Length == 0)
+            var address = string.Empty;
+            //优先从redis里获取
+            var list = RedisClient.RedisCt.GetStringKey<List<string>>(serviceName);
+            if (list != null && list.Count > 0)
             {
-                throw new Exception($"未发现服务 {serviceName}");
+                address = list[new Random().Next(0, list.Count - 1)];
             }
-            var service = services.Response[new Random().Next(0, services.Response.Length - 1)];
-            var address = $"https://{service.Service.Address}:{service.Service.Port}";
+            else//备用方案,主方案通过线程去自动更新redis内服务
+            {
+                var consulClient = new ConsulClient(c => { c.Address = new Uri(ConsulAddress); });
+                var services = await consulClient.Health.Service(serviceName, string.Empty, true);
+                if (services.Response.Length == 0)
+                {
+                    throw new Exception($"未发现服务 {serviceName}");
+                }
+                var service = services.Response[new Random().Next(0, services.Response.Length - 1)];
+                address = $"https://{service.Service.Address}:{service.Service.Port}";
+                list = new List<string>();
+                foreach (var item in services.Response)
+                {
+                    list.Add($"https://{item.Service.Address}:{item.Service.Port}");
+                }
+                RedisClient.RedisCt.SetStringKey(serviceName, list, TimeSpan.FromMinutes(5));
+            }
             Console.WriteLine($"获取服务地址成功：{address}");
             return address;
         }
@@ -38,14 +57,30 @@ namespace ConsulRegister
         /// <returns></returns>
         public static async Task<string> GetGrpcServiceHttp(string serviceName)
         {
-            var consulClient = new ConsulClient(c => c.Address = new Uri("http://localhost:8500"));
-            var services = await consulClient.Catalog.Service(serviceName);
-            if (services.Response.Length == 0)
+            var address = string.Empty;
+            //优先从redis里获取
+            var list = RedisClient.RedisCt.GetStringKey<List<string>>(serviceName);
+            if (list != null && list.Count > 0)
             {
-                throw new Exception($"未发现服务 {serviceName}");
+                address = list[new Random().Next(0, list.Count - 1)];
             }
-            var service = services.Response[new Random().Next(0, services.Response.Length - 1)];
-            var address = $"http://{service.ServiceAddress}:{service.ServicePort}";
+            else
+            {
+                var consulClient = new ConsulClient(c => { c.Address = new Uri(ConsulAddress); });
+                var services = await consulClient.Health.Service(serviceName, string.Empty, true);
+                if (services.Response.Length == 0)
+                {
+                    throw new Exception($"未发现服务 {serviceName}");
+                }
+                var service = services.Response[new Random().Next(0, services.Response.Length - 1)];
+                address = $"http://{service.Service.Address}:{service.Service.Port}";
+                list = new List<string>();
+                foreach (var item in services.Response)
+                {
+                    list.Add($"http://{item.Service.Address}:{item.Service.Port}");
+                }
+                RedisClient.RedisCt.SetStringKey(serviceName, list, TimeSpan.FromMinutes(5));
+            }
             Console.WriteLine($"获取服务地址成功：{address}");
             return address;
         }

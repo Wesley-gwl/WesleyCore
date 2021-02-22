@@ -241,12 +241,12 @@
              <param name="app"></param>
              <param name="env"></param>
         </member>
-        <member name="T:WesleyCore.Web.Controllers.ApiControllers.HealthCheck">
+        <member name="T:WesleyCore.Web.Controllers.ApiControllers.HealthCheckController">
             <summary>
             健康检查
             </summary>
         </member>
-        <member name="M:WesleyCore.Web.Controllers.ApiControllers.HealthCheck.Check">
+        <member name="M:WesleyCore.Web.Controllers.ApiControllers.HealthCheckController.Check">
             <summary>
             健康检查
             </summary>

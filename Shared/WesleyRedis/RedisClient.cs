@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace WesleyRedis
@@ -131,6 +132,21 @@ namespace WesleyRedis
         }
 
         #endregion String
+
+        #region Set
+
+        /// <summary>
+        /// 保存单个key value
+        /// </summary>
+        /// <param name="key">保存的值</param>
+        /// <param name="value">保存的值</param>
+        public bool SetSetKey(string key, RedisValue[] value)
+        {
+            db.SetAdd(key, value);
+            return true;
+        }
+
+        #endregion Set
 
         #region 分布式锁
 

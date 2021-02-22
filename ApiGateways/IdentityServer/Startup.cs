@@ -13,6 +13,7 @@ using System.Net.Http;
 using System.Threading.Channels;
 using Wesley.Filter;
 using WesleyCore.User.Proto;
+using WesleyRedis;
 
 namespace IdentityServer
 {
@@ -49,7 +50,8 @@ namespace IdentityServer
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "IdentityServer", Version = "v1" });
             });
-
+            //缓存
+            RedisClient.RedisCt.InitConnect(Configuration);
             services.AddSingleton(Configuration);
             services.AddTokenJwtAuthorize(Configuration);
             //注册grpc发现类服务
