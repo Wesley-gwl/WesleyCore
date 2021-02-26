@@ -18,30 +18,16 @@ namespace WesleyCore.User.Application
     public class FeatureMenuTreeHendler : IRequestHandler<GetFeatureMenuTreeInput, List<Tree>>
     {
         /// <summary>
-        /// 日志
-        /// </summary>
-        private readonly ILogger<FeatureMenuTreeHendler> _logger;
-
-        /// <summary>
         /// 仓储
         /// </summary>
         private readonly IFeatureRepository _featureRepository;
 
         /// <summary>
-        /// 映射
-        /// </summary>
-        private readonly IMapper _mapper;
-
-        /// <summary>
         ///
         /// </summary>
-        /// <param name="logger"></param>
         /// <param name="featureRepository"></param>
-        /// <param name="mapper"></param>
-        public FeatureMenuTreeHendler(ILogger<FeatureMenuTreeHendler> logger, IMapper mapper, IFeatureRepository featureRepository)
+        public FeatureMenuTreeHendler(IFeatureRepository featureRepository)
         {
-            _logger = logger;
-            _mapper = mapper;
             _featureRepository = featureRepository;
         }
 
@@ -61,7 +47,7 @@ namespace WesleyCore.User.Application
                 .Contains(request.Search.Trim())).Where(a => !a.Url.IsNullEmpty()).ToList();
                 isflat = true;
             }
-            return BuildTree((menulist), isflat);
+            return BuildTree(menulist, isflat);
         }
 
         /// <summary>
