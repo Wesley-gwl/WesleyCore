@@ -24,5 +24,4 @@
     <ProjectReference Include="..\..\..\Shared\WesleyUntity\WesleyUntity.csproj" />
     <ProjectReference Include="..\WesleyCore.Message.Domain\WesleyCore.Message.Domain.csproj" />
   </ItemGroup>
-
 </Project>

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WesleyCore.User.Application;
+using WesleyCore.User.Domain;
 using WesleyCore.User.Domain.Repository;
 using Xunit;
 

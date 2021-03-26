@@ -1,5 +1,4 @@
 using ConsulRegister;
-using Grpc.Core;
 using IdentityServer.GrpcService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,11 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Ocelot.JwtAuthorize;
-using System;
-using System.Net.Http;
-using System.Threading.Channels;
 using Wesley.Filter;
-using WesleyCore.User.Proto;
+using Wesley.GrpcService;
 using WesleyRedis;
 
 namespace IdentityServer

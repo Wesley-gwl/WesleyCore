@@ -220,16 +220,6 @@
             服务
             </summary>
         </member>
-        <member name="T:IdentityServer.GrpcService.GrpcServiceHelper">
-            <summary>
-            grpc服务发现帮助类
-            </summary>
-        </member>
-        <member name="M:IdentityServer.GrpcService.GrpcServiceHelper.GetLoginService">
-            <summary>
-            获取登录服务
-            </summary>
-        </member>
         <member name="T:IdentityServer.GrpcService.IGrpcServiceHelper">
             <summary>
             grpc服务发现帮助类
@@ -320,6 +310,16 @@
             
              </summary>
              <param name="context"></param>
+        </member>
+        <member name="T:Wesley.GrpcService.GrpcServiceHelper">
+            <summary>
+            grpc服务发现帮助类
+            </summary>
+        </member>
+        <member name="M:Wesley.GrpcService.GrpcServiceHelper.GetLoginService">
+            <summary>
+            获取登录服务
+            </summary>
         </member>
     </members>
 </doc>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using static WesleyCore.Domin.Abstractions.IEntity;
 
 namespace WesleyCore.Domin.Abstractions
 {

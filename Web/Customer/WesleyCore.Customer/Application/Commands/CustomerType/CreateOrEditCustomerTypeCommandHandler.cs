@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using WesleyCore.Customer.Application.Commands.CustomerType.Dto;
 using WesleyCore.Customer.Domain.Repository;
 
 namespace WesleyCore.Customer.Application.Commands

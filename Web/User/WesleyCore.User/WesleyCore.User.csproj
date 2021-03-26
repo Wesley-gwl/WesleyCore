@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>E:\Wesley\Code\WesleyCore\Web\User\WesleyCore.User\WesleyCore.User.xml</DocumentationFile>
+    <DocumentationFile>D:\Code\MyCode\WesleyCore\Web\User\WesleyCore.User\WesleyCore.User.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

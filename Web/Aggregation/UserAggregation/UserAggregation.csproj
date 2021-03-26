@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>E:\Wesley\Code\WesleyCore\Web\Aggregation\UserAggregation\UserAggregation.xml</DocumentationFile>
+    <DocumentationFile>D:\Code\MyCode\WesleyCore\Web\Aggregation\UserAggregation\UserAggregation.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

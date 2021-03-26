@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using WesleyCore.Domin.Abstractions;
+using WesleyCore.User.Domain;
 using WesleyCore.User.Domain.Events.Feature;
 using WesleyCore.User.Domain.Repository;
 

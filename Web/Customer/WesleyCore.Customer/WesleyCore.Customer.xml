@@ -26,7 +26,7 @@
             <param name="customerTypeRepository"></param>
             <param name="mapper"></param>
         </member>
-        <member name="M:WesleyCore.Customer.Application.Commands.CreateOrEditCustomerTypeCommandHandler.Handle(WesleyCore.Customer.Application.CreateOrEditCustomerTypeCommand,System.Threading.CancellationToken)">
+        <member name="M:WesleyCore.Customer.Application.Commands.CreateOrEditCustomerTypeCommandHandler.Handle(WesleyCore.Customer.Application.Commands.CustomerType.Dto.CreateOrEditCustomerTypeCommand,System.Threading.CancellationToken)">
             <summary>
             创新修改实体
             </summary>
@@ -34,14 +34,14 @@
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
-        <member name="M:WesleyCore.Customer.Application.Commands.CreateOrEditCustomerTypeCommandHandler.Create(WesleyCore.Customer.Application.CreateOrEditCustomerTypeCommand)">
+        <member name="M:WesleyCore.Customer.Application.Commands.CreateOrEditCustomerTypeCommandHandler.Create(WesleyCore.Customer.Application.Commands.CustomerType.Dto.CreateOrEditCustomerTypeCommand)">
             <summary>
             新增
             </summary>
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:WesleyCore.Customer.Application.Commands.CreateOrEditCustomerTypeCommandHandler.Update(WesleyCore.Customer.Application.CreateOrEditCustomerTypeCommand)">
+        <member name="M:WesleyCore.Customer.Application.Commands.CreateOrEditCustomerTypeCommandHandler.Update(WesleyCore.Customer.Application.Commands.CustomerType.Dto.CreateOrEditCustomerTypeCommand)">
             <summary>
             更新
             </summary>
@@ -71,6 +71,40 @@
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
+        <member name="T:WesleyCore.Customer.Application.Commands.CustomerType.Dto.CreateOrEditCustomerTypeCommand">
+            <summary>
+            创建修改客户分类命令
+            </summary>
+        </member>
+        <member name="M:WesleyCore.Customer.Application.Commands.CustomerType.Dto.CreateOrEditCustomerTypeCommand.#ctor(System.Nullable{System.Guid},WesleyCore.Enums.CustomerTypeEnum,System.String,System.String)">
+            <summary>
+            构造
+            </summary>
+            <param name="id"></param>
+            <param name="type"></param>
+            <param name="name"></param>
+            <param name="memo"></param>
+        </member>
+        <member name="P:WesleyCore.Customer.Application.Commands.CustomerType.Dto.CreateOrEditCustomerTypeCommand.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Customer.Application.Commands.CustomerType.Dto.CreateOrEditCustomerTypeCommand.Type">
+            <summary>
+            分类
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Customer.Application.Commands.CustomerType.Dto.CreateOrEditCustomerTypeCommand.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:WesleyCore.Customer.Application.Commands.CustomerType.Dto.CreateOrEditCustomerTypeCommand.Memo">
+            <summary>
+            备注
+            </summary>
+        </member>
         <member name="T:WesleyCore.Customer.Application.Commands.CustomerType.Dto.DeleteCustomerTypeCommand">
             <summary>
             删除客户分类
@@ -95,31 +129,6 @@
         <member name="M:WesleyCore.Customer.Application.Commands.CustomerTypeCommandMapper.#ctor">
             <summary>
             构造
-            </summary>
-        </member>
-        <member name="T:WesleyCore.Customer.Application.CreateOrEditCustomerTypeCommand">
-            <summary>
-            新增标记分类
-            </summary>
-        </member>
-        <member name="P:WesleyCore.Customer.Application.CreateOrEditCustomerTypeCommand.Id">
-            <summary>
-            Id
-            </summary>
-        </member>
-        <member name="P:WesleyCore.Customer.Application.CreateOrEditCustomerTypeCommand.Type">
-            <summary>
-            分类
-            </summary>
-        </member>
-        <member name="P:WesleyCore.Customer.Application.CreateOrEditCustomerTypeCommand.Name">
-            <summary>
-            名称
-            </summary>
-        </member>
-        <member name="P:WesleyCore.Customer.Application.CreateOrEditCustomerTypeCommand.Memo">
-            <summary>
-            备注
             </summary>
         </member>
         <member name="T:WesleyCore.Customer.Application.DomainEventHendlers.Customer.VerifyCustomerTypeUsedDomainEventHendler">
@@ -177,7 +186,7 @@
             </summary>
             <param name="mediator"></param>
         </member>
-        <member name="M:WesleyCore.Customer.Controllers.CustomerTypeController.SaveCustomerType(WesleyCore.Customer.Application.CreateOrEditCustomerTypeCommand)">
+        <member name="M:WesleyCore.Customer.Controllers.CustomerTypeController.SaveCustomerType(WesleyCore.Customer.Application.Commands.CustomerType.Dto.CreateOrEditCustomerTypeCommand)">
             <summary>
             保存分类
             </summary>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using WesleyCore.Domin.Abstractions;
-using WesleyCore.Message.Domain.Enums.Message;
+using WesleyCore.User.Domain.Enums.User;
 
 namespace WesleyCore.User.Domain.Events.User
 {

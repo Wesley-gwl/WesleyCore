@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -7,6 +9,7 @@ namespace WesleyUntity
     /// <summary>
     /// 常用工具类
     /// </summary>
+    [Serializable]
     public static class ComFunc
     {
         /// <summary>
@@ -78,6 +81,35 @@ namespace WesleyUntity
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(t);
             T copy = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
             return copy;
+        }
+
+        /// <summary>
+        /// DataTable转换成泛型列表 2019.5.23 added by yz
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static List<T> ToList<T>(this DataTable dt)
+        {
+            var lst = new List<T>();
+            var plist = new List<System.Reflection.PropertyInfo>(typeof(T).GetProperties());
+            foreach (DataRow item in dt.Rows)
+            {
+                T t = System.Activator.CreateInstance<T>();
+                for (int i = 0; i < dt.Columns.Count; i++)
+                {
+                    PropertyInfo info = plist.Find(p => p.Name == dt.Columns[i].ColumnName);
+                    if (info != null)
+                    {
+                        if (!Convert.IsDBNull(item[i]))
+                        {
+                            info.SetValue(t, item[i], null);
+                        }
+                    }
+                }
+                lst.Add(t);
+            }
+            return lst;
         }
     }
 }

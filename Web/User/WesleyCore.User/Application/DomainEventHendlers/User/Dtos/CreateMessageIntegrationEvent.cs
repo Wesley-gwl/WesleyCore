@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WesleyCore.Message.Domain.Enums.Message;
+using WesleyCore.User.Domain.Enums.User;
 
 namespace WesleyCore.Application.IntegrationEvents.Message
 {

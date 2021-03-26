@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using WesleyCore.Dtos;
+using WesleyCore.User.Domain;
 using WesleyCore.User.Domain.Repository;
 using WesleyUntity;
 

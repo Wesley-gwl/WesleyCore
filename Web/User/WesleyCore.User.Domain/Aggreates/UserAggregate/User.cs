@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Toolbelt.ComponentModel.DataAnnotations.Schema.V5;
 using WesleyCore.Domin.Abstractions;
-using WesleyCore.Message.Domain.Enums.Message;
 using WesleyCore.User.Domain.Const;
 using WesleyCore.User.Domain.Enums.User;
 using WesleyCore.User.Domain.Events.User;
